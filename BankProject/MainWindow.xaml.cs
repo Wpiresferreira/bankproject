@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
+using System.Windows.Controls.Primitives;
 
 namespace BankProject
 {
@@ -26,14 +27,27 @@ namespace BankProject
             InitializeComponent();
         }
 
+        internal static void UpdateStatus(string userLogged)
+        {
+
+            foreach (Window window in Application.Current.Windows)
+            {
+                if (window.GetType() == typeof(MainWindow))
+                {
+                    (window as MainWindow).StatusTextBox.Text = "User Logged: " + userLogged;
+                }
+            }
+            //StatusTextBox.Text = userLogged;
+        }
+
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            new Login().Show();
+            Login login = Login.Instance;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            new Login().Show();
+            Login login = Login.Instance;
         }
     }
 }
