@@ -28,3 +28,5 @@ C:\Users\wagne\OneDrive - Bow Valley College\BankProject\BankProject\bin\Debug\n
 C:\Users\wagne\OneDrive - Bow Valley College\BankProject\BankProject\bin\Debug\net7.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\wagne\OneDrive - Bow Valley College\BankProject\BankProject\obj\Debug\net7.0-windows\BankProject.csproj.AssemblyReference.cache
 C:\Users\wagne\OneDrive - Bow Valley College\BankProject\BankProject\obj\Debug\net7.0-windows\BankProject.csproj.CopyComplete
+C:\Users\wagne\OneDrive - Bow Valley College\BankProject\BankProject\obj\Debug\net7.0-windows\Window1.g.cs
+C:\Users\wagne\OneDrive - Bow Valley College\BankProject\BankProject\obj\Debug\net7.0-windows\Window1.baml

@@ -25,6 +25,8 @@ namespace BankProject
         public MainWindow()
         {
             InitializeComponent();
+
+            
         }
 
         internal static void UpdateStatus(string userLogged)
@@ -41,6 +43,11 @@ namespace BankProject
         }
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var login = Login.Instance;
+        }
+
+        private void ManageUsersBtn_Click(object sender, RoutedEventArgs e)
         {
             Login login = Login.Instance;
         }

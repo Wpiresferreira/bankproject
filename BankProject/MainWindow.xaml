@@ -8,8 +8,31 @@
         Title="OurBank" Height="450" Width="800"
         Loaded="Window_Loaded">
     <Grid>
-        <DockPanel>
-            <Menu DockPanel.Dock="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="9">
+            <Menu DockPanel.Dock="Top" >
                 <MenuItem Header="_Users">
                     <MenuItem Header="_New" />
                     <MenuItem Header="_Edit" />
@@ -19,7 +42,8 @@
             </Menu>
             <TextBox AcceptsReturn="True" />
         </DockPanel>
-            <Button x:Name="LoginBtn" Content="Login" Width="200" Height="80" Click="LoginBtn_Click"/>
-        <TextBox x:Name="StatusTextBox" x:FieldModifier="public" Width="500" Height="20" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="Not Conected"/>
+        <Button x:Name="LoginBtn" Grid.Column="1" Grid.Row="2" Content="Login" Click="LoginBtn_Click"/>
+        <Button x:Name="UsersBtn" Grid.Column="3" Grid.Row="2" Content="Manage Users" Click="ManageUsersBtn_Click"/>
+        <TextBox x:Name="StatusTextBox" Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="9" x:FieldModifier="public" Text="Not Conected"/>
     </Grid>
 </Window>

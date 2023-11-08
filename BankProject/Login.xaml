@@ -8,12 +8,29 @@
         mc:Ignorable="d"
         Title="Login" Height="300" Width="400">
     <Grid>
-
-        <Label Content="User ID" Width="200" Height="30" Margin="0, 0 ,0,-51" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="UserIDLoginBox" TextWrapping="Wrap" Text="UserID" Width="200" Height="30" Margin="100, 0 ,0,-51" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Label Content="Password" Margin="0,51,0,-51" Width="200" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="PasswordLoginBox" TextWrapping="Wrap" Text="Password" Width="200" Height="30" Margin="100, 50 ,0,-51" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Button Content="Login" Width="100" Height="20" Margin="100,110, 100, 0"  HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click"/>
-        <TextBox x:Name="TEST" HorizontalAlignment="Left" Margin="162,219,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="40"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        
+        <Label Grid.Column="1" Grid.Row="1" Content="User ID" />
+        <TextBox Grid.Column="3" Grid.Row="1" x:Name="UserIDLoginBox" />
+        <Label Grid.Column="1" Grid.Row="3" Content="Password" />
+        <PasswordBox Grid.Column="3" Grid.Row="3" x:Name="PasswordLoginBox"/>
+        <Button Grid.Column="3" Grid.Row="5" Content="Login" Click="Button_Click"/>
     </Grid>
 </Window>
