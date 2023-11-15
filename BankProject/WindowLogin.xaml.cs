@@ -9,15 +9,18 @@ namespace BankProject
     /// <summary>
     /// Interaction logic for Login.xaml
     /// </summary>
-    public partial class Login : Window {
+    public partial class WindowLogin : Window {
 
-        public string? userLogged = null;
-        private static Login? instance = null;
+        bool connectToLocalDatabase;
+        private string? userLogged;
+        private static WindowLogin? instance;
+        private string connetionString;
+        private WindowMain windowMain;
         
-        public static Login GetInstance {
+        public static WindowLogin GetInstance {
             get {
                 if (instance == null) {
-                    instance = new Login();
+                    instance = new WindowLogin();
                 }
                 else {
                 instance.ShowDialog();
@@ -28,21 +31,14 @@ namespace BankProject
         }
 
 
-        private Login() {
+        public WindowLogin() {
             InitializeComponent();
-            Show();
-        }
 
-
-        private void Button_Click(object sender, RoutedEventArgs e) {
-
-            if( !string.IsNullOrEmpty(textBoxEmail.Text) && !string.IsNullOrEmpty(textBoxPassword.Password) ) {
-                
-            }
+            connectToLocalDatabase = true;                        //Set to false to connect to remote database
+            userLogged = null;
+            instance = null;
 
             //Build Connection String
-            string connetionString;
-            bool connectToLocalDatabase = true;                                                                                     //Set to false to connect to remote database
             if (connectToLocalDatabase) {
                 //string connetionString = "Server=MSI\\SQLEXPRESS; Database= bankproject;User Id=test;Password=123;";              //Old Connection String (DELETE)
                 string path_RootFolder = $"{Directory.GetParent(System.IO.Directory.GetCurrentDirectory())?.Parent?.Parent}";
@@ -58,6 +54,11 @@ namespace BankProject
                 connetionString += "Password=123; ";
             }
 
+        }
+
+
+        private void Button_Click(object sender, RoutedEventArgs e) {
+            
             //Build Select Query
             string selectquery = "SELECT employeeID, password, firstName , lastName ";
             selectquery += "FROM dbo.Employees ";
@@ -70,11 +71,13 @@ namespace BankProject
                         using (SqlDataReader reader1 = cmd.ExecuteReader()) {
                             if (reader1.Read()) {
                                 MessageBox.Show("Login Sucessful");
-                                LoginScreen.Hide();
                                 userLogged = $"{reader1.GetValue(2)} {reader1.GetValue(3)}";
 
-                                ((MainWindow)this.Owner).StatusTextBox.Text = $"User Logged: {userLogged}";
-                                ((MainWindow)this.Owner).Show();
+                                //Switch windows
+                                LoginScreen.Hide();
+                                windowMain = new WindowMain();
+                                windowMain.StatusTextBox.Text = $"User Logged: {userLogged}";
+                                windowMain.Show();
                             }
                             else {
                                 MessageBox.Show("Incorrect Credentials");

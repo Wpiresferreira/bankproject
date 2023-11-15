@@ -42,15 +42,9 @@ C:\0_Github\bankproject\BankProject\bin\Debug\net7.0-windows\runtimes\win-x86\na
 C:\0_Github\bankproject\BankProject\bin\Debug\net7.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\0_Github\bankproject\BankProject\bin\Debug\net7.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject.csproj.AssemblyReference.cache
-C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\Login.g.cs
-C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\MainWindow.g.cs
-C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\Window1.g.cs
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\App.g.cs
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject_MarkupCompile.cache
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject_MarkupCompile.lref
-C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\Login.baml
-C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\MainWindow.baml
-C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\Window1.baml
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject.g.resources
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject.GeneratedMSBuildEditorConfig.editorconfig
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject.AssemblyInfoInputs.cache
@@ -63,3 +57,8 @@ C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject.pdb
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject.genruntimeconfig.cache
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\ref\BankProject.dll
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\App.baml
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\WindowLogin.g.cs
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\WindowMain.g.cs
+C:\0_Github\bankproject\BankProject\bin\Debug\net7.0-windows\FontAwesome.WPF.dll
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\WindowLogin.baml
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\WindowMain.baml

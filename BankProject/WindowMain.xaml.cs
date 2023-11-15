@@ -20,20 +20,14 @@ namespace BankProject
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class WindowMain : Window
     {
-        Login myLogin;
 
-        public MainWindow()
+
+        public WindowMain()
         {
             InitializeComponent();
-            
-            //Initialize program with Login page
-            this.Show();
-            myLogin = Login.GetInstance;
-            myLogin.Owner = this;
-            this.Hide();
-            
+
         }
 
 
