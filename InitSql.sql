@@ -1,36 +1,86 @@
-drop database bankproject;
+----------------------------------------------------------------------------------------------------------
+------------------------------------ CREATE DATABASE -----------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+DROP DATABASE IF EXISTS bankproject;
 GO
+
+CREATE DATABASE bankproject;
+GO
+
+----------------------------------------------------------------------------------------------------------
+------------------------------------- CREATE TABLES ------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
 USE bankproject;
+GO
+
+---------------------------------------------------------------------------------
+-------------------- CREATE TABLE POSITIONS -------------------------------------
+---------------------------------------------------------------------------------
+DROP TABLE IF EXISTS dbo.Positions;
+GO
+
+CREATE TABLE dbo.Positions (
+	positionID						INT				PRIMARY KEY		IDENTITY,
+	position						VARCHAR(50),
+	isAllowedFinancialTransations	BIT,
+	isAllowedSystemUser				BIT,
+	isAllowedCustomerProfile		BIT
+);
+GO
+
+---------------------------------------------------------------------------------
+-------------------- CREATE TABLE EMPLOYEES -------------------------------------
+---------------------------------------------------------------------------------
+DROP TABLE IF EXISTS dbo.Employees;
+GO
+
+CREATE TABLE dbo.Employees (
+	employeeID		INT				PRIMARY KEY		IDENTITY,
+	firstName		VARCHAR(50),
+	lastName		VARCHAR(50),
+	email			VARCHAR(50),
+	phone			VARCHAR(50),
+	positionId		INT				FOREIGN KEY REFERENCES Positions(positionID),
+	password		VARCHAR(8)
+);
+GO
 
 
-create table Positions (
-	positionID int primary key,
-	position varchar(50),
-	isAllowedFinancialTransations bit,
-	isAllowedSystemUser bit,
-	isAllowedCustomerProfile bit)
-
-insert into Positions (positionID, position, isAllowedFinancialTransations, isAllowedSystemUser,isAllowedCustomerProfile)
-values
-(1, 'admin', 1, 1, 1),
-(2, 'Teller', 1, 0,0),
-(3, 'Customer Service', 0, 0, 1) 
+----------------------------------------------------------------------------------------------------------
+-------------------------------------- INSERT DATA -------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+USE bankproject;
+GO
 
 
-create table Employees (
-	employeeID int primary key,
-	firstName varchar(50),
-	lastName varchar(50),
-	email varchar(50),
-	phone varchar(50),
-	positionId int FOREIGN KEY REFERENCES Positions(positionID),
-	password varchar(8)
-	)
+---------------------------------------------------------------------------------
+--------------- INSERT DATA INTO TABLE POSITIONS --------------------------------
+---------------------------------------------------------------------------------
+INSERT INTO dbo.Positions (position, isAllowedFinancialTransations, isAllowedSystemUser,isAllowedCustomerProfile)
+VALUES
+	('admin', 1, 1, 1),
+	('Teller', 1, 0,0),
+	('Customer Service', 0, 0, 1)
+GO
 
-insert into Employees (employeeID ,	firstName,	lastName ,	email ,	phone ,	positionId ,password)
-values (1, 'admin', 'admin', '', '', 1, 'admin'),
-(2, 'teller', 'teller','', '', 2, 'teller'),
-(3, 'customer', 'service','', '', 3, 'service')
+
+---------------------------------------------------------------------------------
+--------------- INSERT DATA INTO TABLE POSITIONS --------------------------------
+---------------------------------------------------------------------------------
+INSERT INTO dbo.Employees (firstName, lastName , email , phone , positionId , password)
+VALUES
+	('admin', 'admin', '', '', 1, 'admin'),
+	('teller', 'teller','', '', 2, 'teller'),
+	('customer', 'service','', '', 3, 'service')
+GO
+
+
+
+
+
+
+
+
 
 --SELECT TOP (10) [zipcode]
 --      ,[city]

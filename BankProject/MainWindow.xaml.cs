@@ -22,39 +22,40 @@ namespace BankProject
     /// </summary>
     public partial class MainWindow : Window
     {
+        Login myLogin;
+
         public MainWindow()
         {
             InitializeComponent();
-
+            
+            //Initialize program with Login page
+            this.Show();
+            myLogin = Login.GetInstance;
+            myLogin.Owner = this;
+            this.Hide();
             
         }
 
-        internal static void UpdateStatus(string userLogged)
-        {
-
-            foreach (Window window in Application.Current.Windows)
-            {
-                if (window.GetType() == typeof(MainWindow))
-                {
-                    (window as MainWindow).StatusTextBox.Text = "User Logged: " + userLogged;
-                }
-            }
-            //StatusTextBox.Text = userLogged;
-        }
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            var login = Login.Instance;
+
         }
 
         private void ManageUsersBtn_Click(object sender, RoutedEventArgs e)
         {
-            Login login = Login.Instance;
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Login login = Login.Instance;
+
         }
+
+        private void LogoutBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        
     }
 }

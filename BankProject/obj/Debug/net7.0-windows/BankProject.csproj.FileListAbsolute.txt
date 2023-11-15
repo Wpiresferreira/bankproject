@@ -30,3 +30,36 @@ C:\Users\wagne\OneDrive - Bow Valley College\BankProject\BankProject\obj\Debug\n
 C:\Users\wagne\OneDrive - Bow Valley College\BankProject\BankProject\obj\Debug\net7.0-windows\BankProject.csproj.CopyComplete
 C:\Users\wagne\OneDrive - Bow Valley College\BankProject\BankProject\obj\Debug\net7.0-windows\Window1.g.cs
 C:\Users\wagne\OneDrive - Bow Valley College\BankProject\BankProject\obj\Debug\net7.0-windows\Window1.baml
+C:\0_Github\bankproject\BankProject\bin\Debug\net7.0-windows\BankProject.exe
+C:\0_Github\bankproject\BankProject\bin\Debug\net7.0-windows\BankProject.deps.json
+C:\0_Github\bankproject\BankProject\bin\Debug\net7.0-windows\BankProject.runtimeconfig.json
+C:\0_Github\bankproject\BankProject\bin\Debug\net7.0-windows\BankProject.dll
+C:\0_Github\bankproject\BankProject\bin\Debug\net7.0-windows\BankProject.pdb
+C:\0_Github\bankproject\BankProject\bin\Debug\net7.0-windows\System.Data.SqlClient.dll
+C:\0_Github\bankproject\BankProject\bin\Debug\net7.0-windows\runtimes\win-arm64\native\sni.dll
+C:\0_Github\bankproject\BankProject\bin\Debug\net7.0-windows\runtimes\win-x64\native\sni.dll
+C:\0_Github\bankproject\BankProject\bin\Debug\net7.0-windows\runtimes\win-x86\native\sni.dll
+C:\0_Github\bankproject\BankProject\bin\Debug\net7.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\0_Github\bankproject\BankProject\bin\Debug\net7.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject.csproj.AssemblyReference.cache
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\Login.g.cs
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\MainWindow.g.cs
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\Window1.g.cs
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\App.g.cs
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject_MarkupCompile.cache
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject_MarkupCompile.lref
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\Login.baml
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\MainWindow.baml
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\Window1.baml
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject.g.resources
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject.GeneratedMSBuildEditorConfig.editorconfig
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject.AssemblyInfoInputs.cache
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject.AssemblyInfo.cs
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject.csproj.CoreCompileInputs.cache
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject.csproj.CopyComplete
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject.dll
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\refint\BankProject.dll
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject.pdb
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject.genruntimeconfig.cache
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\ref\BankProject.dll
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\App.baml
