@@ -64,8 +64,8 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Image Source="./Images/IconEmail.png" Height="20" />
-                        <TextBlock x:Name="textBlockEmail" MouseDown="textEmail_MouseDown" Text="Email" Style="{StaticResource textHint}" />
-                        <TextBox x:Name="textBoxEmail" TextChanged="txtEmail_TextChanged" Style="{StaticResource textBox}" />
+                        <TextBlock x:Name="textBlockEmail" MouseDown="TextEmail_MouseDown" Text="Email" Style="{StaticResource textHint}" />
+                        <TextBox x:Name="textBoxEmail" TextChanged="TxtEmail_TextChanged" Style="{StaticResource textBox}" />
                     </Grid>
                 </Border>
 
@@ -76,8 +76,8 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Image Source="./Images/IconLock.png" Height="20" />
-                        <TextBlock x:Name="textBlockPassword" MouseDown="textPassword_MouseDown" Text="Password" Style="{StaticResource textHint}" />
-                        <PasswordBox x:Name="textBoxPassword" PasswordChanged="txtPassword_PasswordChanged" Style="{StaticResource textBox}" />
+                        <TextBlock x:Name="textBlockPassword" MouseDown="TextPassword_MouseDown" Text="Password" Style="{StaticResource textHint}" />
+                        <PasswordBox x:Name="textBoxPassword" PasswordChanged="TxtPassword_PasswordChanged" Style="{StaticResource textBox}" />
                     </Grid>
                 </Border>
 

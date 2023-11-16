@@ -11,34 +11,34 @@ namespace BankProject
     /// </summary>
     public partial class WindowLogin : Window {
 
-        bool connectToLocalDatabase;
-        private string connetionString;
-        private string? userLogged;
-        private WindowMain? windowMain;
-        private WindowRegister? windowRegister;
+        private bool ConnectToLocalDatabase {  get; set; }
+        private string ConnetionString {  get; set; }
+        private ClassUserLogged? MyUserLogged {  get; set; }
+        private WindowMain? MyWindowMain { get; set; }
+        private WindowRegister? MyWindowRegister { get; set; }
 
 
         public WindowLogin() {
             InitializeComponent();
-            connectToLocalDatabase = true;                        //Set to false to connect to remote database
-            userLogged = null;
-            windowMain = null;
-            windowRegister = null;
+            ConnectToLocalDatabase = true;                        //Set to false to connect to remote database
+            MyUserLogged = null;
+            MyWindowMain = null;
+            MyWindowRegister = null;
 
             //Build Connection String
-            if (connectToLocalDatabase) {
+            if (ConnectToLocalDatabase) {
                 //string connetionString = "Server=MSI\\SQLEXPRESS; Database= bankproject;User Id=test;Password=123;";              //Old Connection String (DELETE)
                 string path_RootFolder = $"{Directory.GetParent(System.IO.Directory.GetCurrentDirectory())?.Parent?.Parent}";
                 //Debug.WriteLine(path_RootFolder);                                                                                 //DEBUG (DELETE)
-                connetionString = "Data Source=(LocalDB)\\MSSQLLocalDB; ";
-                connetionString  += $"AttachDbFilename={path_RootFolder}\\bankproject.mdf; ";
-                connetionString  += "Integrated Security=True; ";
+                ConnetionString = "Data Source=(LocalDB)\\MSSQLLocalDB; ";
+                ConnetionString  += $"AttachDbFilename={path_RootFolder}\\bankproject.mdf; ";
+                ConnetionString  += "Integrated Security=True; ";
             }
             else {
-                connetionString = "Server=tcp:137.186.165.104,49172; ";
-                connetionString += "Database=bankproject; ";
-                connetionString += "User Id=test; ";
-                connetionString += "Password=123; ";
+                ConnetionString = "Server=tcp:137.186.165.104,49172; ";
+                ConnetionString += "Database=bankproject; ";
+                ConnetionString += "User Id=test; ";
+                ConnetionString += "Password=123; ";
             }
 
         }
@@ -47,24 +47,26 @@ namespace BankProject
         private void ButtonSignIn_Click(object sender, RoutedEventArgs e) {
             
             //Build Select Query
-            string selectquery = "SELECT employeeID, password, firstName , lastName ";
+            string selectquery = "SELECT employeeID, firstName , lastName, email, positionId ";
             selectquery += "FROM dbo.Employees ";
             selectquery += $"WHERE email = '{textBoxEmail.Text}' AND password = '{textBoxPassword.Password}'; ";
 
             try {
-                using (SqlConnection cnn = new SqlConnection(connetionString)) {
+                using (SqlConnection cnn = new SqlConnection(ConnetionString)) {
                     using (SqlCommand cmd = new SqlCommand(selectquery, cnn)) {
                         cnn.Open();
-                        using (SqlDataReader reader1 = cmd.ExecuteReader()) {
-                            if (reader1.Read()) {
+                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
+                            if (myReader.Read()) {
                                 MessageBox.Show("Login Sucessful");
-                                userLogged = $"{reader1.GetValue(2)} {reader1.GetValue(3)}";
+
+                                //Create MyUserLogged Object
+                                MyUserLogged = new ClassUserLogged((int)myReader[0], (string)myReader[1], (string)myReader[2], (string)myReader[3], (int)myReader[4]);
 
                                 //Switch windows
                                 LoginScreen.Hide();
-                                windowMain = new WindowMain();
-                                windowMain.StatusTextBox.Text = $"User Logged: {userLogged}";
-                                windowMain.Show();
+                                MyWindowMain = new WindowMain(ConnetionString, MyUserLogged);
+                                MyWindowMain.StatusTextBox.Text = $"User Logged: {MyUserLogged.Email}";
+                                MyWindowMain.Show();
                             }
                             else {
                                 MessageBox.Show("Incorrect Credentials!");
@@ -82,12 +84,12 @@ namespace BankProject
         }
 
 
-        private void textEmail_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
+        private void TextEmail_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
             textBoxEmail.Focus();
         }
 
 
-        private void txtEmail_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e) {
+        private void TxtEmail_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e) {
             if( !string.IsNullOrEmpty(textBoxEmail.Text) && textBoxEmail.Text.Length>0 ) {
                 textBlockEmail.Visibility = Visibility.Collapsed;
             }
@@ -97,12 +99,12 @@ namespace BankProject
         }
 
 
-        private void textPassword_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
+        private void TextPassword_MouseDown(object sender, MouseButtonEventArgs e) {
             textBoxPassword.Focus();
         }
 
 
-        private void txtPassword_PasswordChanged(object sender, RoutedEventArgs e) {
+        private void TxtPassword_PasswordChanged(object sender, RoutedEventArgs e) {
             if( !string.IsNullOrEmpty(textBoxPassword.Password) && textBoxPassword.Password.Length>0 ) {
                 textBlockPassword.Visibility = Visibility.Collapsed;
             }
@@ -111,21 +113,25 @@ namespace BankProject
             }
         }
 
-        private void Border_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e) {
             if(e.ChangedButton==MouseButton.Left) {
                 this.DragMove();
             }
         }
 
+
         private void Image_Close(object sender, MouseButtonEventArgs e) {
             Application.Current.Shutdown();
         }
 
+
         private void ButtonRegister_Click(object sender, RoutedEventArgs e) {
-            windowRegister = new WindowRegister();
+            //Switch windows
+            MyWindowRegister = new WindowRegister(ConnetionString);
             this.Hide();
-            windowRegister.Owner = this;
-            windowRegister.Show();
+            MyWindowRegister.Owner = this;
+            MyWindowRegister.Show();
         }
     }
 }
