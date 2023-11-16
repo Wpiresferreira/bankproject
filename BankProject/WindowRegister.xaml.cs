@@ -67,7 +67,7 @@ namespace BankProject {
                 }
             }
             catch (Exception ex) {
-                MessageBox.Show($"[ERROR] Cannot open connection!\n{ex.Message}");
+                MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
             }
         }
 

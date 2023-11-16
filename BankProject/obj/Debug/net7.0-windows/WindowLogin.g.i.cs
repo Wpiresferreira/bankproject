@@ -93,7 +93,7 @@ namespace BankProject {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BankProject;component/windowlogin.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BankProject;V1.0.0.0;component/windowlogin.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\WindowLogin.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
