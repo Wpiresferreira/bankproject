@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankProject"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow"
-        Title="[Main Window]" Height="500" Width="800"
+        Title="[Main Window]" Height="500" Width="1000"
         Loaded="Window_Loaded">
 
 
@@ -44,9 +44,8 @@
             </Menu>
             <TextBox AcceptsReturn="True" />
         </DockPanel>
-        <Button x:Name="LoginBtn" Grid.Column="1" Grid.Row="2" Content="Login" Click="LoginBtn_Click"/>
-        <Button x:Name="UsersBtn" Grid.Column="3" Grid.Row="2" Content="Manage Users" Click="ManageUsersBtn_Click"/>
-        <TextBox x:Name="StatusTextBox" Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="9" x:FieldModifier="public" Text="Not Conected"/>
-        <Button x:Name="LogoutBtn" Grid.Column="7" Grid.Row="8" Content="Logout" Click="LogoutBtn_Click"/>
+        <Button x:Name="buttonUsers" Grid.Column="1" Grid.Row="2" Content="Manage Users" Click="ButtonManageUsers_Click"/>
+        <TextBox x:Name="textBoxStatus" Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="9" x:FieldModifier="public" Text="Not Conected"/>
+        <Button x:Name="buttonLogout" Grid.Column="7" Grid.Row="8" Content="Logout" Click="ButtonLogout_Click"/>
     </Grid>
 </Window>

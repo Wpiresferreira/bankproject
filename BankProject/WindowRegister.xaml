@@ -39,7 +39,7 @@
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 10 0 0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="150" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="200" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
@@ -49,33 +49,23 @@
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
+
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" Text="Name" Style="{StaticResource text}" />
-                    <TextBlock Grid.Row="1" Text="Family" Style="{StaticResource text}" />
-                    <TextBlock Grid.Row="2" Text="Gender" Style="{StaticResource text}" />
-                    <TextBlock Grid.Row="3" Text="Date of Birth" Style="{StaticResource text}" />
+                    <TextBlock Grid.Row="0" Text="First Name" Style="{StaticResource text}" />
+                    <TextBlock Grid.Row="1" Text="Last Name" Style="{StaticResource text}" />
+                    <TextBlock Grid.Row="2" Text="Date of Birth" Style="{StaticResource text}" />
+                    <TextBlock Grid.Row="3" Text="Phone" Style="{StaticResource text}" />
                     <TextBlock Grid.Row="4" Text="Email" Style="{StaticResource text}" />
-                    <TextBlock Grid.Row="5" Text="Mobile" Style="{StaticResource text}" />
-                    <TextBlock Grid.Row="6" Text="Membership" Style="{StaticResource text}" />
+                    <TextBlock Grid.Row="5" Text="Password" Style="{StaticResource text}" />
 
-                    <uc:MyTextBox Grid.Column="1" Grid.Row="0" Hint="John" />
-                    <uc:MyTextBox Grid.Column="1" Grid.Row="1" Hint="Doe" />
-                    <uc:MyTextBox Grid.Column="1" Grid.Row="3" Hint="01/01/2000" />
-                    <uc:MyTextBox Grid.Column="1" Grid.Row="4" Hint="johndoe@email.com" />
-                    <uc:MyTextBox Grid.Column="1" Grid.Row="5" Hint="+1 234 567 8910" />
+                    <uc:MyTextBox x:Name="myTextBoxFirstName" Grid.Column="1" Grid.Row="0" Hint="John" />
+                    <uc:MyTextBox x:Name="myTextBoxLastName" Grid.Column="1" Grid.Row="1" Hint="Doe" />
+                    <uc:MyTextBox x:Name="myTextBoxDataOfBirth" Grid.Column="1" Grid.Row="2" Hint="01/01/2000" />
+                    <uc:MyTextBox x:Name="myTextBoxPhone" Grid.Column="1" Grid.Row="3" Hint="+1 234 567 8910" />
+                    <uc:MyTextBox x:Name="myTextBoxEmail" Grid.Column="1" Grid.Row="4" Hint="johndoe@email.com" />
+                    <uc:MyTextBox x:Name="myTextBoxPassword" Grid.Column="1" Grid.Row="5" Hint="**********" />
 
-                    <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="0 10">
-                        <uc:MyOption Icon="Male" Text="Male" />
-                        <uc:MyOption Icon="Female" Text="Female" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="6" Margin="0 10">
-                        <uc:MyOption Icon="CreditCard" Text="Classic" />
-                        <uc:MyOption Icon="CreditCard" Text="Silver" />
-                        <uc:MyOption Icon="CreditCard" Text="Gold" />
-                    </StackPanel>
 
                     <Grid Grid.Column="1" Grid.Row="7" Margin="0 40 0 0">
                         <Grid.ColumnDefinitions>
@@ -83,8 +73,8 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <Button Content="Cancel" Margin="0 0 10 0" Grid.Column="0" Style="{StaticResource buttonMain}" />
-                        <Button Content="Save" Margin="10 0 0 0" Grid.Column="1" Style="{StaticResource buttonMainGreen}" />
+                        <Button Content="Cancel" Margin="0 0 10 0" Grid.Column="0" Style="{StaticResource buttonMain}" Click="ButtonCancel_Click" />
+                        <Button Content="Save" Margin="10 0 0 0" Grid.Column="1" Style="{StaticResource buttonMainGreen}" Click="ButtonSave_Click" />
                     </Grid>
                 </Grid>
             </Grid>

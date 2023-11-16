@@ -12,7 +12,7 @@ namespace BankProject
     public partial class WindowLogin : Window {
 
         private bool ConnectToLocalDatabase {  get; set; }
-        private string ConnetionString {  get; set; }
+        private string ConnectionString {  get; set; }
         private ClassUserLogged? MyUserLogged {  get; set; }
         private WindowMain? MyWindowMain { get; set; }
         private WindowRegister? MyWindowRegister { get; set; }
@@ -30,15 +30,15 @@ namespace BankProject
                 //string connetionString = "Server=MSI\\SQLEXPRESS; Database= bankproject;User Id=test;Password=123;";              //Old Connection String (DELETE)
                 string path_RootFolder = $"{Directory.GetParent(System.IO.Directory.GetCurrentDirectory())?.Parent?.Parent}";
                 //Debug.WriteLine(path_RootFolder);                                                                                 //DEBUG (DELETE)
-                ConnetionString = "Data Source=(LocalDB)\\MSSQLLocalDB; ";
-                ConnetionString  += $"AttachDbFilename={path_RootFolder}\\bankproject.mdf; ";
-                ConnetionString  += "Integrated Security=True; ";
+                ConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB; ";
+                ConnectionString  += $"AttachDbFilename={path_RootFolder}\\bankproject.mdf; ";
+                ConnectionString  += "Integrated Security=True; ";
             }
             else {
-                ConnetionString = "Server=tcp:137.186.165.104,49172; ";
-                ConnetionString += "Database=bankproject; ";
-                ConnetionString += "User Id=test; ";
-                ConnetionString += "Password=123; ";
+                ConnectionString = "Server=tcp:137.186.165.104,49172; ";
+                ConnectionString += "Database=bankproject; ";
+                ConnectionString += "User Id=test; ";
+                ConnectionString += "Password=123; ";
             }
 
         }
@@ -47,13 +47,13 @@ namespace BankProject
         private void ButtonSignIn_Click(object sender, RoutedEventArgs e) {
             
             //Build Select Query
-            string selectquery = "SELECT employeeID, firstName , lastName, email, positionId ";
-            selectquery += "FROM dbo.Employees ";
-            selectquery += $"WHERE email = '{textBoxEmail.Text}' AND password = '{textBoxPassword.Password}'; ";
+            string selectQuery = "SELECT employeeID, firstName , lastName, email, positionId ";
+            selectQuery += "FROM dbo.Employees ";
+            selectQuery += $"WHERE email = '{textBoxEmail.Text}' AND password = '{textBoxPassword.Password}'; ";
 
             try {
-                using (SqlConnection cnn = new SqlConnection(ConnetionString)) {
-                    using (SqlCommand cmd = new SqlCommand(selectquery, cnn)) {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
                         cnn.Open();
                         using (SqlDataReader myReader = cmd.ExecuteReader()) {
                             if (myReader.Read()) {
@@ -64,8 +64,8 @@ namespace BankProject
 
                                 //Switch windows
                                 LoginScreen.Hide();
-                                MyWindowMain = new WindowMain(ConnetionString, MyUserLogged);
-                                MyWindowMain.StatusTextBox.Text = $"User Logged: {MyUserLogged.Email}";
+                                MyWindowMain = new WindowMain(ConnectionString, MyUserLogged);
+                                MyWindowMain.textBoxStatus.Text = $"User Logged: {MyUserLogged.Email}";
                                 MyWindowMain.Show();
                             }
                             else {
@@ -128,7 +128,7 @@ namespace BankProject
 
         private void ButtonRegister_Click(object sender, RoutedEventArgs e) {
             //Switch windows
-            MyWindowRegister = new WindowRegister(ConnetionString);
+            MyWindowRegister = new WindowRegister(ConnectionString);
             this.Hide();
             MyWindowRegister.Owner = this;
             MyWindowRegister.Show();
