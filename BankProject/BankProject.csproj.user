@@ -7,11 +7,29 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="UserControls\MyOption.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserControls\MyTextBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WindowRegister.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="WindowLogin.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="UserControls\MyOption.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\MyTextBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WindowRegister.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="WindowLogin.xaml">
       <SubType>Designer</SubType>
     </Page>

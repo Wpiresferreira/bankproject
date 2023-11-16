@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankProject"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="ThreeDBorderWindow"
-        Title="OurBank" Height="500" Width="800"
+        Title="[Main Window]" Height="500" Width="800"
         Loaded="Window_Loaded">
 
 

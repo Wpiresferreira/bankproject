@@ -7,36 +7,23 @@ using System.Windows.Input;
 namespace BankProject
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for WindowLogin.xaml
     /// </summary>
     public partial class WindowLogin : Window {
 
         bool connectToLocalDatabase;
-        private string? userLogged;
-        private static WindowLogin? instance;
         private string connetionString;
-        private WindowMain windowMain;
-        
-        public static WindowLogin GetInstance {
-            get {
-                if (instance == null) {
-                    instance = new WindowLogin();
-                }
-                else {
-                instance.ShowDialog();
-                }
-
-                return instance;
-            }
-        }
+        private string? userLogged;
+        private WindowMain? windowMain;
+        private WindowRegister? windowRegister;
 
 
         public WindowLogin() {
             InitializeComponent();
-
             connectToLocalDatabase = true;                        //Set to false to connect to remote database
             userLogged = null;
-            instance = null;
+            windowMain = null;
+            windowRegister = null;
 
             //Build Connection String
             if (connectToLocalDatabase) {
@@ -57,7 +44,7 @@ namespace BankProject
         }
 
 
-        private void Button_Click(object sender, RoutedEventArgs e) {
+        private void ButtonSignIn_Click(object sender, RoutedEventArgs e) {
             
             //Build Select Query
             string selectquery = "SELECT employeeID, password, firstName , lastName ";
@@ -80,7 +67,7 @@ namespace BankProject
                                 windowMain.Show();
                             }
                             else {
-                                MessageBox.Show("Incorrect Credentials");
+                                MessageBox.Show("Incorrect Credentials!");
                             }
 
                             textBoxEmail.Text = string.Empty;
@@ -130,8 +117,15 @@ namespace BankProject
             }
         }
 
-        private void Image_MouseUp(object sender, MouseButtonEventArgs e) {
+        private void Image_Close(object sender, MouseButtonEventArgs e) {
             Application.Current.Shutdown();
+        }
+
+        private void ButtonRegister_Click(object sender, RoutedEventArgs e) {
+            windowRegister = new WindowRegister();
+            this.Hide();
+            windowRegister.Owner = this;
+            windowRegister.Show();
         }
     }
 }

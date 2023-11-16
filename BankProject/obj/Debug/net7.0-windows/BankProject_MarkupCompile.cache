@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\0_Github\bankproject\BankProject\App.xaml
-21488736431
+51684415552
 
-4-861789435
+7-1363975128
 200-1766125429
-WindowLogin.xaml;WindowMain.xaml;
+UserControls\MyOption.xaml;UserControls\MyTextBox.xaml;WindowLogin.xaml;WindowMain.xaml;WindowRegister.xaml;
 
 False
 

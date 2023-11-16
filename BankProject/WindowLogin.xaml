@@ -6,15 +6,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankProject"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
-        Title="Login" Height="500" Width="800">
+        Title="[Login Window]" Height="500" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="1.5*"/>
         </Grid.ColumnDefinitions>
 
-        <Image Source="./Images/IconClose.png" Grid.Column="1" Panel.ZIndex="1" MouseUp="Image_MouseUp" Style="{StaticResource imgClose}" />
+        <Image Source="./Images/IconClose.png" Grid.Column="1" Panel.ZIndex="1" MouseUp="Image_Close" Style="{StaticResource imgClose}" />
         
+        <!--Left Section-->
         <Border CornerRadius="10 0 0 10">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -22,7 +23,6 @@
                     <GradientStop Color="#3AADA1" Offset="0"/>
                 </LinearGradientBrush>
             </Border.Background>
-
             <Grid>
                 <Canvas>
                     <Polygon Points="0,20 230,140 0,270" Fill="#4EB1B6" />
@@ -34,11 +34,12 @@
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock Text="Sign Up" Style="{StaticResource titleText}" />
                     <TextBlock Text="Enter your personal info and create new account to connect" Style="{StaticResource normalText}" Opacity="0.8" Margin="20 30" />
-                    <Button Content="Sign Up" Style="{StaticResource button}" />
+                    <Button Content="Register" Style="{StaticResource buttonRegister}" Click="ButtonRegister_Click" />
                 </StackPanel>
             </Grid>
         </Border>
 
+        <!--Right Section-->
         <Border Background="#ffffff" Grid.Column="1" CornerRadius="0 10 10 0" MouseDown="Border_MouseDown" >
             <StackPanel VerticalAlignment="Center">
                 <TextBlock Text="Sign in to App" Style="{StaticResource titleText}" Foreground="#3AB19B" />
@@ -80,7 +81,7 @@
                     </Grid>
                 </Border>
 
-                <Button Content="Sign In" Click="Button_Click" Style="{StaticResource mainButton}" />
+                <Button Content="Sign In" Click="ButtonSignIn_Click" Style="{StaticResource mainButton}" />
             </StackPanel>
         </Border>
 

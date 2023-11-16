@@ -62,3 +62,10 @@ C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\WindowMain.g.cs
 C:\0_Github\bankproject\BankProject\bin\Debug\net7.0-windows\FontAwesome.WPF.dll
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\WindowLogin.baml
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\WindowMain.baml
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\WindowRegister.g.cs
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\WindowRegister.baml
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\MyTextBox.baml
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\MyTextBox.g.cs
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\MyOption.g.cs
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\MyOption.baml
