@@ -62,11 +62,11 @@
                     <TextBlock Grid.Row="4" Text="Email" Style="{StaticResource text_Register}" />
                     <TextBlock Grid.Row="5" Text="Password" Style="{StaticResource text_Register}" />
 
-                    <uc:MyTextBox x:Name="myTextBoxFirstName" Grid.Column="1" Grid.Row="0" Hint="John" />
-                    <uc:MyTextBox x:Name="myTextBoxLastName" Grid.Column="1" Grid.Row="1" Hint="Doe" />
-                    <uc:MyTextBox x:Name="myTextBoxDataOfBirth" Grid.Column="1" Grid.Row="2" Hint="01/01/2000" />
-                    <uc:MyTextBox x:Name="myTextBoxPhone" Grid.Column="1" Grid.Row="3" Hint="+1 234 567 8910" />
-                    <uc:MyTextBox x:Name="myTextBoxEmail" Grid.Column="1" Grid.Row="4" Hint="johndoe@email.com" />
+                    <uc:UcTextBoxRegister x:Name="myTextBoxFirstName" Grid.Column="1" Grid.Row="0" Hint="John" />
+                    <uc:UcTextBoxRegister x:Name="myTextBoxLastName" Grid.Column="1" Grid.Row="1" Hint="Doe" />
+                    <uc:UcTextBoxRegister x:Name="myTextBoxDataOfBirth" Grid.Column="1" Grid.Row="2" Hint="01/01/2000" />
+                    <uc:UcTextBoxRegister x:Name="myTextBoxPhone" Grid.Column="1" Grid.Row="3" Hint="+1 234 567 8910" />
+                    <uc:UcTextBoxRegister x:Name="myTextBoxEmail" Grid.Column="1" Grid.Row="4" Hint="johndoe@email.com" />
                     <PasswordBox x:Name="myTextBoxPassword" Grid.Column="1" Grid.Row="5" Style="{StaticResource passwordBox_Register}" />
 
 

@@ -7,10 +7,19 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="UserControls\MyOption.xaml.cs">
+    <Compile Update="UserControls\UcInfoCardAdmin.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UserControls\MyTextBox.xaml.cs">
+    <Compile Update="UserControls\UcOptionRegister.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserControls\UcTextBoxRegister.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserControls\ucOrderAdmin.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WindowAdmin.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WindowRegister.xaml.cs">
@@ -21,10 +30,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="UserControls\MyOption.xaml">
+    <Page Update="UserControls\UcInfoCardAdmin.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UserControls\MyTextBox.xaml">
+    <Page Update="UserControls\UcOptionRegister.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\UcTextBoxRegister.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\UcOrderAdmin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WindowAdmin.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WindowRegister.xaml">

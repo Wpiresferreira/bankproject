@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="BankProject.UserControls.UcOptionRegister"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:fa="http://schemas.fontawesome.io/icons/" 
+             xmlns:local="clr-namespace:BankProject.UserControls"
+             mc:Ignorable="d" Name="myOption">
+
+    <StackPanel Orientation="Horizontal">
+        <Button Style="{StaticResource button_Register}">
+            <fa:ImageAwesome Icon="{Binding Path=Icon, ElementName=myOption}" Width="15" Height="15" Foreground="White" />
+        </Button>
+
+
+
+        <TextBlock Text="{Binding Path=Text, ElementName=myOption}" Foreground="#363636" VerticalAlignment="Center" Margin="10 0 20 0" FontWeight="SemiBold" />
+    </StackPanel>
+</UserControl>

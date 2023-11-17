@@ -17,6 +17,7 @@ namespace BankProject
         public ClassUserLogged? MyUserLogged {  get; set; }
         private WindowMain? MyWindowMain { get; set; }
         private WindowRegister? MyWindowRegister { get; set; }
+        private WindowAdmin? MyWindowAdmin { get; set; }
 
 
         public WindowLogin() {
@@ -25,6 +26,7 @@ namespace BankProject
             MyUserLogged = null;
             MyWindowMain = null;
             MyWindowRegister = null;
+            MyWindowAdmin = null;
 
             //Build Connection String
             if (ConnectToLocalDatabase) {
@@ -49,6 +51,7 @@ namespace BankProject
             MyUserLogged = null;
             MyWindowMain = null;
             MyWindowRegister = null;
+            MyWindowAdmin = null;
         }
 
 
@@ -82,16 +85,22 @@ namespace BankProject
                         cnn.Open();
                         using (SqlDataReader myReader = cmd.ExecuteReader()) {
                             if (myReader.Read()) {
-                                MessageBox.Show("Login Sucessful");
 
                                 //Create MyUserLogged Object
                                 MyUserLogged = new ClassUserLogged((int)myReader[0], (string)myReader[1], (string)myReader[2], (string)myReader[3], (int)myReader[4]);
+                                Debug.WriteLine($"Login Sucessful\nLogged in as: {MyUserLogged.FirstName} {MyUserLogged.LastName}");
+
+                                ////Switch windows
+                                //MyWindowMain = new WindowMain(ConnectionString, MyUserLogged);
+                                //MyWindowMain.Owner = this;
+                                //LoginScreen.Hide();
+                                //MyWindowMain.Show();
 
                                 //Switch windows
-                                MyWindowMain = new WindowMain(ConnectionString, MyUserLogged);
-                                MyWindowMain.Owner = this;
+                                MyWindowAdmin = new WindowAdmin(ConnectionString, MyUserLogged);
+                                MyWindowAdmin.Owner = this;
                                 LoginScreen.Hide();
-                                MyWindowMain.Show();
+                                MyWindowAdmin.Show();
                             }
                             else {
                                 MessageBox.Show("Incorrect Credentials!");

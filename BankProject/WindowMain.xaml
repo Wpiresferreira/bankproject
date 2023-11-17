@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" AllowsTransparency="True" Background="Transparent" WindowStyle="None"
-        Title="[Main Window]" Height="700" Width="1200"
+        Title="[Main Window]" Height="750" Width="1200"
         Loaded="Window_Loaded">
 
     <Grid>
@@ -54,7 +54,7 @@
             <StackPanel Width="240">
                 <StackPanel Orientation="Horizontal" Margin="0 50 20 40" HorizontalAlignment="Center">
                     <fa:ImageAwesome Icon="CheckCircle" Foreground="White" Width="30" Height="30" />
-                    <TextBlock x:Name="nameMenu" Text="[Name]" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" />
+                    <TextBlock x:Name="nameMenu" Text="John Doe" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0" />
                 </StackPanel>
                 <Button Style="{StaticResource activeMenuButton_Main}">
                     <Grid>
@@ -206,7 +206,7 @@
                         <fa:ImageAwesome Icon="Exchange" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Opacity="0.9" Width="25" Margin="15 8 0 0" />
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" >
                             <fa:ImageAwesome Icon="CheckCircle" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="White" Width="25" Margin="0 5 10 0" />
-                            <TextBlock x:Name="nameCard" Text="[Name]" FontWeight="Bold" FontSize="12" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 8 10 0" />
+                            <TextBlock x:Name="nameCard" Text="John Doe" FontWeight="Bold" FontSize="12" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 8 10 0" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <TextBlock Text="1234" Style="{StaticResource bankCardNumber_Main}" />
