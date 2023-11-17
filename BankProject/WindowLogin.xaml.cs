@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows;
 using System.Data.SqlClient;
 using System.Windows.Input;
+using System.Diagnostics;
 
 namespace BankProject
 {
@@ -13,7 +14,7 @@ namespace BankProject
 
         private bool ConnectToLocalDatabase {  get; set; }
         private string ConnectionString {  get; set; }
-        private ClassUserLogged? MyUserLogged {  get; set; }
+        public ClassUserLogged? MyUserLogged {  get; set; }
         private WindowMain? MyWindowMain { get; set; }
         private WindowRegister? MyWindowRegister { get; set; }
 
@@ -44,6 +45,30 @@ namespace BankProject
         }
 
 
+        private void LoginScreen_Loaded(object sender, RoutedEventArgs e) {
+            MyUserLogged = null;
+            MyWindowMain = null;
+            MyWindowRegister = null;
+        }
+
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e) {
+            if(e.ChangedButton==MouseButton.Left) {
+                this.DragMove();
+            }
+        }
+
+
+        private void ImageMinimize_MouseUp(object sender, MouseButtonEventArgs e) {
+            this.WindowState = WindowState.Minimized;
+        }
+
+
+        private void ImageClose_MouseUp(object sender, MouseButtonEventArgs e) {
+            Application.Current.Shutdown();
+        }
+
+
         private void ButtonSignIn_Click(object sender, RoutedEventArgs e) {
             
             //Build Select Query
@@ -63,9 +88,9 @@ namespace BankProject
                                 MyUserLogged = new ClassUserLogged((int)myReader[0], (string)myReader[1], (string)myReader[2], (string)myReader[3], (int)myReader[4]);
 
                                 //Switch windows
-                                LoginScreen.Hide();
                                 MyWindowMain = new WindowMain(ConnectionString, MyUserLogged);
-                                MyWindowMain.textBoxStatus.Text = $"User Logged: {MyUserLogged.Email}";
+                                MyWindowMain.Owner = this;
+                                LoginScreen.Hide();
                                 MyWindowMain.Show();
                             }
                             else {
@@ -114,24 +139,14 @@ namespace BankProject
         }
 
 
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e) {
-            if(e.ChangedButton==MouseButton.Left) {
-                this.DragMove();
-            }
-        }
-
-
-        private void Image_Close(object sender, MouseButtonEventArgs e) {
-            Application.Current.Shutdown();
-        }
-
-
         private void ButtonRegister_Click(object sender, RoutedEventArgs e) {
             //Switch windows
             MyWindowRegister = new WindowRegister(ConnectionString);
-            this.Hide();
             MyWindowRegister.Owner = this;
+            this.Hide();
             MyWindowRegister.Show();
         }
+
+
     }
 }

@@ -4,17 +4,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:BankProject"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
-        Title="[Login Window]" Height="500" Width="800">
+        Title="[Login Window]" Height="500" Width="800" Loaded="LoginScreen_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="1.5*"/>
         </Grid.ColumnDefinitions>
 
-        <Image Source="./Images/IconClose.png" Grid.Column="1" Panel.ZIndex="1" MouseUp="Image_Close" Style="{StaticResource imgClose}" />
-        
+        <!--Window Top Right Buttons-->
+        <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Panel.ZIndex="1" >
+            <Image Source="./Images/IconMinimize.png" Width="20" Style="{StaticResource iconWindowTopRight}" MouseUp="ImageMinimize_MouseUp" />
+            <Image Source="./Images/IconClose.png" Width="20" Style="{StaticResource iconWindowTopRight}" MouseUp="ImageClose_MouseUp" />
+        </StackPanel>
+
         <!--Left Section-->
         <Border CornerRadius="10 0 0 10">
             <Border.Background>
@@ -32,9 +35,9 @@
                 </Canvas>
 
                 <StackPanel VerticalAlignment="Center">
-                    <TextBlock Text="Sign Up" Style="{StaticResource titleText}" />
-                    <TextBlock Text="Enter your personal info and create new account to connect" Style="{StaticResource normalText}" Opacity="0.8" Margin="20 30" />
-                    <Button Content="Register" Style="{StaticResource buttonRegister}" Click="ButtonRegister_Click" />
+                    <TextBlock Text="Sign Up" Style="{StaticResource titleText_Login}" />
+                    <TextBlock Text="Enter your personal info and create new account to connect" Style="{StaticResource normalText_Login}" Opacity="0.8" Margin="20 30" />
+                    <Button Content="Register" Style="{StaticResource buttonRegister_Login}" Click="ButtonRegister_Click" />
                 </StackPanel>
             </Grid>
         </Border>
@@ -42,20 +45,20 @@
         <!--Right Section-->
         <Border Background="#ffffff" Grid.Column="1" CornerRadius="0 10 10 0" MouseDown="Border_MouseDown" >
             <StackPanel VerticalAlignment="Center">
-                <TextBlock Text="Sign in to App" Style="{StaticResource titleText}" Foreground="#3AB19B" />
-                <StackPanel Orientation="Horizontal" Margin="0 20" HorizontalAlignment="Center">
-                    <Button Style="{StaticResource buttonCircle}">
+                <TextBlock Text="Sign in to App" Style="{StaticResource titleText_Login}" Foreground="#3AB19B" Margin="0 0 0 40" />
+                <!--<StackPanel Orientation="Horizontal" Margin="0 20" HorizontalAlignment="Center">
+                    <Button Style="{StaticResource buttonCircle_Login}">
                         <Image Source="./Images/IconGoogle.png" Width="20" Height="20" />
                     </Button>
-                    <Button Style="{StaticResource buttonCircle}">
+                    <Button Style="{StaticResource buttonCircle_Login}">
                         <Image Source="./Images/IconFacebook.png" Width="20" Height="20" />
                     </Button>
-                    <Button Style="{StaticResource buttonCircle}">
+                    <Button Style="{StaticResource buttonCircle_Login}">
                         <Image Source="./Images/IconLinkedin.png" Width="20" Height="20" />
                     </Button>
                 </StackPanel>
 
-                <TextBlock Text="or use your email info:" Style="{StaticResource normalText}" Foreground="#878787" Margin="0 10 0 15" />
+                <TextBlock Text="or use your email info:" Style="{StaticResource normalText_Login}" Foreground="#878787" Margin="0 10 0 15" />-->
 
                 <Border BorderThickness="1" BorderBrush="#ACB0AF" Margin="70 7" CornerRadius="5">
                     <Grid Margin="7 9">
@@ -64,8 +67,8 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Image Source="./Images/IconEmail.png" Height="20" />
-                        <TextBlock x:Name="textBlockEmail" MouseDown="TextEmail_MouseDown" Text="Email" Style="{StaticResource textHint}" />
-                        <TextBox x:Name="textBoxEmail" TextChanged="TxtEmail_TextChanged" Style="{StaticResource textBox}" />
+                        <TextBlock x:Name="textBlockEmail" MouseDown="TextEmail_MouseDown" Text="Email" Style="{StaticResource textHint_Login}" />
+                        <TextBox x:Name="textBoxEmail" TextChanged="TxtEmail_TextChanged" Style="{StaticResource textBox_Login}" />
                     </Grid>
                 </Border>
 
@@ -76,12 +79,12 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Image Source="./Images/IconLock.png" Height="20" />
-                        <TextBlock x:Name="textBlockPassword" MouseDown="TextPassword_MouseDown" Text="Password" Style="{StaticResource textHint}" />
-                        <PasswordBox x:Name="textBoxPassword" PasswordChanged="TxtPassword_PasswordChanged" Style="{StaticResource textBox}" />
+                        <TextBlock x:Name="textBlockPassword" MouseDown="TextPassword_MouseDown" Text="Password" Style="{StaticResource textHint_Login}" />
+                        <PasswordBox x:Name="textBoxPassword" PasswordChanged="TxtPassword_PasswordChanged" Style="{StaticResource textBox_Login}" />
                     </Grid>
                 </Border>
 
-                <Button Content="Sign In" Click="ButtonSignIn_Click" Style="{StaticResource mainButton}" />
+                <Button Content="Sign In" Click="ButtonSignIn_Click" Style="{StaticResource mainButton_Login}" />
             </StackPanel>
         </Border>
 

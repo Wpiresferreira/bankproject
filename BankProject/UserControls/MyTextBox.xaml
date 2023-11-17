@@ -14,6 +14,6 @@
         <TextBlock Foreground="#868686" Margin="10 0" VerticalAlignment="Center" Panel.ZIndex="1" IsHitTestVisible="False" 
                    Text="{Binding Path=Hint, ElementName=myTextBox}"
                    Visibility="{Binding ElementName=textBox, Path=Text.IsEmpty, Converter={StaticResource boolToVis}}" />
-        <TextBox x:Name="textBox" />
+        <TextBox x:Name="textBox" Style="{StaticResource textBoxRegister_Register}" />
     </Grid>
 </UserControl>

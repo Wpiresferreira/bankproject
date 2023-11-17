@@ -49,7 +49,7 @@ namespace BankProject {
             string inputEmail = myTextBoxEmail.textBox.Text;
             string inputPhone = myTextBoxPhone.textBox.Text;
             string inputPositionId = "3";
-            string inputPassword = myTextBoxPassword.textBox.Text;
+            string inputPassword = myTextBoxPassword.Password;
 
             string insertQuery = "INSERT INTO dbo.Employees (firstName, lastName, email, phone, positionId, password) ";
             insertQuery += $"VALUES ('{inputFirstName}', '{inputLastName}', '{inputEmail}', '{inputPhone}', {inputPositionId}, '{inputPassword}'); ";
