@@ -9,7 +9,6 @@
         Loaded="Window_Loaded">
 
     <Grid>
-        
         <!--Background Grid-->
         <Grid>
             <Grid.ColumnDefinitions>

@@ -7,19 +7,25 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="UserControls\UcInfoCardAdmin.xaml.cs">
+    <Compile Update="UserControls\CustomComponents\UcInfoCardAdmin.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UserControls\UcOptionRegister.xaml.cs">
+    <Compile Update="UserControls\CustomComponents\UcOptionRegister.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UserControls\UcTextBoxRegister.xaml.cs">
+    <Compile Update="UserControls\CustomComponents\UcTextBoxRegister.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UserControls\ucOrderAdmin.xaml.cs">
+    <Compile Update="UserControls\CustomComponents\ucOrderAdmin.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WindowAdmin.xaml.cs">
+    <Compile Update="UserControls\UcDashboard.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserControls\UcWallet.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WindowFrame.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="WindowRegister.xaml.cs">
@@ -30,19 +36,25 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="UserControls\UcInfoCardAdmin.xaml">
+    <Page Update="UserControls\CustomComponents\UcInfoCardAdmin.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UserControls\UcOptionRegister.xaml">
+    <Page Update="UserControls\CustomComponents\UcOptionRegister.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UserControls\UcTextBoxRegister.xaml">
+    <Page Update="UserControls\CustomComponents\UcTextBoxRegister.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UserControls\UcOrderAdmin.xaml">
+    <Page Update="UserControls\CustomComponents\UcOrderAdmin.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WindowAdmin.xaml">
+    <Page Update="UserControls\UcDashboard.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\UcWallet.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WindowFrame.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WindowRegister.xaml">

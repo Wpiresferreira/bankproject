@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\0_Github\bankproject\BankProject\App.xaml
-8-1364752952
+10511470317
 
-11905604445
+13-489214974
 2021419982955
-UserControls\UcInfoCardAdmin.xaml;UserControls\UcOptionRegister.xaml;UserControls\UcOrderAdmin.xaml;UserControls\UcTextBoxRegister.xaml;WindowAdmin.xaml;WindowLogin.xaml;WindowMain.xaml;WindowRegister.xaml;
+UserControls\CustomComponents\UcInfoCardAdmin.xaml;UserControls\CustomComponents\UcOptionRegister.xaml;UserControls\CustomComponents\UcOrderAdmin.xaml;UserControls\CustomComponents\UcTextBoxRegister.xaml;UserControls\UcDashboard.xaml;UserControls\UcWallet.xaml;WindowFrame.xaml;WindowLogin.xaml;WindowMain.xaml;WindowRegister.xaml;
 
 False
 

@@ -1,0 +1,203 @@
+﻿<UserControl x:Class="BankProject.UserControls.UcWallet"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             mc:Ignorable="d"  Background="Transparent" Height="700" Width="1000">
+
+    <Border CornerRadius="0" BorderThickness="0">
+        <Border.Background>
+            <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                <GradientStop Color="#41518f" Offset="0" />
+                <GradientStop Color="#2c386c" Offset="1" />
+            </LinearGradientBrush>
+        </Border.Background>
+        <!--Controls-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!--Transaction Panel-->
+            <Grid Grid.Column="0">
+                <!--Main Panel-->
+                <Border Margin="20 120 20 20" Style="{StaticResource border_Main}">
+                    <StackPanel Margin="10 88 10 20">
+                        <TextBlock Text="Transfer" Foreground="#fcfcfc" TextAlignment="Center" FontSize="34" FontWeight="SemiBold" />
+                        <Grid Margin="0 12 0 22">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Button Content="Send" Style="{StaticResource activeTabButton_Main}" />
+                            <Button Content="Apply for" Grid.Column="1" Style="{StaticResource tabButton_Main}" />
+                        </Grid>
+                        <TextBlock Text="Pay to" Style="{StaticResource textLabel_Main}" />
+                        <TextBox Margin="0 10 0 5" TextAlignment="Center" Text="fh897623fg82bfi2g89724bg42gf29n42ht947" Style="{StaticResource textBoxMain_Main}" />
+                        <TextBlock FontSize="9" Foreground="#e0e0e0" TextAlignment="Center" Opacity="0.5" Margin="0 0 0 20"  Text="Please enter the wallet or destination email" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Amount" Style="{StaticResource textLabel_Main}" />
+                            <TextBox Grid.Row="1" Margin="0 10 5 20" Text="$300.00" Style="{StaticResource textBoxMain_Main}" />
+                            <TextBlock Text="Reason" Grid.Column="1" Style="{StaticResource textLabel_Main}" />
+                            <TextBox Grid.Row="1" Grid.Column="1" Margin="5 10 0 20" Text="Pay for games" Style="{StaticResource textBoxMain_Main}" />
+                            <TextBlock Text="Comission: $3" Grid.Row="2" Margin="0 4 0 3" Style="{StaticResource textLabel_Main}" />
+                            <TextBlock Text="Total: $300.00" Grid.Row="2" Margin="0 4 0 3" Grid.Column="1" Style="{StaticResource textLabel_Main}" />
+                        </Grid>
+                        <Button Style="{StaticResource sendButton_Main}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:ImageAwesome Icon="SendOutline" VerticalAlignment="Center" Style="{StaticResource WhiteIcon_Main}" />
+                                <TextBlock Text="Send" Margin="10 0 0 0" FontWeight="SemiBold" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Border>
+
+                <!--Bank Card-->
+                <Border Margin="90 40 90 0" Style="{StaticResource cardBorder_Main}">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#d489ff" Offset="-0.2" />
+                            <GradientStop Color="#7985ff" Offset="0.5" />
+                            <GradientStop Color="#6ad8fd" Offset="1" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Grid>
+                        <fa:ImageAwesome Icon="Exchange" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="White" Opacity="0.9" Width="25" Margin="15 8 0 0" />
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right" >
+                            <fa:ImageAwesome Icon="CheckCircle" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="White" Width="25" Margin="0 5 10 0" />
+                            <TextBlock x:Name="nameCard" Text="John Doe" FontWeight="Bold" FontSize="12" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0 8 10 0" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <TextBlock Text="1234" Style="{StaticResource bankCardNumber_Main}" />
+                            <TextBlock Text="5678" Style="{StaticResource bankCardNumber_Main}" />
+                            <TextBlock Text="9012" Style="{StaticResource bankCardNumber_Main}" />
+                            <TextBlock Text="3456" Style="{StaticResource bankCardNumber_Main}" />
+                        </StackPanel>
+                        <TextBlock Text="$ 8,520.00" Style="{StaticResource textLabel_Main}" FontSize="20" FontWeight="SemiBold" VerticalAlignment="Bottom" Margin="13 0 0 5" />
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <!--Info Panel-->
+            <StackPanel Grid.Column="1" Margin="0 0 20 0">
+                <!--Top Menu-->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="20 40 20 0">
+                    <Button Style="{StaticResource topMenuButton_Main}" Margin="10 0 0 0" Width="300" Height="50">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:ImageAwesome Icon="Sliders" Style="{StaticResource topMenuIcon_Main}" />
+                            <TextBlock Text="Add Filters" VerticalAlignment="Center" FontSize="14" Margin="8 0 0 0" />
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource topMenuButton_Main}" Margin="10 0 0 0">
+                        <fa:ImageAwesome Icon="BellOutline" Style="{StaticResource topMenuIcon_Main}" />
+                    </Button>
+                    <Button Style="{StaticResource topMenuButton_Main}" Margin="10 0 0 0">
+                        <fa:ImageAwesome Icon="Search" Style="{StaticResource topMenuIcon_Main}" />
+                    </Button>
+                </StackPanel>
+
+                <!--Info Card-->
+                <Border Style="{StaticResource cardBorder_Main}" Margin="20 31 20 0">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#9085fa" Offset="0" />
+                            <GradientStop Color="#c77aff" Offset="1" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Grid>
+                        <TextBlock Text="Balance" Style="{StaticResource textLabel_Main}" VerticalAlignment="Top" Margin="15 8 0 0" FontSize="14" FontWeight="SemiBold" />
+                        <TextBlock Text="$ 8,520.00" Style="{StaticResource textLabel_Main}" VerticalAlignment="Center" Margin="15 8 0 10" FontSize="24" FontWeight="SemiBold" />
+                        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 8 10 0">
+                            <Button Style="{StaticResource fillButton_Main}">
+                                <fa:ImageAwesome Icon="Dollar" Style="{StaticResource WhiteIcon_Main}" Width="10" Height="10" />
+                            </Button>
+                            <Button Style="{StaticResource fillButton_Main}" Margin="0 5 0 0">
+                                <fa:ImageAwesome Icon="Percent" Style="{StaticResource WhiteIcon_Main}" Width="10" Height="10" />
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="15 0 0 5">
+                            <Button Style="{StaticResource fillButton_Main}">
+                                <fa:ImageAwesome Icon="ArrowUp" Style="{StaticResource WhiteIcon_Main}" Width="10" Height="10" />
+                            </Button>
+                            <TextBlock Text="+ $ 620.12" Style="{StaticResource textLabel_Main}" Margin="10 0 20 0" FontWeight="SemiBold" VerticalAlignment="Center" />
+                            <Button Style="{StaticResource fillButton_Main}">
+                                <fa:ImageAwesome Icon="ArrowDown" Style="{StaticResource WhiteIcon_Main}" Width="10" Height="10" />
+                            </Button>
+                            <TextBlock Text="+ $ 920.12" Style="{StaticResource textLabel_Main}" Margin="10 0 0 0" FontWeight="SemiBold" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!--Information Card-->
+                <Border Style="{StaticResource border_Main}" Margin="20">
+                    <Grid Margin="15 13">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Information" Foreground="#fcfcfc" FontSize="16" FontWeight="SemiBold" Margin="0 0 0 18" Grid.ColumnSpan="3" />
+                        <Button Style="{StaticResource button_Main}" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.ColumnSpan="3">
+                            <fa:ImageAwesome Icon="Edit" Style="{StaticResource WhiteIcon_Main}" Width="14" Height="12" />
+                        </Button>
+                        <fa:ImageAwesome Icon="MapMarker" Style="{StaticResource WhiteIcon_Main}" Grid.Row="1" VerticalAlignment="Top" />
+                        <fa:ImageAwesome Icon="Folder" Style="{StaticResource WhiteIcon_Main}" Grid.Row="2" VerticalAlignment="Top" />
+                        <TextBlock Text="Address: " Style="{StaticResource textLabel_Main}" Grid.Row="1" Grid.Column="1" Margin="10 0 10 18" />
+                        <TextBlock Text="Wallet ID: " Style="{StaticResource textLabel_Main}" Grid.Row="2" Grid.Column="1" Margin="10 0 10 0" />
+                        <TextBlock Text="Peru" Style="{StaticResource textLabel_Main}" Grid.Row="1" Grid.Column="2" />
+                        <TextBlock Text="901hbr9137bhgf9123btg912t7tgb13bt" Style="{StaticResource textLabel_Main}" Grid.Row="2" Grid.Column="2" />
+                    </Grid>
+                </Border>
+
+                <!--Security Card-->
+                <Border Style="{StaticResource border_Main}" Margin="20 0 20 0">
+                    <Grid Margin="15 10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Security" Foreground="#fcfcfc" FontSize="16" FontWeight="SemiBold" Grid.ColumnSpan="3" Margin="0 0 0 15" />
+                        <Button Style="{StaticResource button_Main}" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.ColumnSpan="3">
+                            <fa:ImageAwesome Icon="EllipsisH" Style="{StaticResource WhiteIcon_Main}" Width="14" Height="12" />
+                        </Button>
+                        <fa:ImageAwesome Icon="Shield" Style="{StaticResource WhiteIcon_Main}" Grid.Row="1" VerticalAlignment="Center" />
+                        <fa:ImageAwesome Icon="Key" Style="{StaticResource WhiteIcon_Main}" Grid.Row="2" VerticalAlignment="Center" />
+                        <fa:ImageAwesome Icon="Lock" Style="{StaticResource WhiteIcon_Main}" Grid.Row="3" VerticalAlignment="Center" />
+                        <TextBlock Text="2FA Enabled" Style="{StaticResource textLabel_Main}" Grid.Row="1" Grid.Column="1" Margin="10 0 0 0" VerticalAlignment="Center" />
+                        <TextBlock Text="Key" Style="{StaticResource textLabel_Main}" Grid.Row="2" Grid.Column="1" Margin="10 0 0 0" VerticalAlignment="Center" />
+                        <TextBlock Text="Password" Style="{StaticResource textLabel_Main}" Grid.Row="3" Grid.Column="1" Margin="10 0 0 0" VerticalAlignment="Center" />
+                        <Button Style="{StaticResource button_Main}" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1" Content="Change" Margin="0 5" />
+                        <Button Style="{StaticResource button_Main}" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="2" Grid.Row="2" Content="Change" Margin="0 5" />
+                        <Button Style="{StaticResource button_Main}" HorizontalAlignment="Right" VerticalAlignment="Center" Grid.Column="2" Grid.Row="3" Content="Change" Margin="0 5" />
+                    </Grid>
+                </Border>
+
+
+            </StackPanel>
+
+        </Grid>
+    </Border>
+</UserControl>

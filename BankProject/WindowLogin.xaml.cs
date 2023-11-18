@@ -15,18 +15,17 @@ namespace BankProject
         private bool ConnectToLocalDatabase {  get; set; }
         private string ConnectionString {  get; set; }
         public ClassUserLogged? MyUserLogged {  get; set; }
-        private WindowMain? MyWindowMain { get; set; }
         private WindowRegister? MyWindowRegister { get; set; }
-        private WindowAdmin? MyWindowAdmin { get; set; }
+        private WindowFrame? MyWindowFrame { get; set; }
 
 
         public WindowLogin() {
             InitializeComponent();
             ConnectToLocalDatabase = true;                        //Set to false to connect to remote database
             MyUserLogged = null;
-            MyWindowMain = null;
             MyWindowRegister = null;
-            MyWindowAdmin = null;
+            MyWindowFrame = null;
+
 
             //Build Connection String
             if (ConnectToLocalDatabase) {
@@ -49,9 +48,8 @@ namespace BankProject
 
         private void LoginScreen_Loaded(object sender, RoutedEventArgs e) {
             MyUserLogged = null;
-            MyWindowMain = null;
             MyWindowRegister = null;
-            MyWindowAdmin = null;
+            MyWindowFrame = null;
         }
 
 
@@ -97,10 +95,10 @@ namespace BankProject
                                 //MyWindowMain.Show();
 
                                 //Switch windows
-                                MyWindowAdmin = new WindowAdmin(ConnectionString, MyUserLogged);
-                                MyWindowAdmin.Owner = this;
+                                MyWindowFrame = new WindowFrame(ConnectionString, MyUserLogged);
+                                MyWindowFrame.Owner = this;
                                 LoginScreen.Hide();
-                                MyWindowAdmin.Show();
+                                MyWindowFrame.Show();
                             }
                             else {
                                 MessageBox.Show("Incorrect Credentials!");
