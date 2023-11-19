@@ -7,7 +7,7 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="UserControls\CustomComponents\UcInfoCardAdmin.xaml.cs">
+    <Compile Update="UserControls\CustomComponents\UcInfoCardDashboard.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UserControls\CustomComponents\UcOptionRegister.xaml.cs">
@@ -16,7 +16,7 @@
     <Compile Update="UserControls\CustomComponents\UcTextBoxRegister.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UserControls\CustomComponents\ucOrderAdmin.xaml.cs">
+    <Compile Update="UserControls\CustomComponents\UcOrderDashboard.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UserControls\UcDashboard.xaml.cs">
@@ -36,7 +36,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="UserControls\CustomComponents\UcInfoCardAdmin.xaml">
+    <Page Update="UserControls\CustomComponents\UcInfoCardDashboard.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\CustomComponents\UcOptionRegister.xaml">
@@ -45,7 +45,7 @@
     <Page Update="UserControls\CustomComponents\UcTextBoxRegister.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UserControls\CustomComponents\UcOrderAdmin.xaml">
+    <Page Update="UserControls\CustomComponents\UcOrderDashboard.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\UcDashboard.xaml">
@@ -61,9 +61,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WindowLogin.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="WindowMain.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

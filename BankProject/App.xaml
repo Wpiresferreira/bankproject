@@ -276,9 +276,9 @@
 
 
         <!-- ***************************************************************************************************************************
-         ********************************************************* Main Window *********************************************************
+         ********************************************************** UC Wallet **********************************************************
          **************************************************************************************************************************** -->
-        <Style x:Key="menuButton_Main" TargetType="Button">
+        <Style x:Key="menuButton_Wallet" TargetType="Button">
             <Setter Property="Height" Value="47" />
             <Setter Property="Width" Value="217" />
             <Setter Property="Background" Value="Transparent" />
@@ -323,13 +323,13 @@
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="buttonIcon_Main" TargetType="fa:ImageAwesome">
+        <Style x:Key="buttonIcon_Wallet" TargetType="fa:ImageAwesome">
             <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" />
             <Setter Property="Width" Value="18" />
             <Setter Property="Height" Value="18" />
         </Style>
 
-        <Style x:Key="buttonIconExpanded_Main" TargetType="fa:ImageAwesome">
+        <Style x:Key="buttonIconExpanded_Wallet" TargetType="fa:ImageAwesome">
             <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" />
             <Setter Property="Width" Value="10" />
             <Setter Property="Height" Value="10" />
@@ -342,13 +342,13 @@
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="buttonText_Main" TargetType="TextBlock">
+        <Style x:Key="buttonText_Wallet" TargetType="TextBlock">
             <Setter Property="Margin" Value="13 0 0 0" />
             <Setter Property="FontSize" Value="12" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
 
-        <Style x:Key="activeMenuButton_Main" TargetType="Button" BasedOn="{StaticResource menuButton_Main}">
+        <Style x:Key="activeMenuButton_Wallet" TargetType="Button" BasedOn="{StaticResource menuButton_Wallet}">
             <Setter Property="Background" Value="#21203b" />
             <Setter Property="Foreground" Value="#e9e9e9" />
             <Setter Property="Template">
@@ -369,14 +369,14 @@
             </Setter>
         </Style>
 
-        <Style x:Key="border_Main" TargetType="Border">
+        <Style x:Key="border_Wallet" TargetType="Border">
             <Setter Property="Background" Value="#362f54" />
             <Setter Property="Padding" Value="10" />
             <Setter Property="CornerRadius" Value="25" />
             <Setter Property="VerticalAlignment" Value="top" />
         </Style>
 
-        <Style x:Key="tabButton_Main" TargetType="Button">
+        <Style x:Key="tabButton_Wallet" TargetType="Button">
             <Setter Property="Height" Value="50" />
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Foreground" Value="#fcfcfc" />
@@ -416,7 +416,7 @@
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="activeTabButton_Main" TargetType="Button" BasedOn="{StaticResource tabButton_Main}">
+        <Style x:Key="activeTabButton_Wallet" TargetType="Button" BasedOn="{StaticResource tabButton_Wallet}">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -435,11 +435,11 @@
             </Setter>
         </Style>
 
-        <Style x:Key="textLabel_Main" TargetType="TextBlock">
+        <Style x:Key="textLabel_Wallet" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#fcfcfc" />
         </Style>
 
-        <Style x:Key="textBoxMain_Main" TargetType="TextBox">
+        <Style x:Key="textBoxMain_Wallet" TargetType="TextBox">
             <Setter Property="Background" Value="#3f375f" />
             <Setter Property="FocusVisualStyle" Value="{x:Null}" />
             <Setter Property="Padding" Value="15 12" />
@@ -453,7 +453,7 @@
             </Style.Resources>
         </Style>
 
-        <Style x:Key="sendButton_Main" TargetType="Button">
+        <Style x:Key="sendButton_Wallet" TargetType="Button">
             <Setter Property="Height" Value="50" />
             <Setter Property="Foreground" Value="#f0f0f0" />
             <Setter Property="Margin" Value="0 15 0 0" />
@@ -496,33 +496,33 @@
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="WhiteIcon_Main" TargetType="fa:ImageAwesome">
+        <Style x:Key="WhiteIcon_Wallet" TargetType="fa:ImageAwesome">
             <Setter Property="Foreground" Value="#f0f0f0" />
             <Setter Property="Width" Value="15" />
             <Setter Property="Height" Value="15" />
         </Style>
 
-        <Style x:Key="cardBorder_Main" TargetType="Border">
+        <Style x:Key="cardBorder_Wallet" TargetType="Border">
             <Setter Property="Height" Value="150" />
             <Setter Property="Padding" Value="10" />
             <Setter Property="CornerRadius" Value="25" />
             <Setter Property="VerticalAlignment" Value="Top" />
         </Style>
 
-        <Style x:Key="bankCardNumber_Main" TargetType="TextBlock">
+        <Style x:Key="bankCardNumber_Wallet" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#fcfcfc" />
             <Setter Property="FontSize" Value="16" />
             <Setter Property="Margin" Value="17 0" />
         </Style>
 
-        <Style x:Key="topMenuIcon_Main" TargetType="fa:ImageAwesome">
+        <Style x:Key="topMenuIcon_Wallet" TargetType="fa:ImageAwesome">
             <Setter Property="Foreground" Value="#f0f0f0" />
             <Setter Property="Width" Value="16" />
             <Setter Property="Height" Value="14" />
             <Setter Property="Margin" Value="4" />
         </Style>
 
-        <Style x:Key="button_Main" TargetType="Button">
+        <Style x:Key="button_Wallet" TargetType="Button">
             <Setter Property="Foreground" Value="#f0f0f0" />
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -547,7 +547,7 @@
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="topMenuButton_Main" TargetType="Button" BasedOn="{StaticResource button_Main}">
+        <Style x:Key="topMenuButton_Wallet" TargetType="Button" BasedOn="{StaticResource button_Wallet}">
             <Setter Property="Background" Value="#3c315b" />
             <Setter Property="Template">
                 <Setter.Value>
@@ -560,15 +560,15 @@
             </Setter>
         </Style>
 
-        <Style x:Key="fillButton_Main" TargetType="Button" BasedOn="{StaticResource button_Main}">
+        <Style x:Key="fillButton_Wallet" TargetType="Button" BasedOn="{StaticResource button_Wallet}">
             <Setter Property="Background" Value="#6b5a96" />
         </Style>
 
 
         <!-- ***************************************************************************************************************************
-         ******************************************************** Admin Window *********************************************************
+         ******************************************************** UC Dashboard *********************************************************
          **************************************************************************************************************************** -->
-        <Style x:Key="menuButton_Admin" TargetType="Button">
+        <Style x:Key="menuButton_Dashboard" TargetType="Button">
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Foreground" Value="#707db2" />
             <Setter Property="Margin" Value="0 0 0 5" />
@@ -609,20 +609,20 @@
             </Style.Triggers>
         </Style>
 
-        <Style  x:Key="menuButtonIcon_Admin" TargetType="fa:ImageAwesome">
+        <Style  x:Key="menuButtonIcon_Dashboard" TargetType="fa:ImageAwesome">
             <Setter Property="Width" Value="23" />
             <Setter Property="Height" Value="23" />
             <Setter Property="Margin" Value="35 0 20 0" />
             <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" />
         </Style>
 
-        <Style  x:Key="menuButtonText_Admin" TargetType="TextBlock">
+        <Style  x:Key="menuButtonText_Dashboard" TargetType="TextBlock">
             <Setter Property="FontSize" Value="13" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" />
         </Style>
 
-        <Style x:Key="menuButtonActive_Admin" TargetType="Button">
+        <Style x:Key="menuButtonActive_Dashboard" TargetType="Button">
             <Setter Property="Background">
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
@@ -647,7 +647,7 @@
             </Setter>
         </Style>
 
-        <Style x:Key="topMenuButton_Admin" TargetType="Button">
+        <Style x:Key="topMenuButton_Dashboard" TargetType="Button">
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Foreground" Value="#9eabe2" />
             <Setter Property="Margin" Value="5 0 0 0" />
@@ -673,7 +673,7 @@
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="titleText_Admin" TargetType="TextBlock">
+        <Style x:Key="titleText_Dashboard" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#ffffff" />
             <Setter Property="FontSize" Value="18" />
             <Setter Property="FontWeight" Value="SemiBold" />
@@ -681,7 +681,7 @@
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
 
-        <Style x:Key="titleIcon_Admin" TargetType="fa:ImageAwesome">
+        <Style x:Key="titleIcon_Dashboard" TargetType="fa:ImageAwesome">
             <Setter Property="Width" Value="18" />
             <Setter Property="Height" Value="18" />
             <Setter Property="Margin" Value="0 3 0 0" />

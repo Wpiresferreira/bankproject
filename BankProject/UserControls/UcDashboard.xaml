@@ -25,10 +25,10 @@
 
             <!--Top Menu-->
             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0 0 30 20">
-                <Button Content="Today" Style="{StaticResource topMenuButton_Admin}" />
-                <Button Content="Week" Style="{StaticResource topMenuButton_Admin}" Background="#5b60c4" Foreground="#ffffff" />
-                <Button Content="Month" Style="{StaticResource topMenuButton_Admin}" />
-                <Button Content="Year" Style="{StaticResource topMenuButton_Admin}" />
+                <Button Content="Today" Style="{StaticResource topMenuButton_Dashboard}" />
+                <Button Content="Week" Style="{StaticResource topMenuButton_Dashboard}" Background="#5b60c4" Foreground="#ffffff" />
+                <Button Content="Month" Style="{StaticResource topMenuButton_Dashboard}" />
+                <Button Content="Year" Style="{StaticResource topMenuButton_Dashboard}" />
             </StackPanel>
 
             <!--Title-->
@@ -42,9 +42,9 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <uc:UcInfoCardAdmin Grid.Column="0" Title="Total Views" Number="654,947" Icon="Eye" Background1="#827bff" Background2="#d9b5ff" EllipseBackground1="#b298fd" EllipseBackground2="#e4bbff" />
-                <uc:UcInfoCardAdmin Grid.Column="1" Title="Total Orders" Number="192,320" Icon="ShoppingCart" Background1="#fd8a87" Background2="#f3ab92" EllipseBackground1="#fbd5a8" EllipseBackground2="#fdb89b" />
-                <uc:UcInfoCardAdmin Grid.Column="2" Title="Total Revenue" Number="14,528" Icon="Money" Background1="#fc84cb" Background2="#fc8fae" EllipseBackground1="#fc8fae" EllipseBackground2="#ffabe6" />
+                <uc:UcInfoCardDashboard Grid.Column="0" Title="Total Views" Number="654,947" Icon="Eye" Background1="#827bff" Background2="#d9b5ff" EllipseBackground1="#b298fd" EllipseBackground2="#e4bbff" />
+                <uc:UcInfoCardDashboard Grid.Column="1" Title="Total Orders" Number="192,320" Icon="ShoppingCart" Background1="#fd8a87" Background2="#f3ab92" EllipseBackground1="#fbd5a8" EllipseBackground2="#fdb89b" />
+                <uc:UcInfoCardDashboard Grid.Column="2" Title="Total Revenue" Number="14,528" Icon="Money" Background1="#fc84cb" Background2="#fc8fae" EllipseBackground1="#fc8fae" EllipseBackground2="#ffabe6" />
             </Grid>
 
             <Grid Grid.Row="2">
@@ -61,8 +61,8 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <StackPanel Orientation="Horizontal" Margin="0 0 0 25">
-                            <fa:ImageAwesome Icon="CircleOutline" Style="{StaticResource titleIcon_Admin}" />
-                            <TextBlock Text="Profit" Style="{StaticResource titleText_Admin}" />
+                            <fa:ImageAwesome Icon="CircleOutline" Style="{StaticResource titleIcon_Dashboard}" />
+                            <TextBlock Text="Profit" Style="{StaticResource titleText_Dashboard}" />
                         </StackPanel>
                         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0 0 0 25" Grid.Row="1">
                             <TextBlock Text="70000" Foreground="#717eb2" Margin="0 0 0 25" HorizontalAlignment="Right" />
@@ -134,17 +134,17 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <StackPanel Orientation="Horizontal" Margin="20 0 0 15">
-                            <fa:ImageAwesome Icon="CircleOutline" Style="{StaticResource titleIcon_Admin}" />
-                            <TextBlock Text="Last Orders" Style="{StaticResource titleText_Admin}" />
+                            <fa:ImageAwesome Icon="CircleOutline" Style="{StaticResource titleIcon_Dashboard}" />
+                            <TextBlock Text="Last Orders" Style="{StaticResource titleText_Dashboard}" />
                         </StackPanel>
 
                         <!--Orders-->
                         <StackPanel Grid.Row="1">
-                            <uc:UcOrderAdmin Title="Groceries" Desc="John Doe - 10:30" Icon="Apple" />
-                            <uc:UcOrderAdmin Title="Shoes Kamoin" Desc="Karim Penci - 12:00" Icon="Amazon" />
-                            <uc:UcOrderAdmin Title="Soccer Ball" Desc="Mari Sumue - 13:45" Icon="SoccerBallOutline" />
-                            <uc:UcOrderAdmin Title="Nikon Camera" Desc="Ali Qackman - 14:30" Icon="Camera" />
-                            <uc:UcOrderAdmin Title="Travel Expenses" Desc="Jack Praide - 15:30" Icon="FighterJet" />
+                            <uc:UcOrderDashboard Title="Groceries" Desc="John Doe - 10:30" Icon="Apple" />
+                            <uc:UcOrderDashboard Title="Shoes Kamoin" Desc="Karim Penci - 12:00" Icon="Amazon" />
+                            <uc:UcOrderDashboard Title="Soccer Ball" Desc="Mari Sumue - 13:45" Icon="SoccerBallOutline" />
+                            <uc:UcOrderDashboard Title="Nikon Camera" Desc="Ali Qackman - 14:30" Icon="Camera" />
+                            <uc:UcOrderDashboard Title="Travel Expenses" Desc="Jack Praide - 15:30" Icon="FighterJet" />
                         </StackPanel>
                     </Grid>
                 </Border>

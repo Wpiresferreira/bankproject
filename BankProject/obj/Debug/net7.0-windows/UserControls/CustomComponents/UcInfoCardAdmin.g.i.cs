@@ -63,7 +63,8 @@ namespace BankProject.UserControls {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BankProject;component/usercontrols/customcomponents/ucinfocardadmin.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BankProject;V1.0.0.0;component/usercontrols/customcomponents/ucinfocardadmin.xam" +
+                    "l", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\UserControls\CustomComponents\UcInfoCardAdmin.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
