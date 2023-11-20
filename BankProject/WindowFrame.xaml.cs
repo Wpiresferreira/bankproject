@@ -89,11 +89,11 @@ namespace BankProject {
             //Reset all Menu Button styles
             foreach(Object obj in buttonsList.Children) {
                 if(obj.GetType() == typeof(Button)) {
-                    ((Button)obj).Style = (Style)Application.Current.Resources["menuButton_Admin"];
+                    ((Button)obj).Style = (Style)Application.Current.Resources["menuButton_Frame"];
                 }
             }
             //Set current button style to active
-            buttonPressed.Style = (Style)Application.Current.Resources["menuButtonActive_Admin"];
+            buttonPressed.Style = (Style)Application.Current.Resources["menuButtonActive_Frame"];
         }
 
     }
