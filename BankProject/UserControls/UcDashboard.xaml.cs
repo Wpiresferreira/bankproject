@@ -12,21 +12,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BankProject.Classes;
 
-namespace BankProject.UserControls {
+namespace BankProject.UserControls
+{
     /// <summary>
     /// Interaction logic for UcDashboard.xaml
     /// </summary>
     public partial class UcDashboard : UserControl {
 
-        public string ConnectionString { get; set; }
+        public ClassController MyController { get; set; }
         public ClassUserLogged MyUserLogged { get; set; }
 
 
-        public UcDashboard(string connectionString, ClassUserLogged userLogged) {
+        public UcDashboard(ClassController myController) {
             InitializeComponent();
-            ConnectionString = connectionString;
-            MyUserLogged = userLogged;
+            MyController = myController;
+            MyUserLogged = myController.MyUserLogged;
 
             nameHeader.Text = $"Good Afternoon, {MyUserLogged.FirstName}";
         }

@@ -12,21 +12,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BankProject.Classes;
 
-namespace BankProject.UserControls {
+namespace BankProject.UserControls
+{
     /// <summary>
     /// Interaction logic for UcWallet.xaml
     /// </summary>
     public partial class UcWallet : UserControl {
 
-        public string ConnectionString { get; set; }
+        public ClassController MyController { get; set; }
         public ClassUserLogged MyUserLogged { get; set; }
 
 
-        public UcWallet(string connectionString, ClassUserLogged userLogged) {
+        public UcWallet(ClassController myController) {
             InitializeComponent();
-            ConnectionString = connectionString;
-            MyUserLogged = userLogged;
+            MyController = myController;
+            MyUserLogged = myController.MyUserLogged;
 
             nameCard.Text = $"{MyUserLogged.FirstName} {MyUserLogged.LastName}";
         }

@@ -57,16 +57,10 @@ C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject.pdb
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject.genruntimeconfig.cache
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\ref\BankProject.dll
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\App.baml
-C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\WindowLogin.g.cs
 C:\0_Github\bankproject\BankProject\bin\Debug\net7.0-windows\FontAwesome.WPF.dll
-C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\WindowLogin.baml
-C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\WindowRegister.g.cs
-C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\WindowRegister.baml
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\GeneratedInternalTypeHelper.g.cs
 C:\0_Github\bankproject\BankProject\bin\Debug\net7.0-windows\LiveCharts.dll
 C:\0_Github\bankproject\BankProject\bin\Debug\net7.0-windows\LiveCharts.Wpf.dll
-C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\WindowFrame.g.cs
-C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\WindowFrame.baml
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\CustomComponents\UcTextBoxRegister.baml
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\CustomComponents\UcOptionRegister.g.cs
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\CustomComponents\UcTextBoxRegister.g.cs
@@ -79,3 +73,9 @@ C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\Custom
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\CustomComponents\UcInfoCardDashboard.g.cs
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\CustomComponents\UcOrderDashboard.g.cs
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\CustomComponents\UcInfoCardDashboard.baml
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\Windows\WindowLogin.baml
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\Windows\WindowFrame.g.cs
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\Windows\WindowLogin.g.cs
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\Windows\WindowRegister.g.cs
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\Windows\WindowFrame.baml
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\Windows\WindowRegister.baml

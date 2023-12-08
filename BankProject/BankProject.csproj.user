@@ -25,13 +25,13 @@
     <Compile Update="UserControls\UcWallet.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WindowFrame.xaml.cs">
+    <Compile Update="Windows\WindowFrame.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WindowRegister.xaml.cs">
+    <Compile Update="Windows\WindowRegister.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WindowLogin.xaml.cs">
+    <Compile Update="Windows\WindowLogin.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -54,13 +54,13 @@
     <Page Update="UserControls\UcWallet.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WindowFrame.xaml">
+    <Page Update="Windows\WindowFrame.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WindowRegister.xaml">
+    <Page Update="Windows\WindowRegister.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WindowLogin.xaml">
+    <Page Update="Windows\WindowLogin.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
