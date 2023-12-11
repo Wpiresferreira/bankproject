@@ -96,6 +96,13 @@
                     <TextBlock Text="Promote" Style="{StaticResource menuButtonText_Frame}" />
                 </StackPanel>
             </Button>
+            <Button Style="{StaticResource menuButton_Frame}" Click="ButtonCustomerBase_Click">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome  Icon="AddressCardOutline" Style="{StaticResource menuButtonIcon_Frame}" />
+                    <TextBlock Text="Customer Base" Style="{StaticResource menuButtonText_Frame}" />
+                </StackPanel>
+            </Button>
+
             <Separator Background="#e0e0e0" Opacity="0.5" Margin="40 15 40 15" />
             <Button Style="{StaticResource menuButton_Frame}">
                 <StackPanel Orientation="Horizontal">

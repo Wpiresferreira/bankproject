@@ -8,4 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BankProject
-build_property.ProjectDir = C:\0_Github\bankproject\BankProject\
+build_property.ProjectDir = C:\Users\wagne\source\repos\bankproject\BankProject\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

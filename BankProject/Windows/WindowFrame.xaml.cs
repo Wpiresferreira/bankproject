@@ -1,5 +1,6 @@
 ﻿using BankProject.Classes;
 using BankProject.UserControls;
+using BankProject.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,13 +20,15 @@ namespace BankProject
     /// <summary>
     /// Interaction logic for WindowFrame.xaml
     /// </summary>
-    public partial class WindowFrame : Window {
+    public partial class WindowFrame : Window
+    {
 
         private ClassController MyController { get; set; }
         private ClassUserLogged MyUserLogged { get; set; }
 
 
-        public WindowFrame(ClassController myController) {
+        public WindowFrame(ClassController myController)
+        {
             InitializeComponent();
             MyController = myController;
             MyUserLogged = MyController.MyUserLogged;
@@ -40,48 +43,69 @@ namespace BankProject
             tabControl_Frame.SelectedItem = newTabItem;
         }
 
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e) {
-            if(e.ChangedButton==MouseButton.Left) {
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
                 this.DragMove();
             }
         }
 
 
-        private void ImageMinimize_MouseUp(object sender, MouseButtonEventArgs e) {
+        private void ImageMinimize_MouseUp(object sender, MouseButtonEventArgs e)
+        {
             this.WindowState = WindowState.Minimized;
         }
 
 
-        private void ImageClose_MouseUp(object sender, MouseButtonEventArgs e) {
+        private void ImageClose_MouseUp(object sender, MouseButtonEventArgs e)
+        {
             Application.Current.Shutdown();
         }
 
 
-        private void Window_Loaded(object sender, RoutedEventArgs e) {
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
 
         }
 
 
-        private void ButtonLogout_Click(object sender, RoutedEventArgs e) {
+        private void ButtonLogout_Click(object sender, RoutedEventArgs e)
+        {
             this.Close();
             this.Owner.Show();
         }
 
-        private void ButtonDashboard_Click(object sender, RoutedEventArgs e) {
+        private void ButtonDashboard_Click(object sender, RoutedEventArgs e)
+        {
             Button buttonPressed = (Button)sender;
             UcDashboard newDashboard = new UcDashboard(MyController);
             SwitchTabs(newDashboard, buttonPressed);
         }
 
 
-        private void ButtonWallet_Click(object sender, RoutedEventArgs e) {
+        private void ButtonWallet_Click(object sender, RoutedEventArgs e)
+        {
             UcWallet newWallet = new UcWallet(MyController);
             Button buttonPressed = (Button)sender;
             TabItem newTabItem = new TabItem();
             SwitchTabs(newWallet, buttonPressed);
         }
 
-        private void SwitchTabs(object newUserControl, Button buttonPressed) {
+        private void ButtonCustomerBase_Click(object sender, RoutedEventArgs e)
+        {
+
+
+
+            //Switch windows
+            var MyWindowCustomer = new WindowCustomerBase(MyController.ConnectionString);
+            MyWindowCustomer.Owner = this;
+            this.Hide();
+            MyWindowCustomer.Show();
+        }
+
+        private void SwitchTabs(object newUserControl, Button buttonPressed)
+        {
             //Add newUserControl into new Item of tabControl_Frame
             TabItem newTabItem = new TabItem();
             newTabItem.Content = newUserControl;
@@ -90,8 +114,10 @@ namespace BankProject
             tabControl_Frame.SelectedItem = newTabItem;
 
             //Reset all Menu Button styles
-            foreach(Object obj in buttonsList.Children) {
-                if(obj.GetType() == typeof(Button)) {
+            foreach (Object obj in buttonsList.Children)
+            {
+                if (obj.GetType() == typeof(Button))
+                {
                     ((Button)obj).Style = (Style)Application.Current.Resources["menuButton_Frame"];
                 }
             }

@@ -1,0 +1,87 @@
+﻿<Window x:Class="BankProject.Windows.WindowCustomerBase"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+xmlns:fa="http://schemas.fontawesome.io/icons/"
+xmlns:uc="clr-namespace:BankProject.UserControls"
+mc:Ignorable="d" Height="650" Width="1000" Background="Transparent" WindowStyle="None" WindowStartupLocation="CenterScreen" AllowsTransparency="True"
+Title="[Customer Base Window]">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="350" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!--Window Top Right Buttons-->
+        <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Panel.ZIndex="1" >
+            <Image Source="../Images/IconMinimize.png" Width="20" Style="{StaticResource iconWindowTopRight}" MouseUp="ImageMinimize_MouseUp" />
+            <Image Source="../Images/IconClose.png" Width="20" Style="{StaticResource iconWindowTopRight}" MouseUp="ImageClose_MouseUp" />
+        </StackPanel>
+
+        <!--Left Section-->
+        <Border Background="#ffd500" Padding="30" CornerRadius="25 0 0 25">
+            <StackPanel VerticalAlignment="Center">
+                <Image Source="../Images/IconUser.png" Width="160" Height="160" Margin="0 0 0 40" />
+
+                <TextBlock Text="Let's get you set up" TextAlignment="Center" FontWeight="SemiBold" FontSize="28" Foreground="#363636" />
+                <TextBlock Text="It should only take a couple of minutes to pair with your watch" TextWrapping="Wrap" TextAlignment="Center" FontSize="16" Foreground="#363636" Margin="0 20 0 20" />
+
+                <Button Style="{StaticResource buttonBlack_Register}" Click="ButtonBack_Click">
+                    <fa:ImageAwesome Icon="AngleLeft" Width="25" Height="25" Foreground="#ffd500" Margin="0 0 5 0" />
+                </Button>
+            </StackPanel>
+        </Border>
+
+
+        <!--Input Section-->
+
+        <Border Grid.Column="1" Padding="20" Background="#ffffff" CornerRadius="0 25 25 0" MouseDown="Border_MouseDown">
+            <Grid>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 10 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="200" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+
+                    </Grid.RowDefinitions>
+
+
+
+                    <TextBlock Grid.Row="0" Text="Customer ID" Style="{StaticResource text_Register}" />
+                    <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Text="-- or --" Style="{StaticResource text_Register}" />
+                    <TextBlock Grid.Row="2" Text="First Name" Style="{StaticResource text_Register}" />
+                    <TextBlock Grid.Row="3" Text="Last Name" Style="{StaticResource text_Register}" />
+                    <TextBlock Grid.Row="4" Text="Date of Birth" Style="{StaticResource text_Register}" />
+
+                    <uc:UcTextBoxRegister x:Name="myTextBoxCustomerID" Grid.Column="1" Grid.Row="0" />
+                    <uc:UcTextBoxRegister x:Name="myTextBoxFirstName" Grid.Column="1" Grid.Row="2"  />
+                    <uc:UcTextBoxRegister x:Name="myTextBoxLastName" Grid.Column="1" Grid.Row="3" />
+                    <uc:UcTextBoxRegister x:Name="myTextBoxDataOfBirth" Grid.Column="1" Grid.Row="4" Hint="dd/mm/yyyy" />
+
+
+                    <Grid Grid.Column="1" Grid.Row="7" Margin="0 40 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Button Content="Search" Margin="0 0 10 0" Grid.Column="0" Style="{StaticResource buttonMain_Register}" Click="ButtonSearch_Click" />
+                        <Button Content="New" Margin="10 0 0 0" Grid.Column="1" Style="{StaticResource buttonMainGreen_Register}" Click="ButtonNew_Click"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
+
+    </Grid>
+</Window>

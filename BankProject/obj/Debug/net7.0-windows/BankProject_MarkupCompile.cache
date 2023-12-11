@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\
+C:\Users\wagne\source\repos\bankproject\BankProject\obj\Debug\net7.0-windows\
 BankProject
 none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
-C:\0_Github\bankproject\BankProject\App.xaml
-9-499932157
+C:\Users\wagne\source\repos\bankproject\BankProject\App.xaml
+10689606243
 
-141475174193
-2021419982955
-UserControls\CustomComponents\UcInfoCardDashboard.xaml;UserControls\CustomComponents\UcOptionRegister.xaml;UserControls\CustomComponents\UcOrderDashboard.xaml;UserControls\CustomComponents\UcTextBoxRegister.xaml;UserControls\UcDashboard.xaml;UserControls\UcWallet.xaml;Windows\WindowFrame.xaml;Windows\WindowLogin.xaml;Windows\WindowRegister.xaml;
+16323213512
+202-1738639308
+UserControls\CustomComponents\UcInfoCardDashboard.xaml;UserControls\CustomComponents\UcOptionRegister.xaml;UserControls\CustomComponents\UcOrderDashboard.xaml;UserControls\CustomComponents\UcTextBoxRegister.xaml;UserControls\UcDashboard.xaml;UserControls\UcWallet.xaml;Windows\WindowCustomerBase.xaml;Windows\WindowFrame.xaml;Windows\WindowLogin.xaml;Windows\WindowRegister.xaml;
 
 False
 
