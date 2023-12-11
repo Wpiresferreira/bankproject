@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankProject.Classes
-{
-    public class ClassUserLogged
-    {
+namespace BankProject.Classes {
+    public class ClassUserLogged {
 
         public int EmployeeId { get; set; }
         public string FirstName { get; set; }
@@ -15,8 +13,7 @@ namespace BankProject.Classes
         public string Email { get; set; }
         public int PositionId { get; set; }
 
-        public ClassUserLogged(int employeeId, string firstName, string lastName, string email, int positionId)
-        {
+        public ClassUserLogged(int employeeId, string firstName, string lastName, string email, int positionId) {
             EmployeeId = employeeId;
             FirstName = firstName;
             LastName = lastName;
@@ -24,8 +21,7 @@ namespace BankProject.Classes
             PositionId = positionId;
         }
 
-        public override string ToString()
-        {
+        public override string ToString() {
             string _result = string.Empty;
             _result += $"EmployeeId: {EmployeeId}" + Environment.NewLine;
             _result += $"FirstName: {FirstName}" + Environment.NewLine;

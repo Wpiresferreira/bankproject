@@ -5,31 +5,12 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankProject.Classes
-{
-    internal class ClassAddress
-    {
-        string zipCode { get; set; }
-        string line1 { get; set; }
-        string line2 { get; set; }
-        string city { get; set; }
-        string province { get; set; }
-        string country { get; set; }
-        public ClassAddress(string ZipCode, string Line1, string Line2, string City, string Province, string Country)
-        {
-            zipCode = ZipCode;
-            line1 = Line1;
-            line2 = Line2;
-            city = City;
-            province = Province;
-            country = Country;
-        }
-        public override string ToString()
-        {
-            return $"\nZipCode:{zipCode}\nAddress: {line1}\n{line2}\nCity: {city}\nProvince: {province}\nCountry:{country}";
-        }
-    }
+namespace BankProject.Classes {
+    public class ClassCustomer : ClassAbstractPerson {
 
+        public int IdCustomer { get; set; }
+        public ClassEmployee? FinancialAdvisor { get; set; }
+        public List<ClassAbstractAccount>? MyListAccounts { get; set; }
     internal class ClassCustomer
     {
         int customerID { get; set; }
@@ -57,7 +38,10 @@ namespace BankProject.Classes
         {
             return $"CustomerID: {customerID}\nFirst Name: {firstName}\nLast Name: {lastName}\nDate Of Birth: {dateOfBirth}\nDocument:{document}\nAddress: {address}\nPhone Number: {phoneNumber}\nEmail: {emailAddress}";
         }
-    }
+        public string DetailsAllMyAccounts() {
+            string _result = string.Empty;
+            return _result;
+        }
 
 
 
