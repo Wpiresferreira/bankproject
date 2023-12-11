@@ -38,6 +38,7 @@ namespace BankProject
             //Reset Windows
             MyWindowRegister = null;
             MyWindowFrame = null;
+            textBoxEmail.Focus();
         }
 
 
