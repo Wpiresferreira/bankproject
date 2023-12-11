@@ -66,6 +66,11 @@ namespace BankProject.Windows
 
                         ClassDocument customerDocument = new ClassDocument(reader.GetString(4), reader.GetString(5), DateOnly.FromDateTime(reader.GetDateTime(6)), DateOnly.FromDateTime(reader.GetDateTime(7)));
                         ClassAddress customerAddress = new ClassAddress(reader.GetString(8), reader.GetString(9), reader.GetString(10), reader.GetString(11), reader.GetString(12), reader.GetString(13));
+                        ClassEmployee financialAdvisor = null;
+                        ClassBranch branch = null;
+                        var listOfAccounts = new List<ClassAbstractAccount>();
+
+
                         ClassCustomer customer = new ClassCustomer(
                             reader.GetInt32(0),
                             reader.GetString(1),
@@ -74,7 +79,10 @@ namespace BankProject.Windows
                             customerDocument,
                             customerAddress,
                             reader.GetString(14),
-                            reader.GetString(15));
+                            reader.GetString(15),
+                            financialAdvisor,
+                            branch,
+                            listOfAccounts);
 
                         MessageBox.Show(customer.ToString());
 

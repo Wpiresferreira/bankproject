@@ -87,7 +87,7 @@ namespace BankProject.Windows {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BankProject;V1.0.0.0;component/windows/windowcustomerbase.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BankProject;component/windows/windowcustomerbase.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Windows\WindowCustomerBase.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

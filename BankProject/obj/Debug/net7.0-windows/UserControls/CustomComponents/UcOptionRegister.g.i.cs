@@ -63,8 +63,7 @@ namespace BankProject.UserControls {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BankProject;V1.0.0.0;component/usercontrols/customcomponents/ucoptionregister.xa" +
-                    "ml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BankProject;component/usercontrols/customcomponents/ucoptionregister.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\UserControls\CustomComponents\UcOptionRegister.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -10,9 +10,17 @@ namespace BankProject.Classes {
         public int IdBranch { get; set; }
         public string Name { get; set; }
         public string City { get; set; }
-        public List<ClassCustomer> MyListCustomers { get; set; }
-        public List<ClassEmployee> MyListEmployees { get; set; }
+        public List<ClassCustomer>? MyListCustomers { get; set; }
+        public List<ClassEmployee>? MyListEmployees { get; set; }
 
+        public ClassBranch(int idBranch, string name, string city)
+        {
+            IdBranch = idBranch;
+            Name = name;
+            City = city;
+            MyListCustomers = null;
+            MyListEmployees = null;
+        }
 
         public string DetailsAllMyCustomers() {
             string _result = string.Empty;
