@@ -90,19 +90,13 @@ namespace BankProject
             SwitchTabs(newWallet, buttonPressed);
         }
 
-        private void ButtonCustomerBase_Click(object sender, RoutedEventArgs e)
+        private void ButtonCustomerSearch_Click(object sender, RoutedEventArgs e)
         {
-            UcCustomerBase newCustomerBase = new UcCustomerBase(MyController);
+            UcCustomerSearch newCustomerSearch = new UcCustomerSearch(MyController);
             Button buttonPressed = (Button)sender;
-            SwitchTabs(newCustomerBase, buttonPressed);
-
-
-            ////Switch windows
-            //var MyWindowCustomer = new WindowCustomerBase(MyController.ConnectionString);
-            //MyWindowCustomer.Owner = this;
-            //this.Hide();
-            //MyWindowCustomer.Show();
+            SwitchTabs(newCustomerSearch, buttonPressed);
         }
+
 
         private void SwitchTabs(object newUserControl, Button buttonPressed)
         {

@@ -25,7 +25,7 @@
     <Compile Update="UserControls\UcWallet.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UserControls\UcCustomerBase.xaml.cs">
+    <Compile Update="UserControls\UcCustomerSearch.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Windows\WindowFrame.xaml.cs">
@@ -57,7 +57,7 @@
     <Page Update="UserControls\UcWallet.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="UserControls\UcCustomerBase.xaml">
+    <Page Update="UserControls\UcCustomerSearch.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\WindowFrame.xaml">

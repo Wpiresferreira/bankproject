@@ -17,16 +17,16 @@ using System.Windows.Shapes;
 
 namespace BankProject.UserControls {
     /// <summary>
-    /// Interaction logic for UcCustomerBase.xaml
+    /// Interaction logic for UcCustomerSearch.xaml
     /// </summary>
-    public partial class UcCustomerBase : UserControl {
+    public partial class UcCustomerSearch : UserControl {
 
         string ConnectionString;
         public ClassController MyController { get; set; }
         public ClassUserLogged MyUserLogged { get; set; }
 
 
-        public UcCustomerBase(ClassController myController)
+        public UcCustomerSearch(ClassController myController)
         {
             ConnectionString = myController.ConnectionString;
             MyController = myController;

@@ -96,10 +96,10 @@
                     <TextBlock Text="Promote" Style="{StaticResource menuButtonText_Frame}" />
                 </StackPanel>
             </Button>
-            <Button Style="{StaticResource menuButton_Frame}" Click="ButtonCustomerBase_Click">
+            <Button Style="{StaticResource menuButton_Frame}" Click="ButtonCustomerSearch_Click">
                 <StackPanel Orientation="Horizontal">
                     <fa:ImageAwesome  Icon="AddressCardOutline" Style="{StaticResource menuButtonIcon_Frame}" />
-                    <TextBlock Text="Customer Base" Style="{StaticResource menuButtonText_Frame}" />
+                    <TextBlock Text="Customer Search" Style="{StaticResource menuButtonText_Frame}" />
                 </StackPanel>
             </Button>
 
