@@ -25,9 +25,13 @@
 
             <!--Transaction Panel-->
             <Grid Grid.Column="1">
+
                 <!--Main Panel-->
                 <Border Margin="20 120 20 20" Style="{StaticResource border_Wallet}">
-                    <StackPanel Margin="10 88 10 20">
+                    <StackPanel Margin="10 10 10 20">
+                        <!--Title-->
+                        <TextBlock x:Name="Title" Text="Customer Search" FontSize="26" Foreground="#ccd7ff" HorizontalAlignment="Left" Margin="50 35 0 20" />
+                        
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 10 0 0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="150" />
