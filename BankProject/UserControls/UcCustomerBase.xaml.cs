@@ -12,26 +12,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Xml.Linq;
 
-namespace BankProject.Windows
-{
+namespace BankProject.UserControls {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for UcCustomerBase.xaml
     /// </summary>
-    public partial class WindowCustomerBase : Window
-    {
+    public partial class UcCustomerBase : UserControl {
 
         string ConnectionString;
+        public ClassController MyController { get; set; }
+        public ClassUserLogged MyUserLogged { get; set; }
 
-        public WindowCustomerBase(string connectionString)
+
+        public UcCustomerBase(ClassController myController)
         {
-            ConnectionString = connectionString;
-            InitializeComponent();
-        }
-        public WindowCustomerBase()
-        {
+            ConnectionString = myController.ConnectionString;
+            MyController = myController;
+            MyUserLogged = myController.MyUserLogged;
             InitializeComponent();
         }
 
@@ -43,14 +42,12 @@ namespace BankProject.Windows
             if (myTextBoxCustomerID.textBox.Text != "")
             {
                 selectQuery = $"SELECT * FROM dbo.Customers WHERE  customerID = '{myTextBoxCustomerID.textBox.Text}'";
-
             }
             else
             {
                 string dateFormated = $"{myTextBoxDataOfBirth.textBox.Text.Substring(6, 4)}-{myTextBoxDataOfBirth.textBox.Text.Substring(3,2)}-{myTextBoxDataOfBirth.textBox.Text.Substring(0,2)}";
                 MessageBox.Show(dateFormated);
                 selectQuery = $"SELECT * FROM dbo.Customers WHERE firstName = '{myTextBoxFirstName.textBox.Text}' AND lastName = '{myTextBoxLastName.textBox.Text}' AND dateOfBirth = '{dateFormated}'";
-
             };
 
 
@@ -70,7 +67,6 @@ namespace BankProject.Windows
                         ClassBranch branch = null;
                         var listOfAccounts = new List<ClassAbstractAccount>();
 
-
                         ClassCustomer customer = new ClassCustomer(
                             reader.GetInt32(0),
                             reader.GetString(1),
@@ -85,47 +81,20 @@ namespace BankProject.Windows
                             listOfAccounts);
 
                         MessageBox.Show(customer.ToString());
-
                     }
-
-
-                    //Switch windows
-                    //this.Close();
-                    //this.Owner.Show();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
             }
-}
+        }
 
 
-private void ButtonNew_Click(object sender, RoutedEventArgs e)
-{
+        private void ButtonNew_Click(object sender, RoutedEventArgs e)
+        {
 
-}
-private void ButtonBack_Click(object sender, RoutedEventArgs e)
-{
-    this.Hide();
-    this.Owner.Show();
-}
-
-private void ImageMinimize_MouseUp(object sender, MouseButtonEventArgs e)
-{
-    this.WindowState = WindowState.Minimized;
-}
-private void ImageClose_MouseUp(object sender, MouseButtonEventArgs e)
-{
-    Application.Current.Shutdown();
-}
-
-private void Border_MouseDown(object sender, MouseButtonEventArgs e)
-{
-    if (e.ChangedButton == MouseButton.Left)
-    {
-        this.DragMove();
-    }
-}
+        }
+        
     }
 }

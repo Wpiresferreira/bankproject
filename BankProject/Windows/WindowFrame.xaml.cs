@@ -1,6 +1,5 @@
 ﻿using BankProject.Classes;
 using BankProject.UserControls;
-using BankProject.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -88,20 +87,21 @@ namespace BankProject
         {
             UcWallet newWallet = new UcWallet(MyController);
             Button buttonPressed = (Button)sender;
-            TabItem newTabItem = new TabItem();
             SwitchTabs(newWallet, buttonPressed);
         }
 
         private void ButtonCustomerBase_Click(object sender, RoutedEventArgs e)
         {
+            UcCustomerBase newCustomerBase = new UcCustomerBase(MyController);
+            Button buttonPressed = (Button)sender;
+            SwitchTabs(newCustomerBase, buttonPressed);
 
 
-
-            //Switch windows
-            var MyWindowCustomer = new WindowCustomerBase(MyController.ConnectionString);
-            MyWindowCustomer.Owner = this;
-            this.Hide();
-            MyWindowCustomer.Show();
+            ////Switch windows
+            //var MyWindowCustomer = new WindowCustomerBase(MyController.ConnectionString);
+            //MyWindowCustomer.Owner = this;
+            //this.Hide();
+            //MyWindowCustomer.Show();
         }
 
         private void SwitchTabs(object newUserControl, Button buttonPressed)

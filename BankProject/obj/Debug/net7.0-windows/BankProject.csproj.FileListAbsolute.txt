@@ -131,3 +131,5 @@ C:\Users\wagne\Source\Repos\bankproject\BankProject\obj\Debug\net7.0-windows\Ban
 C:\Users\wagne\Source\Repos\bankproject\BankProject\obj\Debug\net7.0-windows\ref\BankProject.dll
 C:\Users\wagne\Source\Repos\bankproject\BankProject\obj\Debug\net7.0-windows\Windows\WindowCustomerBase.g.cs
 C:\Users\wagne\Source\Repos\bankproject\BankProject\obj\Debug\net7.0-windows\Windows\WindowCustomerBase.baml
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcCustomerBase.g.cs
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcCustomerBase.baml

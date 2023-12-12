@@ -25,7 +25,7 @@ namespace BankProject.Classes
             ConnectToLocalDatabase = connectToLocalDatabase;
             MyUserLogged = null;
 
-        MyListBranches = new List<ClassBranch>();
+            MyListBranches = new List<ClassBranch>();
 
             //Build Connection String
             if (ConnectToLocalDatabase)
