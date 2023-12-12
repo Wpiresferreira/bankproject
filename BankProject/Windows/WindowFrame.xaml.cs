@@ -71,6 +71,7 @@ namespace BankProject
 
         private void ButtonLogout_Click(object sender, RoutedEventArgs e)
         {
+            MyController.MyUserLogged = null;
             this.Close();
             this.Owner.Show();
         }

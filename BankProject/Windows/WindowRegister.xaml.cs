@@ -2,7 +2,7 @@
 using System;
 using System.Windows;
 using System.Windows.Input;
-
+using BankProject.Classes;
 
 namespace BankProject {
     /// <summary>
@@ -10,12 +10,12 @@ namespace BankProject {
     /// </summary>
     public partial class WindowRegister : Window {
 
-        public string ConnectionString {  get; set; }
+        private ClassCustomSqlClient MySqlClient {  get; set; }
 
 
-        public WindowRegister(string connectionString) {
+        public WindowRegister() {
             InitializeComponent();
-            ConnectionString = connectionString;
+            MySqlClient = new ClassCustomSqlClient();
         }
 
 
@@ -43,7 +43,7 @@ namespace BankProject {
 
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e) {
-            //Build Select Query
+            //Build Insert Query
             string inputFirstName = myTextBoxFirstName.textBox.Text;
             string inputLastName = myTextBoxLastName.textBox.Text;
             string inputEmail = myTextBoxEmail.textBox.Text;
@@ -54,21 +54,18 @@ namespace BankProject {
             string insertQuery = "INSERT INTO dbo.Employees (firstName, lastName, email, phone, positionId, password) ";
             insertQuery += $"VALUES ('{inputFirstName}', '{inputLastName}', '{inputEmail}', '{inputPhone}', {inputPositionId}, '{inputPassword}'); ";
 
-            try {
-                using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
-                    using (SqlCommand cmd = new SqlCommand(insertQuery, cnn)) {
-                        cnn.Open();
-                        cmd.ExecuteNonQuery();
+            if(MySqlClient.CreateNewEmployee(insertQuery)) {
+                MessageBox.Show($"[New User Added] New User {inputFirstName} {inputLastName} was registered!");
+                
+                //Switch windows
+                this.Close();
+                this.Owner.Show();
+            }
+            else {
+                MessageBox.Show($"[ERROR] Something went wrong...");
+            }
 
-                        //Switch windows
-                        this.Close();
-                        this.Owner.Show();
-                    }
-                }
-            }
-            catch (Exception ex) {
-                MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
-            }
+
         }
 
 
