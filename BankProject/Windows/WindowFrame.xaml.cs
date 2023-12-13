@@ -115,6 +115,13 @@ namespace BankProject
         }
 
 
+        private void ButtonListCustomersFromMyBranch_Click(object sender, RoutedEventArgs e) {
+            UcListCustomersFromMyBranch newListCustomersFromMyBranch = new UcListCustomersFromMyBranch(MyController);
+            Button buttonPressed = (Button)sender;
+            SwitchTabs(newListCustomersFromMyBranch, buttonPressed);
+        }
+
+
         private void SwitchTabs(object newUserControl, Button buttonPressed)
         {
             //Add newUserControl into new Item of tabControl_Frame
@@ -136,5 +143,6 @@ namespace BankProject
             buttonPressed.Style = (Style)Application.Current.Resources["menuButtonActive_Frame"];
         }
 
+        
     }
 }

@@ -137,3 +137,5 @@ C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcCrea
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcCreateNewBranch.baml
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcListBranches.g.cs
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcListBranches.baml
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcListCustomersFromMyBranch.g.cs
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcListCustomersFromMyBranch.baml

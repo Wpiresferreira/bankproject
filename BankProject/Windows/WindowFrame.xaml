@@ -84,10 +84,10 @@
                     <TextBlock Text="List Branches" Style="{StaticResource menuButtonText_Frame}" />
                 </StackPanel>
             </Button>
-            <Button Style="{StaticResource menuButton_Frame}">
+            <Button Style="{StaticResource menuButton_Frame}" Click="ButtonListCustomersFromMyBranch_Click">
                 <StackPanel Orientation="Horizontal">
-                    <fa:ImageAwesome Icon="AreaChart" Style="{StaticResource menuButtonIcon_Frame}" />
-                    <TextBlock Text="Statistics (Placeholder)" Style="{StaticResource menuButtonText_Frame}" />
+                    <fa:ImageAwesome Icon="ListAlt" Style="{StaticResource menuButtonIcon_Frame}" />
+                    <TextBlock Text="List Customers From My Branch" Style="{StaticResource menuButtonText_Frame}" />
                 </StackPanel>
             </Button>
             <Button Style="{StaticResource menuButton_Frame}">
