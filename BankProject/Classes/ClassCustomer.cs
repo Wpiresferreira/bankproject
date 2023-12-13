@@ -13,19 +13,18 @@ namespace BankProject.Classes
 {
     public class ClassCustomer : ClassAbstractPerson
     {
-        public ClassEmployee? FinancialAdvisor { get; set; }
-        public ClassBranch? Branch { get; set; }
-        public List<ClassAbstractAccount>? MyListAccounts { get; set; }
         int CustomerId { get; set; }
+        public ClassEmployee? FinancialAdvisor { get; set; }
+        public List<ClassAbstractAccount>? MyListAccounts { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
         DateOnly DateOfBirth { get; set; }
         ClassDocument Document { get; set; }
         ClassAddress Address { get; set; }
         string PhoneNumber { get; set; }
-        string EmailAddress { get; set; }
 
-        public ClassCustomer(int customerId, string firstName, string lastName, DateOnly dateOfBirth, ClassDocument document, ClassAddress address, string phoneNumber, string emailAddress, ClassEmployee? financialAdvisor, ClassBranch? branch, List<ClassAbstractAccount>? myListAccounts)
+
+        public ClassCustomer(int customerId, string firstName, string lastName, DateOnly dateOfBirth, ClassDocument document, ClassAddress address, string phoneNumber, string emailAddress, ClassEmployee? financialAdvisor, List<ClassAbstractAccount>? myListAccounts)
         {
             CustomerId = customerId;
             FirstName = firstName;
@@ -34,10 +33,10 @@ namespace BankProject.Classes
             Document = document;
             Address = address;
             PhoneNumber = phoneNumber;
-            EmailAddress = emailAddress;
             FinancialAdvisor = financialAdvisor;
-            Branch = branch;
             MyListAccounts = myListAccounts;
+            Email = emailAddress; //Implemented in SuperClass
+            FinancialAdvisor = null;
         }
 
 
@@ -50,7 +49,7 @@ namespace BankProject.Classes
             _result += $"Document: {Document}\n";
             _result += $"Address: {Address}\n";
             _result += $"Phone Number: {PhoneNumber}\n";
-            _result += $"Email: {EmailAddress}";
+            _result += $"Email: {Address}";
             return _result;
         }
 
@@ -67,10 +66,10 @@ namespace BankProject.Classes
     public class ClassDocument
     {
 
-        string DocumentType { get; set; }
-        string DocumentNumber { get; set; }
-        DateOnly DocumentIssuedDate { get; set; }
-        DateOnly DocumentExpirationDate { get; set; }
+        public string DocumentType { get; set; }
+        public string DocumentNumber { get; set; }
+        public DateOnly DocumentIssuedDate { get; set; }
+        public DateOnly DocumentExpirationDate { get; set; }
 
 
         public ClassDocument(string documentType, string documentNumber, DateOnly documentIssuedDate, DateOnly documentExpirationDate)
@@ -96,13 +95,12 @@ namespace BankProject.Classes
 
     public class ClassAddress
     {
-
-        string ZipCode { get; set; }
-        string Line1 { get; set; }
-        string Line2 { get; set; }
-        string City { get; set; }
-        string Province { get; set; }
-        string Country { get; set; }
+        public string ZipCode { get; set; }
+        public string Line1 { get; set; }
+        public string Line2 { get; set; }
+        public string City { get; set; }
+        public string Province { get; set; }
+        public string Country { get; set; }
 
 
         public ClassAddress(string zipCode, string line1, string line2, string city, string province, string country)
@@ -115,6 +113,7 @@ namespace BankProject.Classes
             Country = country;
         }
 
+
         public override string ToString()
         {
             string _result = $"\nZipCode: {ZipCode}\n";
@@ -122,7 +121,7 @@ namespace BankProject.Classes
             _result += $"Line2: {Line2}\n";
             _result += $"City: {City}\n";
             _result += $"Province: {Province}\n";
-            _result += $"Country: {country}\n";
+            _result += $"Country: {Country}\n";
             return _result;
         }
     }

@@ -132,7 +132,6 @@ namespace BankProject.Classes {
                             reader.GetString(14),
                             reader.GetString(15),
                             financialAdvisor,
-                            branch,
                             listOfAccounts
                         );
 
