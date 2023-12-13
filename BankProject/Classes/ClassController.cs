@@ -28,6 +28,11 @@ namespace BankProject.Classes
 
         public void PopulateMyListBranches() {
             MyListBranches = MySqlClient.GetListOfBranches();
+
+            foreach(ClassBranch b in MyListBranches) {
+                int _branchId = b.IdBranch;
+                b.MyListCustomers = MySqlClient.GetListCustomersOfSpecificBranch(_branchId);
+            }
         }
 
 

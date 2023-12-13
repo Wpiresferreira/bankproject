@@ -122,24 +122,30 @@ namespace BankProject.Classes {
                         using (SqlDataReader reader = cmd.ExecuteReader()) {
                             reader.Read();
 
-                            ClassDocument customerDocument = new ClassDocument(reader.GetString(4), reader.GetString(5), DateOnly.FromDateTime(reader.GetDateTime(6)), DateOnly.FromDateTime(reader.GetDateTime(7)));
-                            ClassAddress customerAddress = new ClassAddress(reader.GetString(8), reader.GetString(9), reader.GetString(10), reader.GetString(11), reader.GetString(12), reader.GetString(13));
-                            ClassEmployee financialAdvisor = null;
-                            ClassBranch branch = null;
                             var listOfAccounts = new List<ClassAbstractAccount>();
 
-                            ClassCustomer customer = new ClassCustomer(
-                                reader.GetInt32(0),
-                                reader.GetString(1),
-                                reader.GetString(2),
-                                DateOnly.FromDateTime(reader.GetDateTime(3)),
-                                customerDocument,
-                                customerAddress,
-                                reader.GetString(14),
-                                reader.GetString(15),
-                                financialAdvisor,
-                                listOfAccounts
-                            );
+                            ClassCustomer customer = new ClassCustomer() {
+                                CustomerId = (int)reader["customerId"],
+                                FirstName = (string)reader["firstName"],
+                                LastName = (string)reader["lastName"],
+                                DateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(reader["dateOfBirth"])),
+                                Document = new ClassDocument () {
+                                    DocumentType = (string)reader["documentType"],
+                                    DocumentNumber = (string)reader["documentNumber"],
+                                    DocumentIssuedDate = DateOnly.FromDateTime(Convert.ToDateTime(reader["documentIssuedDate"])),
+                                    DocumentExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(reader["documentExpirationDate"]))
+                                },
+                                Address = new ClassAddress() {
+                                    ZipCode = (string)reader["zipCode"],
+                                    Line1 = (string)reader["line1"],
+                                    Line2 = Convert.IsDBNull(reader["line2"]) ? null : (string)reader["line2"],
+                                    City = (string)reader["city"],
+                                    Province = (string)reader["province"],
+                                    Country = (string)reader["country"]
+                                },
+                                Phone = (string)reader["phoneNumber"],
+                                Email = (string)reader["emailAddress"],
+                            };
                             return customer;
                         }
                     }
@@ -177,7 +183,7 @@ namespace BankProject.Classes {
 
         public List<ClassBranch> GetListOfBranches() {
             //Initialize list of branches
-            List<ClassBranch> _listClassBranches = new List<ClassBranch>();
+            List<ClassBranch> _listBranches = new List<ClassBranch>();
 
             //Build Select Query
             string selectQuery = "SELECT branchId, name, city ";
@@ -195,12 +201,65 @@ namespace BankProject.Classes {
                                     Name = (string)myReader["name"],
                                     City = (string)myReader["city"]
                                 };
-                                _listClassBranches.Add(_newBranch);
+                                _listBranches.Add(_newBranch);
                             }
                         }
                     }
                 }
-                return _listClassBranches;
+                return _listBranches;
+            }
+            catch (Exception ex) {
+                MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
+                return null;
+            }
+        }
+
+
+        public List<ClassCustomer> GetListCustomersOfSpecificBranch(int inputBranchId) {
+            //Initialize list of customers
+            List<ClassCustomer> _listCustomers = new List<ClassCustomer>();
+
+            //Build Select Query
+            string selectQuery = "SELECT * ";
+            selectQuery += "FROM dbo.Customers ";
+            selectQuery += "WHERE branchId = @BRANCHID; ";
+
+            try {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@BRANCHID", inputBranchId);
+                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
+                            while (myReader.Read()) {
+                                //Create new Branch object
+                                ClassCustomer _newCustomer = new ClassCustomer() {
+                                    CustomerId = (int)myReader["customerId"],
+                                    FirstName = (string)myReader["firstName"],
+                                    LastName = (string)myReader["lastName"],
+                                    DateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(myReader["dateOfBirth"])),
+                                    Document = new ClassDocument() {
+                                        DocumentType = (string)myReader["documentType"],
+                                        DocumentNumber = (string)myReader["documentNumber"],
+                                        DocumentIssuedDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentIssuedDate"])),
+                                        DocumentExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentExpirationDate"])),
+                                    },
+                                    Address = new ClassAddress() {
+                                        ZipCode = (string)myReader["zipCode"],
+                                        Line1 = (string)myReader["line1"],
+                                        Line2 = Convert.IsDBNull(myReader["line2"]) ? null : (string)myReader["line2"],
+                                        City = (string)myReader["city"],
+                                        Province = (string)myReader["province"],
+                                        Country = (string)myReader["country"]
+                                    },
+                                    Phone = (string)myReader["phoneNumber"],
+                                    Email = (string)myReader["emailAddress"]
+                                };
+                                _listCustomers.Add(_newCustomer);
+                            }
+                        }
+                    }
+                }
+                return _listCustomers;
             }
             catch (Exception ex) {
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
