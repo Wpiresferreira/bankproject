@@ -13,6 +13,12 @@ namespace BankProject.Classes {
         public string Email { get; set; }
         public int PositionId { get; set; }
 
+
+        public ClassUserLogged() {
+
+        }
+
+
         public ClassUserLogged(int employeeId, string firstName, string lastName, string email, int positionId) {
             EmployeeId = employeeId;
             FirstName = firstName;

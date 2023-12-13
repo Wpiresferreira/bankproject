@@ -64,9 +64,9 @@ namespace BankProject.Classes {
         }
 
 
-        public ClassUserLogged AuthenticateLogin(string inputEmail, string inputPassword) {
+        public (ClassUserLogged?, int?) AuthenticateLogin(string inputEmail, string inputPassword) {
             //Build Select Query
-            string selectQuery = "SELECT employeeId, firstName, lastName, email, positionId ";
+            string selectQuery = "SELECT employeeId, firstName, lastName, email, positionId, branchId ";
             selectQuery += "FROM dbo.Employees ";
             selectQuery += $"WHERE email = @EMAIL AND password = @PASSWORD; ";
 
@@ -79,13 +79,20 @@ namespace BankProject.Classes {
                         using (SqlDataReader myReader = cmd.ExecuteReader()) {
                             if (myReader.Read()) {
                                 //Create MyUserLogged Object
-                                ClassUserLogged MyUserLogged = new ClassUserLogged((int)myReader[0], (string)myReader[1], (string)myReader[2], (string)myReader[3], (int)myReader[4]);
-                                Debug.WriteLine($"Login Sucessful\nLogged in as: {MyUserLogged.FirstName} {MyUserLogged.LastName}");
-                                return MyUserLogged;
+                                ClassUserLogged MyUserLogged = new ClassUserLogged() {
+                                    EmployeeId = (int)myReader["employeeId"],
+                                    FirstName = (string)myReader["firstName"],
+                                    LastName = (string)myReader["lastName"],
+                                    Email = (string)myReader["email"],
+                                    PositionId = (int)myReader["positionId"]
+                                };
+                                int MyUserLoggedBranchId = (int)myReader["branchId"];
+                                Debug.WriteLine($"Login Sucessful\nLogged in as: {MyUserLogged.FirstName} {MyUserLogged.LastName}\nBranchId: {MyUserLoggedBranchId}");
+                                return (MyUserLogged, MyUserLoggedBranchId);
                             }
                             else {
                                 MessageBox.Show("Incorrect Credentials!");
-                                return null;
+                                return (null, null);
                             }
                         }
                     }
@@ -93,7 +100,7 @@ namespace BankProject.Classes {
             }
             catch (Exception ex) {
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
-                return null;
+                return (null, null);
             }
         }
 

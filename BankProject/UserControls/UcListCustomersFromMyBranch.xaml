@@ -32,16 +32,16 @@
             <Grid Grid.Column="1" Grid.Row="1">
 
                 <!--Main Panel-->
-                <Border Margin="10" Style="{StaticResource border_Wallet}">
+                <Border Margin="10" Style="{StaticResource border_Wallet}" Height="580">
                     <StackPanel Margin="10">
                         <!--Title-->
                         <TextBlock x:Name="Title" Text="List Customers From My Branch" FontSize="26" Foreground="#ccd7ff" HorizontalAlignment="Left" Margin="50 25 0 10" />
                         
                         <!--Branch Info-->
-                        <TextBlock x:Name="branchInfo" Text="Current Branch: " FontSize="20" Foreground="#ccd7ff" HorizontalAlignment="Left" Margin="50 25 0 10" />
+                        <TextBlock x:Name="textBlockBranchId" Text="Current Branch: " FontSize="20" Foreground="#ccd7ff" HorizontalAlignment="Left" Margin="50 25 0 10" />
                         
-                        <Border CornerRadius="25" Background="#FF653BBD">
-                            <ListView Margin="10" Name="listViewListCustomersFromMyBranch">
+                        <Border CornerRadius="25" Background="#FF653BBD" MaxHeight="1000">
+                            <ListView Margin="10" Name="listViewListCustomersFromMyBranch" MaxHeight="2000">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Header="CustomerId" Width="70" DisplayMemberBinding="{Binding CustomerId}" />
@@ -50,8 +50,8 @@
                                         <GridViewColumn Header="Email" Width="100" DisplayMemberBinding="{Binding Email}" />
                                         <GridViewColumn Header="Phone" Width="100" DisplayMemberBinding="{Binding Phone}" />
                                         <GridViewColumn Header="dateOfBirth" Width="100" DisplayMemberBinding="{Binding DateOfBirth}" />
-                                        <GridViewColumn Header="Document" Width="100" DisplayMemberBinding="{Binding Document}" />
-                                        <GridViewColumn Header="Address" Width="150" DisplayMemberBinding="{Binding Address}" />
+                                        <!--<GridViewColumn Header="Document" Width="100" DisplayMemberBinding="{Binding Document}" />
+                                        <GridViewColumn Header="Address" Width="150" DisplayMemberBinding="{Binding Address}" />-->
                                     </GridView>
                                 </ListView.View>
                             </ListView>

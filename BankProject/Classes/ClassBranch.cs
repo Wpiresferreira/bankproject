@@ -18,6 +18,7 @@ namespace BankProject.Classes {
         
         }
 
+
         public ClassBranch(int idBranch, string name, string city)
         {
             IdBranch = idBranch;

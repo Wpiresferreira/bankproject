@@ -65,15 +65,13 @@ namespace BankProject
             string _passwordToAuthenticate = textBoxPassword.Password;
 
             //Try to login
-            MyController.MyUserLogged = MySqlClient.AuthenticateLogin(_emailToAuthenticate, _passwordToAuthenticate);
+            MyController.LoginUser(_emailToAuthenticate, _passwordToAuthenticate);
 
             //Clear TextBoxes
             textBoxEmail.Text = string.Empty;
             textBoxPassword.Password = string.Empty;
 
             if (MyController.MyUserLogged != null) {
-                //Populate MyController.MyListBranches
-                MyController.PopulateMyListBranches();
                 //Switch windows
                 MyWindowFrame = new WindowFrame(MyController);
                 MyWindowFrame.Owner = this;

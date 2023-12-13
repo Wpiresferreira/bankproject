@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BankProject.Classes {
     public class ClassEmployee : ClassAbstractPerson {
 
-        public int IdEmployee { get; set; }
+        public int EmployeeId { get; set; }
         protected string Password { get; set; }
         public ClassEmployee? Manager { get; set; }
         public DateOnly StartDate { get; set; }
@@ -23,7 +23,7 @@ namespace BankProject.Classes {
 
 
         public override string ToString() {
-            string _result = $"IdEmployee: {IdEmployee}";
+            string _result = $"EmployeeId: {EmployeeId}";
             _result += $" | First Name: {FirstName}";
             _result += $" | Last Name: {LastName}";
             _result += $" | Email: {Email}";

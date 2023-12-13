@@ -26,8 +26,16 @@ namespace BankProject.UserControls {
             MyController = myController;
             InitializeComponent();
 
-            //Bind Data
-            listViewListCustomersFromMyBranch.ItemsSource = MyController.MyListBranches[0].MyListCustomers;
+            textBlockBranchId.Text = $"Current Branch: {MyController.MyUserLoggedBranchId}";
+
+            //Find Branch data that corresponds to Branch of Logged User
+            foreach(ClassBranch b in MyController.MyListBranches) {
+                if(b.IdBranch==MyController.MyUserLoggedBranchId) {
+                    //Bind Data
+                    listViewListCustomersFromMyBranch.ItemsSource = b.MyListCustomers;
+                    break;
+                }
+            }
         }
     }
 }

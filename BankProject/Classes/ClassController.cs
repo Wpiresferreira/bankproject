@@ -14,6 +14,7 @@ namespace BankProject.Classes
     {
         private ClassCustomSqlClient MySqlClient { get; set; }
         public ClassUserLogged? MyUserLogged { get; set; }
+        public int? MyUserLoggedBranchId { get; set; }
         public List<ClassBranch>? MyListBranches { get; set; }
 
 
@@ -23,6 +24,15 @@ namespace BankProject.Classes
             MyUserLogged = null;
             MyListBranches = new List<ClassBranch>();
 
+        }
+
+        public void LoginUser(string inputEmail, string inputPassword) {
+            (MyUserLogged, MyUserLoggedBranchId) = MySqlClient.AuthenticateLogin(inputEmail, inputPassword);
+            
+            if (MyUserLogged != null) {
+                //Populate MyController.MyListBranches
+                PopulateMyListBranches();
+            }
         }
 
 
