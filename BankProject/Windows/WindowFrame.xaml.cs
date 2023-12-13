@@ -99,6 +99,14 @@ namespace BankProject
         }
 
 
+        private void ButtonCreateNewBranch_Click(object sender, RoutedEventArgs e)
+        {
+            UcCreateNewBranch newCreateNewBranch = new UcCreateNewBranch(MyController);
+            Button buttonPressed = (Button)sender;
+            SwitchTabs(newCreateNewBranch, buttonPressed);
+        }
+
+
         private void SwitchTabs(object newUserControl, Button buttonPressed)
         {
             //Add newUserControl into new Item of tabControl_Frame

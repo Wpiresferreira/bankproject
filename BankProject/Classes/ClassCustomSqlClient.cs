@@ -152,8 +152,26 @@ namespace BankProject.Classes {
         }
 
 
-        public bool CreateNewBranch() {
-            return true;
+        public bool CreateNewBranch(string inputNewBranchName, string inputNewBranchCity) {
+            //Build Insert Query
+            string insertQuery = "INSERT INTO dbo.Branches (name, city) ";
+            insertQuery += $"VALUES (@NAME, @CITY); ";
+
+            try {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
+                    using (SqlCommand cmd = new SqlCommand(insertQuery, cnn)) {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@NAME", inputNewBranchName);
+                        cmd.Parameters.AddWithValue("@CITY", inputNewBranchCity);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex) {
+                MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
+                return false;
+            }
         }
     }
 }
