@@ -51,10 +51,7 @@ namespace BankProject {
             string inputPositionId = "3";
             string inputPassword = myTextBoxPassword.Password;
 
-            string insertQuery = "INSERT INTO dbo.Employees (firstName, lastName, email, phone, positionId, password) ";
-            insertQuery += $"VALUES ('{inputFirstName}', '{inputLastName}', '{inputEmail}', '{inputPhone}', {inputPositionId}, '{inputPassword}'); ";
-
-            if(MySqlClient.CreateNewEmployee(insertQuery)) {
+            if(MySqlClient.CreateNewEmployee(inputFirstName, inputLastName, inputEmail, inputPhone, inputPositionId, inputPassword)) {
                 MessageBox.Show($"[New User Added] New User {inputFirstName} {inputLastName} was registered!");
                 
                 //Switch windows

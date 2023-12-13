@@ -37,11 +37,21 @@ namespace BankProject.Classes {
         }
 
 
-        public bool CreateNewEmployee(string insertQuery) {
+        public bool CreateNewEmployee(string inputFirstName, string inputLastName, string inputEmail, string inputPhone, string inputPositionId, string inputPassword) {
+            //Build Insert Query
+            string insertQuery = "INSERT INTO dbo.Employees (firstName, lastName, email, phone, positionId, password) ";
+            insertQuery += $"VALUES (@FIRSTNAME, @LASTNAME, @EMAIL, @PHONE, @POSITIONID, @PASSWORD); ";
+
             try {
                 using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
                     using (SqlCommand cmd = new SqlCommand(insertQuery, cnn)) {
                         cnn.Open();
+                        cmd.Parameters.AddWithValue("@FIRSTNAME", inputFirstName);
+                        cmd.Parameters.AddWithValue("@LASTNAME", inputLastName);
+                        cmd.Parameters.AddWithValue("@EMAIL", inputEmail);
+                        cmd.Parameters.AddWithValue("@PHONE", inputPhone);
+                        cmd.Parameters.AddWithValue("@POSITIONID", inputPositionId);
+                        cmd.Parameters.AddWithValue("@PASSWORD", inputPassword);
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -54,16 +64,18 @@ namespace BankProject.Classes {
         }
 
 
-        public ClassUserLogged AuthenticateLogin(string _email, string _password) {
+        public ClassUserLogged AuthenticateLogin(string inputEmail, string inputPassword) {
             //Build Select Query
             string selectQuery = "SELECT employeeId, firstName, lastName, email, positionId ";
             selectQuery += "FROM dbo.Employees ";
-            selectQuery += $"WHERE email = '{_email}' AND password = '{_password}'; ";
+            selectQuery += $"WHERE email = @EMAIL AND password = @PASSWORD; ";
 
             try {
                 using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
                     using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
                         cnn.Open();
+                        cmd.Parameters.AddWithValue("@EMAIL", inputEmail);
+                        cmd.Parameters.AddWithValue("@PASSWORD", inputPassword);
                         using (SqlDataReader myReader = cmd.ExecuteReader()) {
                             if (myReader.Read()) {
                                 //Create MyUserLogged Object
@@ -71,8 +83,7 @@ namespace BankProject.Classes {
                                 Debug.WriteLine($"Login Sucessful\nLogged in as: {MyUserLogged.FirstName} {MyUserLogged.LastName}");
                                 return MyUserLogged;
                             }
-                            else
-                            {
+                            else {
                                 MessageBox.Show("Incorrect Credentials!");
                                 return null;
                             }
@@ -80,62 +91,57 @@ namespace BankProject.Classes {
                     }
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex) {
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
                 return null;
             }
-
-            //selectQuery = "SELECT * FROM Branches";
-
-            //try {
-            //    using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
-            //        using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
-            //            cnn.Open();
-            //            using (SqlDataReader myReader = cmd.ExecuteReader()) {
-            //                while (myReader.Read()) {
-            //                    //Update List of Branches
-            //                    var branch = new ClassBranch((int)myReader[0], myReader[1].ToString(), myReader[2].ToString());
-            //                    MyListBranches.Add(branch);
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
-            //catch (Exception ex) {
-            //    MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
-            //}
         }
 
 
-        public ClassCustomer? SearchCustomer(string selectQuery) {
+        public ClassCustomer? SearchCustomer(string inputCustomerId, string inputFirstName, string inputLastName, string inputDateOfBirth) {
+            //Build Select Query
+            string selectQuery = "";
+            if (inputCustomerId != "") {
+                selectQuery = $"SELECT * FROM dbo.Customers ";
+                selectQuery += $"WHERE customerId = @CUSTOMERID";
+            }
+            else {
+                selectQuery = $"SELECT * FROM dbo.Customers ";
+                selectQuery += $"WHERE firstName = @FIRSTNAME AND lastName = @LASTNAME AND dateOfBirth = @DATEOFBIRTH";
+            };
+
             try {
                 using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
                     using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
                         cnn.Open();
-                        SqlDataReader reader = cmd.ExecuteReader();
-                        reader.Read();
+                        cmd.Parameters.AddWithValue("@CUSTOMERID", inputCustomerId);
+                        cmd.Parameters.AddWithValue("@FIRSTNAME", inputFirstName);
+                        cmd.Parameters.AddWithValue("@LASTNAME", inputLastName);
+                        cmd.Parameters.AddWithValue("@DATEOFBIRTH", inputDateOfBirth);
 
-                        ClassDocument customerDocument = new ClassDocument(reader.GetString(4), reader.GetString(5), DateOnly.FromDateTime(reader.GetDateTime(6)), DateOnly.FromDateTime(reader.GetDateTime(7)));
-                        ClassAddress customerAddress = new ClassAddress(reader.GetString(8), reader.GetString(9), reader.GetString(10), reader.GetString(11), reader.GetString(12), reader.GetString(13));
-                        ClassEmployee financialAdvisor = null;
-                        ClassBranch branch = null;
-                        var listOfAccounts = new List<ClassAbstractAccount>();
+                        using (SqlDataReader reader = cmd.ExecuteReader()) {
+                            reader.Read();
 
-                        ClassCustomer customer = new ClassCustomer(
-                            reader.GetInt32(0),
-                            reader.GetString(1),
-                            reader.GetString(2),
-                            DateOnly.FromDateTime(reader.GetDateTime(3)),
-                            customerDocument,
-                            customerAddress,
-                            reader.GetString(14),
-                            reader.GetString(15),
-                            financialAdvisor,
-                            listOfAccounts
-                        );
+                            ClassDocument customerDocument = new ClassDocument(reader.GetString(4), reader.GetString(5), DateOnly.FromDateTime(reader.GetDateTime(6)), DateOnly.FromDateTime(reader.GetDateTime(7)));
+                            ClassAddress customerAddress = new ClassAddress(reader.GetString(8), reader.GetString(9), reader.GetString(10), reader.GetString(11), reader.GetString(12), reader.GetString(13));
+                            ClassEmployee financialAdvisor = null;
+                            ClassBranch branch = null;
+                            var listOfAccounts = new List<ClassAbstractAccount>();
 
-                        return customer;
+                            ClassCustomer customer = new ClassCustomer(
+                                reader.GetInt32(0),
+                                reader.GetString(1),
+                                reader.GetString(2),
+                                DateOnly.FromDateTime(reader.GetDateTime(3)),
+                                customerDocument,
+                                customerAddress,
+                                reader.GetString(14),
+                                reader.GetString(15),
+                                financialAdvisor,
+                                listOfAccounts
+                            );
+                            return customer;
+                        }
                     }
                 }
             }
@@ -143,6 +149,11 @@ namespace BankProject.Classes {
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
                 return null;
             }
+        }
+
+
+        public bool CreateNewBranch() {
+            return true;
         }
     }
 }
