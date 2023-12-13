@@ -13,6 +13,11 @@ namespace BankProject.Classes {
         public List<ClassCustomer>? MyListCustomers { get; set; }
         public List<ClassEmployee>? MyListEmployees { get; set; }
 
+
+        public ClassBranch() {
+        
+        }
+
         public ClassBranch(int idBranch, string name, string city)
         {
             IdBranch = idBranch;
@@ -21,6 +26,7 @@ namespace BankProject.Classes {
             MyListCustomers = null;
             MyListEmployees = null;
         }
+
 
         public string DetailsAllMyCustomers() {
             string _result = string.Empty;

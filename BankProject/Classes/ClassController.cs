@@ -26,7 +26,9 @@ namespace BankProject.Classes
         }
 
 
-        
+        public void PopulateMyListBranches() {
+            MyListBranches = MySqlClient.GetListOfBranches();
+        }
 
 
         public void CreateNewBranch()

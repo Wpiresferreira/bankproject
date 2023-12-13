@@ -34,8 +34,8 @@
             <Grid Grid.Column="1" Grid.Row="1">
 
                 <!--Main Panel-->
-                <Border Margin="20 50 20 50" Style="{StaticResource border_Wallet}">
-                    <StackPanel Margin="10 10 10 30">
+                <Border Margin="10" Style="{StaticResource border_Wallet}">
+                    <StackPanel Margin="10">
                         <!--Title-->
                         <TextBlock x:Name="Title" Text="Create New Branch" FontSize="26" Foreground="#ccd7ff" HorizontalAlignment="Left" Margin="50 25 0 10" />
 

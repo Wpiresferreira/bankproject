@@ -173,5 +173,39 @@ namespace BankProject.Classes {
                 return false;
             }
         }
+
+
+        public List<ClassBranch> GetListOfBranches() {
+            //Initialize list of branches
+            List<ClassBranch> _listClassBranches = new List<ClassBranch>();
+
+            //Build Select Query
+            string selectQuery = "SELECT branchId, name, city ";
+            selectQuery += "FROM dbo.Branches; ";
+
+            try {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
+                        cnn.Open();
+                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
+                            while (myReader.Read()) {
+                                //Create new Branch object
+                                ClassBranch _newBranch = new ClassBranch() {
+                                    IdBranch = (int)myReader["branchId"],
+                                    Name = (string)myReader["name"],
+                                    City = (string)myReader["city"]
+                                };
+                                _listClassBranches.Add(_newBranch);
+                            }
+                        }
+                    }
+                }
+                return _listClassBranches;
+            }
+            catch (Exception ex) {
+                MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
+                return null;
+            }
+        }
     }
 }

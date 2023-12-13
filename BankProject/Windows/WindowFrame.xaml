@@ -78,10 +78,10 @@
                     <TextBlock Text="Create New Branch" Style="{StaticResource menuButtonText_Frame}" />
                 </StackPanel>
             </Button>
-            <Button Style="{StaticResource menuButton_Frame}">
+            <Button Style="{StaticResource menuButton_Frame}" Click="ButtonListBranches_Click">
                 <StackPanel Orientation="Horizontal">
-                    <fa:ImageAwesome Icon="ShoppingCart" Style="{StaticResource menuButtonIcon_Frame}" />
-                    <TextBlock Text="Orders (Placeholder)" Style="{StaticResource menuButtonText_Frame}" />
+                    <fa:ImageAwesome Icon="List" Style="{StaticResource menuButtonIcon_Frame}" />
+                    <TextBlock Text="List Branches" Style="{StaticResource menuButtonText_Frame}" />
                 </StackPanel>
             </Button>
             <Button Style="{StaticResource menuButton_Frame}">
