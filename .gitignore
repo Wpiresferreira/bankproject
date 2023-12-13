@@ -3,3 +3,4 @@
 
 # Ignore MS Office temporary files
 ~$*
+*.vsidx
