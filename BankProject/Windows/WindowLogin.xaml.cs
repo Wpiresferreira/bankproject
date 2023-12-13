@@ -13,7 +13,7 @@ namespace BankProject
     /// </summary>
     public partial class WindowLogin : Window {
 
-        private bool ConnectToLocalDatabase {  get; set; }
+        private ClassCustomSqlClient MySqlClient { get; set; }
         private ClassController MyController { get; set; }
         private WindowRegister? MyWindowRegister { get; set; }
         private WindowFrame? MyWindowFrame { get; set; }
@@ -22,10 +22,10 @@ namespace BankProject
         public WindowLogin() {
 
             InitializeComponent();
-            ConnectToLocalDatabase = true;                        //Set to false to connect to remote database
 
             //Initialize Objects
-            MyController = new ClassController(ConnectToLocalDatabase);
+            MyController = new ClassController();
+            MySqlClient = new ClassCustomSqlClient();
             //Initialize Windows
             MyWindowRegister = null;
             MyWindowFrame = null;
@@ -64,7 +64,8 @@ namespace BankProject
             string _emailToAuthenticate = textBoxEmail.Text;
             string _passwordToAuthenticate = textBoxPassword.Password;
 
-            MyController.AuthenticateLogin(_emailToAuthenticate, _passwordToAuthenticate);
+            //Try to login
+            MyController.MyUserLogged = MySqlClient.AuthenticateLogin(_emailToAuthenticate, _passwordToAuthenticate);
 
             //Clear TextBoxes
             textBoxEmail.Text = string.Empty;
@@ -80,7 +81,7 @@ namespace BankProject
         }
 
 
-        private void TextEmail_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e) {
+        private void TextEmail_MouseDown(object sender, MouseButtonEventArgs e) {
             textBoxEmail.Focus();
         }
 
@@ -112,12 +113,29 @@ namespace BankProject
 
         private void ButtonRegister_Click(object sender, RoutedEventArgs e) {
             //Switch windows
-            MyWindowRegister = new WindowRegister(MyController.ConnectionString);
+            MyWindowRegister = new WindowRegister();
             MyWindowRegister.Owner = this;
             this.Hide();
             MyWindowRegister.Show();
         }
 
+        private void PasswordBlock_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                ButtonSignIn_Click(sender, e);
+            }
 
+        }
+
+        private void textBoxEmail_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.Key == Key.Enter)
+            {
+                textBoxPassword.Focus();
+            }
+            
+        }
     }
 }

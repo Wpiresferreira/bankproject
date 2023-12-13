@@ -68,7 +68,7 @@
                         </Grid.ColumnDefinitions>
                         <Image Source="../Images/IconEmail.png" Height="20" />
                         <TextBlock x:Name="textBlockEmail" MouseDown="TextEmail_MouseDown" Text="Email" Style="{StaticResource textHint_Login}" />
-                        <TextBox x:Name="textBoxEmail" TextChanged="TxtEmail_TextChanged" Style="{StaticResource textBox_Login}" />
+                        <TextBox x:Name="textBoxEmail" TextChanged="TxtEmail_TextChanged" KeyDown="textBoxEmail_KeyDown" Style="{StaticResource textBox_Login}" />
                     </Grid>
                 </Border>
 
@@ -79,12 +79,12 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Image Source="../Images/IconLock.png" Height="20" />
-                        <TextBlock x:Name="textBlockPassword" MouseDown="TextPassword_MouseDown" Text="Password" Style="{StaticResource textHint_Login}" />
-                        <PasswordBox x:Name="textBoxPassword" PasswordChanged="TxtPassword_PasswordChanged" Style="{StaticResource textBox_Login}" />
+                        <TextBlock x:Name="textBlockPassword" MouseDown="TextPassword_MouseDown" Text="Password"   Style="{StaticResource textHint_Login}" />
+                        <PasswordBox x:Name="textBoxPassword" PasswordChanged="TxtPassword_PasswordChanged" KeyDown="PasswordBlock_KeyDown" Style="{StaticResource textBox_Login}" />
                     </Grid>
                 </Border>
 
-                <Button Content="Sign In" Click="ButtonSignIn_Click" Style="{StaticResource mainButton_Login}" />
+                <Button x:Name="ButtonSignIn" Content="Sign In" Click="ButtonSignIn_Click" Style="{StaticResource mainButton_Login}" />
             </StackPanel>
         </Border>
 

@@ -30,7 +30,7 @@ namespace BankProject.UserControls
             MyController = myController;
             MyUserLogged = myController.MyUserLogged;
 
-            nameHeader.Text = $"Good Afternoon, {MyUserLogged.FirstName}";
+            nameHeader.Text = $"Greetings, {MyUserLogged.FirstName}!";
         }
 
     }
