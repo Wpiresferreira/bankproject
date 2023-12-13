@@ -152,7 +152,7 @@ namespace BankProject.Classes {
         }
 
 
-        public bool CreateNewBranch(string inputNewBranchName, string inputNewBranchCity) {
+        public bool InsertNewBranch(string inputNewBranchName, string inputNewBranchCity) {
             //Build Insert Query
             string insertQuery = "INSERT INTO dbo.Branches (name, city) ";
             insertQuery += $"VALUES (@NAME, @CITY); ";

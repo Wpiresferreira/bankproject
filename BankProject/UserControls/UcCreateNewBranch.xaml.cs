@@ -20,14 +20,14 @@ namespace BankProject.UserControls {
     /// </summary>
     public partial class UcCreateNewBranch : UserControl {
 
-        ClassCustomSqlClient mySqlClient;
+        ClassCustomSqlClient MySqlClient;
         public ClassController MyController { get; set; }
         public ClassUserLogged MyUserLogged { get; set; }
 
 
         public UcCreateNewBranch(ClassController myController) {
-            mySqlClient = new ClassCustomSqlClient();
-            MyController = MyController;
+            MySqlClient = new ClassCustomSqlClient();
+            MyController = myController;
             MyUserLogged = myController.MyUserLogged;
             InitializeComponent();
         }
@@ -37,7 +37,7 @@ namespace BankProject.UserControls {
             string _cityNewBranch = myTextBoxNewBranchCity.textBox.Text;
 
 
-            if(mySqlClient.CreateNewBranch(_nameNewBranch, _cityNewBranch)) {
+            if(MyController.CreateNewBranch(_nameNewBranch, _cityNewBranch)) {
                 MessageBox.Show($"[New Branch Created] Branch Name: {_nameNewBranch} | Branch City: {_cityNewBranch}");
             }
             else {
