@@ -1,6 +1,7 @@
 ﻿using BankProject.Classes;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,12 +38,18 @@ namespace BankProject.UserControls {
             string _cityNewBranch = myTextBoxNewBranchCity.textBox.Text;
 
 
+            if(_nameNewBranch=="" ||  _cityNewBranch=="") {
+                MessageBox.Show($"[ERROR] Please verify that all fields have been filled!");
+                return;
+            }
+
             if(MyController.CreateNewBranch(_nameNewBranch, _cityNewBranch)) {
                 MessageBox.Show($"[New Branch Created] Branch Name: {_nameNewBranch} | Branch City: {_cityNewBranch}");
             }
             else {
                 MessageBox.Show($"[ERROR] There was a problem creating a new Branch...");
             }
+
         }
     }
 }
