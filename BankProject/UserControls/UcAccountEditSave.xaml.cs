@@ -33,8 +33,8 @@ namespace BankProject.UserControls
             MySqlClient = new ClassCustomSqlClient();
             MyController = myController;
             MyUserLogged = myController.MyUserLogged;
-            myTextBoxAccountId.IsEnabled = false;
             InitializeComponent();
+            myTextBoxAccountId.IsEnabled = false;
         }
 
         public UcAccountEditSave(ClassController myController, ClassCheckingAccount myCheckingAccount)
