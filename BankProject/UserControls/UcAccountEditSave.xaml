@@ -37,6 +37,8 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="150" />
                                 <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="200" />
+
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto" />
@@ -54,23 +56,27 @@
                             <TextBlock Grid.Row="2" Text="Account Type" Style="{StaticResource text_Register}" Foreground="White"/>
                             <TextBlock Grid.Row="3" Text="Monthly Fee" Style="{StaticResource text_Register}" Foreground="White"/>
                             <TextBlock Grid.Row="4" Text="Interest Rate" Style="{StaticResource text_Register}" Foreground="White"/>
+                            <TextBlock Grid.Row="5" Text="Balance" Style="{StaticResource text_Register}" Foreground="White"/>
 
                             <uc:UcTextBoxRegister x:Name="myTextBoxAccountId" Grid.Column="1" Grid.Row="0" />
                             <uc:UcTextBoxRegister x:Name="myTextBoxCustomerId" Grid.Column="1" Grid.Row="1" />
                             <uc:UcTextBoxRegister x:Name="myTextBoxAccountType" Grid.Column="1" Grid.Row="2" />
                             <uc:UcTextBoxRegister x:Name="myTextBoxMonthlyFee" Grid.Column="1" Grid.Row="3" />
                             <uc:UcTextBoxRegister x:Name="myTextBoxInterestRate" Grid.Column="1" Grid.Row="4" />
+                            <uc:UcTextBoxRegister x:Name="myTextBoxBalance" Grid.Column="1" Grid.Row="5" />
 
 
 
-                            <Grid Grid.Column="1" Grid.Row="7" Margin="10 40 10 10">
+                            <Grid Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="2" Margin="10 40 10 10">
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
                                 <Button Content="Cancel" Margin="0 0 10 0" Grid.Column="0" Style="{StaticResource buttonMain_Register}" Click="ButtonCancel_Click" />
-                                <Button Content="Save" Margin="10 0 0 0" Grid.Column="1" Style="{StaticResource buttonMainGreen_Register}" Click="ButtonSave_Click"/>
+                                <Button Content="Save" Margin="10 0 10 0" Grid.Column="1" Style="{StaticResource buttonMainGreen_Register}" Click="ButtonSave_Click"/>
+                                <Button Content="Statment" Margin="10 0 0 0" Grid.Column="2" Style="{StaticResource buttonMainGreen_Register}" Click="ButtonStatment_Click"/>
                             </Grid>
                         </Grid>
                     </StackPanel>

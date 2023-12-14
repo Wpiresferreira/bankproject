@@ -1,8 +1,10 @@
-﻿
+﻿C:\Users\wagne\source\repos\ourbank\BankProject\obj\Debug\net7.0-windows\GeneratedInternalTypeHelper.g.cs
 
 FC:\Users\wagne\source\repos\ourbank\BankProject\UserControls\CustomComponents\UcInfoCardDashboard.xaml;;
 FC:\Users\wagne\source\repos\ourbank\BankProject\UserControls\CustomComponents\UcOptionRegister.xaml;;
+FC:\Users\wagne\source\repos\ourbank\BankProject\UserControls\UcAccountEditSave.xaml;;
 FC:\Users\wagne\source\repos\ourbank\BankProject\UserControls\UcAccountSearch.xaml;;
+FC:\Users\wagne\source\repos\ourbank\BankProject\UserControls\UcAccountStatment.xaml;;
 FC:\Users\wagne\source\repos\ourbank\BankProject\UserControls\UcCreateNewBranch.xaml;;
 FC:\Users\wagne\source\repos\ourbank\BankProject\UserControls\UcCustomerEditSave.xaml;;
 FC:\Users\wagne\source\repos\ourbank\BankProject\UserControls\UcCustomerSearch.xaml;;
@@ -11,5 +13,4 @@ FC:\Users\wagne\source\repos\ourbank\BankProject\UserControls\UcListBranches.xam
 FC:\Users\wagne\source\repos\ourbank\BankProject\UserControls\UcListCustomersFromMyBranch.xaml;;
 FC:\Users\wagne\source\repos\ourbank\BankProject\Windows\WindowFrame.xaml;;
 FC:\Users\wagne\source\repos\ourbank\BankProject\Windows\WindowRegister.xaml;;
-FC:\Users\wagne\source\repos\ourbank\BankProject\UserControls\UcAccountEditSave.xaml;;
 

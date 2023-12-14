@@ -205,3 +205,5 @@ C:\Users\wagne\source\repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserCon
 C:\Users\wagne\source\repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserControls\UcAccountSearch.baml
 C:\Users\wagne\source\repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserControls\UcAccountEditSave.g.cs
 C:\Users\wagne\source\repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserControls\UcAccountEditSave.baml
+C:\Users\wagne\source\repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserControls\UcAccountStatment.g.cs
+C:\Users\wagne\source\repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserControls\UcAccountStatment.baml

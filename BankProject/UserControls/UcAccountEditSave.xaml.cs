@@ -138,5 +138,12 @@ namespace BankProject.UserControls
             WindowFrame parentWindow = (WindowFrame)Window.GetWindow(this);
             parentWindow.SwitchTabs(newUcAccountSearch);
         }
+
+        private void ButtonStatment_Click(object sender, RoutedEventArgs e)
+        {
+            var newUcAccountStatment = new UcAccountStatment(MyController, myTextBoxAccountId.textBox.Text);
+            WindowFrame parentWindow = (WindowFrame)Window.GetWindow(this);
+            parentWindow.SwitchTabs(newUcAccountStatment);
+        }
     }
 }

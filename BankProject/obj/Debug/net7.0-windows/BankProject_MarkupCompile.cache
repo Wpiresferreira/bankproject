@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 C:\Users\wagne\source\repos\ourbank\BankProject\App.xaml
-16116276798
+17-786780347
 
-29-1881911417
+301442144996
 202-1738639308
-UserControls\CustomComponents\UcInfoCardDashboard.xaml;UserControls\CustomComponents\UcOptionRegister.xaml;UserControls\CustomComponents\UcOrderDashboard.xaml;UserControls\CustomComponents\UcTextBoxRegister.xaml;UserControls\UcAccountEditSave.xaml;UserControls\UcAccountSearch.xaml;UserControls\UcCreateNewBranch.xaml;UserControls\UcCustomerEditSave.xaml;UserControls\UcCustomerSearch.xaml;UserControls\UcDashboard.xaml;UserControls\UcListBranches.xaml;UserControls\UcListCustomersFromMyBranch.xaml;UserControls\UcWallet.xaml;Windows\WindowFrame.xaml;Windows\WindowLogin.xaml;Windows\WindowRegister.xaml;
+UserControls\CustomComponents\UcInfoCardDashboard.xaml;UserControls\CustomComponents\UcOptionRegister.xaml;UserControls\CustomComponents\UcOrderDashboard.xaml;UserControls\CustomComponents\UcTextBoxRegister.xaml;UserControls\UcAccountEditSave.xaml;UserControls\UcAccountSearch.xaml;UserControls\UcAccountStatment.xaml;UserControls\UcCreateNewBranch.xaml;UserControls\UcCustomerEditSave.xaml;UserControls\UcCustomerSearch.xaml;UserControls\UcDashboard.xaml;UserControls\UcListBranches.xaml;UserControls\UcListCustomersFromMyBranch.xaml;UserControls\UcWallet.xaml;Windows\WindowFrame.xaml;Windows\WindowLogin.xaml;Windows\WindowRegister.xaml;
 
 False
 

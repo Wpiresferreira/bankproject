@@ -25,6 +25,9 @@
     <Compile Update="UserControls\UcAccountSearch.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UserControls\UcAccountStatment.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UserControls\UcCreateNewBranch.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -73,6 +76,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\UcAccountSearch.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\UcAccountStatment.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\UcCreateNewBranch.xaml">
