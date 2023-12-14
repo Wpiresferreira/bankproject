@@ -45,7 +45,7 @@ namespace BankProject.Classes
             foreach (ClassBranch b in MyListBranches) {
                 int _branchId = b.IdBranch;
                 b.MyListCustomers = MySqlClient.GetListCustomersOfSpecificBranch(_branchId);
-                //b.MyListEmployees = MySqlClient.GetListEmployeesOfSpecificBranch(_branchId);
+                b.MyListEmployees = MySqlClient.GetListEmployeesOfSpecificBranch(_branchId);
 
                 foreach (ClassCustomer c in b.MyListCustomers) {
                     int _customerId = c.CustomerId;
