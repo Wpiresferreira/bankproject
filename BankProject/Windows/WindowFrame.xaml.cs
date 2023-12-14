@@ -157,7 +157,9 @@ namespace BankProject
 
         private void ButtonManageAccounts_Click(object sender, RoutedEventArgs e)
         {
-
+            UcAccountSearch newAccountSearch = new UcAccountSearch(MyController);
+            Button buttonPressed = (Button)sender;
+            SwitchTabs(newAccountSearch, buttonPressed);
         }
     }
 }

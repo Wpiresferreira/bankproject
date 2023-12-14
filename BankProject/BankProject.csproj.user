@@ -19,6 +19,9 @@
     <Compile Update="UserControls\CustomComponents\UcOrderDashboard.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UserControls\UcAccountEditSave.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UserControls\UcAccountSearch.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -64,6 +67,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\CustomComponents\UcOrderDashboard.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\UcAccountEditSave.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\UcAccountSearch.xaml">

@@ -40,6 +40,7 @@ namespace BankProject.UserControls
             MySqlClient = new ClassCustomSqlClient();
             MyController = myController;
             MyUserLogged = myController.MyUserLogged;
+            myTextBoxCustomerId.textBox.IsEnabled = false;
             InitializeComponent();
         }
 

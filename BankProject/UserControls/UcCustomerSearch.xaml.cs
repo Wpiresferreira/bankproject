@@ -56,7 +56,7 @@ namespace BankProject.UserControls
             ClassCustomer foundCustomer = MySqlClient.SearchCustomer(_customerId, _firstName, _lastName, _dateOfBirthFormatted);
             if (foundCustomer != null)
             {
-                MessageBox.Show($"{foundCustomer}");
+                //MessageBox.Show($"{foundCustomer}");
                 var newUcCustomerEditSave = new UcCustomerEditSave(MyController, foundCustomer);
                 WindowFrame parentWindow = (WindowFrame)Window.GetWindow(this);
                 parentWindow.SwitchTabs(newUcCustomerEditSave);
