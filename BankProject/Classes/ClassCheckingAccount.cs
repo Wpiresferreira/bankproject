@@ -8,9 +8,7 @@ namespace BankProject.Classes {
     public class ClassCheckingAccount : ClassAbstractAccount {
 
         public bool IsOverdrafted { get; set; }
-        public List<ClassCheckingTransaction> MyListCheckingTransactions { get; set; }
-        public float MontlhyFee { get; set; }
-        
+
 
         public bool CheckIsOverdrafted() {
             return IsOverdrafted;
@@ -18,10 +16,10 @@ namespace BankProject.Classes {
 
 
         public override string ToString() {
-            string _result = $"IdAccount: {IdAccount}";
+            string _result = $"[CHECKING ACCOUNT] AccountId: {AccountId}";
             _result += $" | Balance: {Balance}";
             _result += $" | MostRecentActivity: {MostRecentActivity}";
-            _result += $" | IsOverdrafted: {IsOverdrafted}";
+            _result += $" | IsOverdrafted: {IsOverdrafted}\n";
 
             return _result;
         }

@@ -199,3 +199,5 @@ C:\Users\wagne\Source\Repos\ourbank\BankProject\obj\Debug\net7.0-windows\BankPro
 C:\Users\wagne\Source\Repos\ourbank\BankProject\obj\Debug\net7.0-windows\ref\BankProject.dll
 C:\Users\wagne\source\repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserControls\UcCustomerEditSave.g.cs
 C:\Users\wagne\source\repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserControls\UcCustomerEditSave.baml
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcCustomerEditSave.g.cs
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcCustomerEditSave.baml
