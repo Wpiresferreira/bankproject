@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace BankProject.Classes {
     public class ClassSavingsAccount : ClassAbstractAccount {
 
-        private float InterestRate { get; set; }
+        public float InterestRate { get; set; }
         public List<ClassSavingsTransaction> MyListSavingsTransactions { get; set; }
 
 
@@ -18,10 +18,10 @@ namespace BankProject.Classes {
 
 
         public override string ToString() {
-            string _result = $"IdAccount: {IdAccount}";
+            string _result = $"[SAVINGS ACCOUNT] AccountId: {AccountId}";
             _result += $" | Balance: {Balance}";
             _result += $" | MostRecentActivity: {MostRecentActivity}";
-            _result += $" | InterestRate: {InterestRate}";
+            _result += $" | InterestRate: {InterestRate}\n";
 
             return _result;
         }

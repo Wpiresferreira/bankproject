@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BankProject.Classes {
     public class ClassAbstractAccount : IComparable<ClassAbstractAccount> {
 
-        public int IdAccount { get; set; }
+        public int AccountId { get; set; }
         public float Balance {  get; set; }
         public DateTime MostRecentActivity { get; set; }
 

@@ -18,6 +18,7 @@ namespace BankProject.Classes
         public List<ClassBranch>? MyListBranches { get; set; }
 
 
+
         public ClassController()
         {
             MySqlClient = new ClassCustomSqlClient();
@@ -32,6 +33,8 @@ namespace BankProject.Classes
             if (MyUserLogged != null) {
                 //Populate MyController.MyListBranches
                 PopulateMyListBranches();
+                
+                DisplayAllBranches();
             }
         }
 
@@ -39,9 +42,15 @@ namespace BankProject.Classes
         public void PopulateMyListBranches() {
             MyListBranches = MySqlClient.GetListOfBranches();
 
-            foreach(ClassBranch b in MyListBranches) {
+            foreach (ClassBranch b in MyListBranches) {
                 int _branchId = b.IdBranch;
                 b.MyListCustomers = MySqlClient.GetListCustomersOfSpecificBranch(_branchId);
+                //b.MyListEmployees = MySqlClient.GetListEmployeesOfSpecificBranch(_branchId);
+
+                foreach (ClassCustomer c in b.MyListCustomers) {
+                    int _customerId = c.CustomerId;
+                    //c.MyListAccounts = MySqlClient.GetListAccountsOfSpecificCustomer(_customerId);
+                }
             }
         }
 
@@ -56,6 +65,13 @@ namespace BankProject.Classes
             }
             else {
                 return false;
+            }
+        }
+
+
+        public void DisplayAllBranches() {
+            foreach(ClassBranch b in MyListBranches) {
+                Debug.WriteLine($"{b}");
             }
         }
     }

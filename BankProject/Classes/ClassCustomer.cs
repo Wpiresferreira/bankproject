@@ -33,7 +33,7 @@ namespace BankProject.Classes
             _result += $"Document: {Document}\n";
             _result += $"Address: {Address}\n";
             _result += $"Phone: {Phone}\n";
-            _result += $"Email: {Email}";
+            _result += $"Email: {Email}\n";
             return _result;
         }
 

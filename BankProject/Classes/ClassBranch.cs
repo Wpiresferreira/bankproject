@@ -43,9 +43,23 @@ namespace BankProject.Classes {
 
         public override string ToString() {
             string _result = string.Empty;
-            _result += $"IdBranch :{IdBranch}";
-            _result += $" | Name :{Name}";
-            _result += $" | City :{City}";
+            _result += $"IdBranch :{IdBranch}\n";
+            _result += $"Name :{Name}\n";
+            _result += $"City :{City} \n";
+            _result += $"MyListCustomers : [\n";
+            if (MyListCustomers != null) {
+                foreach(ClassCustomer c in MyListCustomers) {
+                    _result += $"{c} \n";
+                }
+            }
+            _result += $"]\n";
+            _result += $"MyListEmployees : [\n";
+            if(MyListEmployees != null) {
+                foreach(ClassEmployee e in MyListEmployees) {
+                    _result += $"{e} \n";
+                }
+            }
+            _result += $"]\n";
             return _result;
         }
     }
