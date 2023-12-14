@@ -37,6 +37,9 @@
     <Compile Update="UserControls\UcListCustomersFromMyBranch.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UserControls\UcMakeDeposit.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UserControls\UcWallet.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -82,6 +85,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\UcListCustomersFromMyBranch.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\UcMakeDeposit.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\UcWallet.xaml">
