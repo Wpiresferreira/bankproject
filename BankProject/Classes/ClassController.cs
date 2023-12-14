@@ -86,8 +86,9 @@ namespace BankProject.Classes
             int _otherAccountId = 19; //Account INTERNAL BANK
 
 
-            MySqlClient.CreateTransaction(inputAccountId, inputAmountToDeposit, _otherAccountId, 0);
+            //MySqlClient.CreateTransaction(inputAccountId, inputAmountToDeposit, _otherAccountId, 0);
 
+            return true;
         }
     }
 }
