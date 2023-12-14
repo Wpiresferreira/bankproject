@@ -103,7 +103,13 @@
                     <TextBlock Text="Promote (Placeholder)" Style="{StaticResource menuButtonText_Frame}" />
                 </StackPanel>
             </Button>
-            
+            <Button Style="{StaticResource menuButton_Frame}" Click="ButtonMakeDeposit_Click">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Icon="FlagCheckered" Style="{StaticResource menuButtonIcon_Frame}" />
+                    <TextBlock Text="Make Deposit" Style="{StaticResource menuButtonText_Frame}" />
+                </StackPanel>
+            </Button>
+
 
             <Separator Background="#e0e0e0" Opacity="0.5" Margin="40 15 40 15" />
             <Button Style="{StaticResource menuButton_Frame}">

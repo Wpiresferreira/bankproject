@@ -122,6 +122,13 @@ namespace BankProject
         }
 
 
+        private void ButtonMakeDeposit_Click(object sender, RoutedEventArgs e) {
+            UcMakeDeposit newMakeDeposit = new UcMakeDeposit(MyController);
+            Button buttonPressed = (Button)sender;
+            SwitchTabs(newMakeDeposit, buttonPressed);
+        }
+
+
         public void SwitchTabs(object newUserControl, Button buttonPressed)
         {
             //Add newUserControl into new Item of tabControl_Frame

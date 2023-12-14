@@ -79,5 +79,16 @@ namespace BankProject.Classes
                 Debug.WriteLine($"{b}");
             }
         }
+
+
+        public bool MakeDeposit(int inputAccountId, float inputAmountToDeposit) {
+
+            int _otherAccountId = 19; //Account INTERNAL BANK
+
+
+            //MySqlClient.CreateTransaction(inputAccountId, inputAmountToDeposit, _otherAccountId, 0);
+
+            return true;
+        }
     }
 }
