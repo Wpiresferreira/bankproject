@@ -9,7 +9,6 @@ namespace BankProject.Classes {
     public class ClassSavingsAccount : ClassAbstractAccount {
 
         public float InterestRate { get; set; }
-        public List<ClassSavingsTransaction> MyListSavingsTransactions { get; set; }
 
 
         public void SetInterestRate(float newInterestRate) {

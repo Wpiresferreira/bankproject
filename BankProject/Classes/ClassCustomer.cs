@@ -34,6 +34,13 @@ namespace BankProject.Classes
             _result += $"Address: {Address}\n";
             _result += $"Phone: {Phone}\n";
             _result += $"Email: {Email}\n";
+            _result += $"MyListAccounts: [\n";
+            if (MyListAccounts != null) {
+                foreach(ClassAbstractAccount aa in MyListAccounts) {
+                    _result += $"{aa} \n";
+                }
+            }
+            _result += $"]\n";
             return _result;
         }
 

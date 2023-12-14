@@ -361,9 +361,9 @@ namespace BankProject.Classes {
                                 //Create new Savings Account object
                                 ClassSavingsAccount _newSavingsAccount = new ClassSavingsAccount() {
                                     AccountId = (int)myReader["accountId"],
-                                    Balance = (float)myReader["balance"],
+                                    Balance = float.Parse(myReader["balance"].ToString()),
                                     MostRecentActivity = Convert.ToDateTime(myReader["mostRecentActivity"]),
-                                    InterestRate = (float)myReader["interestRate"]
+                                    InterestRate = float.Parse(myReader["interestRate"].ToString())
                                 };
                                 _listAccounts.Add(_newSavingsAccount);
                             }
@@ -377,7 +377,7 @@ namespace BankProject.Classes {
                                 //Create new Checking Account object
                                 ClassCheckingAccount _newCheckingAccount = new ClassCheckingAccount() {
                                     AccountId = (int)myReader["accountId"],
-                                    Balance = (float)myReader["balance"],
+                                    Balance = float.Parse(myReader["balance"].ToString()),
                                     MostRecentActivity = Convert.ToDateTime(myReader["mostRecentActivity"]),
                                     IsOverdrafted = (bool)myReader["isOverdrafted"]
                                 };
@@ -394,17 +394,44 @@ namespace BankProject.Classes {
             }
         }
 
+        
+        public List<ClassTransaction> GetListTransactionsOfSpecificAccount(int inputAccountId) {
+            //Initialize list of transactions
+            List<ClassTransaction> _listTransactions = new List<ClassTransaction>();
 
+            //Build Select Query for Savings Accounts
+            string selectQuery = "SELECT * ";
+            selectQuery += "FROM dbo.Transactions ";
+            selectQuery += "WHERE accountId = @ACCOUNTID; ";
 
-
-
-
-
-
-
-
-
-
+            try {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@ACCOUNTID", inputAccountId);
+                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
+                            while (myReader.Read()) {
+                                //Create new Savings Account object
+                                ClassTransaction _newTransaction = new ClassTransaction() {
+                                    TransactionId = (int)myReader["transactionId"],
+                                    AccountId = (int)myReader["accountId"],
+                                    DatetimeTransaction = Convert.ToDateTime(myReader["datetimeTransaction"]),
+                                    AmountCredit = float.Parse(myReader["amountCredit"].ToString()),
+                                    AmountDebit = float.Parse(myReader["amountDebit"].ToString()),
+                                    OtherAccountId = (int)myReader["otherAccountId"]
+                                };
+                                _listTransactions.Add(_newTransaction);
+                            }
+                        }
+                    }
+                }
+                return _listTransactions;
+            }
+            catch (Exception ex) {
+                MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
+                return null;
+            }
+        }
 
 
 

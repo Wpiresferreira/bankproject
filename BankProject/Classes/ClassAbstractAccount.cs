@@ -10,14 +10,16 @@ namespace BankProject.Classes {
         public int AccountId { get; set; }
         public float Balance {  get; set; }
         public DateTime MostRecentActivity { get; set; }
+        public List<ClassTransaction> MyListAbstractTransactions { get; set; }
 
 
-        public void Deposit (ClassAbstractTransaction t) {
+
+        public void Deposit (ClassTransaction t) {
             
         }
 
 
-        public void Withdraw (ClassAbstractTransaction t) {
+        public void Withdraw (ClassTransaction t) {
             
         }
 
@@ -32,7 +34,7 @@ namespace BankProject.Classes {
         }
 
 
-        public void Transfer (ClassAbstractTransaction t, int IdAccountTarget) {
+        public void Transfer (ClassTransaction t, int IdAccountTarget) {
             
         }
 

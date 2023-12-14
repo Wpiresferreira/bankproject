@@ -49,7 +49,12 @@ namespace BankProject.Classes
 
                 foreach (ClassCustomer c in b.MyListCustomers) {
                     int _customerId = c.CustomerId;
-                    //c.MyListAccounts = MySqlClient.GetListAccountsOfSpecificCustomer(_customerId);
+                    c.MyListAccounts = MySqlClient.GetListAccountsOfSpecificCustomer(_customerId);
+
+                    foreach (ClassAbstractAccount aa in c.MyListAccounts) {
+                        int _accountId = aa.AccountId;
+                        aa.MyListAbstractTransactions = MySqlClient.GetListTransactionsOfSpecificAccount(_accountId);
+                    }
                 }
             }
         }

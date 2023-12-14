@@ -8,7 +8,6 @@ namespace BankProject.Classes {
     public class ClassCheckingAccount : ClassAbstractAccount {
 
         public bool IsOverdrafted { get; set; }
-        public List<ClassCheckingTransaction> MyListCheckingTransactions { get; set; }
 
 
         public bool CheckIsOverdrafted() {
