@@ -2,11 +2,18 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Diagnostics.Metrics;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Windows.Shapes;
+using System.Reflection.Emit;
+using System.Xml.Linq;
+using System.Windows.Controls;
 
 namespace BankProject.Classes {
     internal class ClassCustomSqlClient {
@@ -63,6 +70,7 @@ namespace BankProject.Classes {
             }
         }
 
+        
 
         public (ClassUserLogged?, int?) AuthenticateLogin(string inputEmail, string inputPassword) {
             //Build Select Query
@@ -271,6 +279,145 @@ namespace BankProject.Classes {
             catch (Exception ex) {
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
                 return null;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public int CreateNewCustomer(string firstName, string lastName, string dateOfBirth,
+           string documentType, string documentNumber, string documentIssuedDate,
+           string documentExpirationDate, string zipCode, string line1, string line2,
+           string city, string province, string country, string phoneNumber, string emailAddress,
+           string branchId, string financialAdvisorId)
+        {
+            //Build Insert Query
+
+
+            string insertQuery = "INSERT INTO dbo.Customers (firstName, lastName, dateOfBirth, documentType," +
+            " documentNumber, documentIssuedDate, documentExpirationDate, zipCode, line1, line2, city, province," +
+            "country, phoneNumber, emailAddress, branchId, financialAdvisorID ) ";
+            //string insertQuery = "INSERT INTO dbo.Customers (firstName, lastName, email, phone, positionId, password) ";
+            insertQuery += $"VALUES (@FIRSTNAME, @LASTNAME, @DATEOFBIRTH, @DOCUMENTTYPE, @DOCUMENTNUMBER," +
+                $"@DOCUMENTISSUEDDATE, @DOCUMENTEXPIRATIONDATE, @ZIPCODE, @LINE1, @LINE2, @CITY, @PROVINCE," +
+                $"@COUNTRY, @PHONENUMBER, @EMAILADDRESS, @BRANCHID, @FINANCIALADVISORID); ";
+            //insertQuery += $"VALUES (@FIRSTNAME, @LASTNAME, @EMAIL, @PHONE, @POSITIONID, @PASSWORD); ";
+
+            string selectQuery = "SELECT customerId FROM dbo.Customers ";
+            selectQuery += "WHERE firstName = @FIRSTNAME ";
+            selectQuery += " AND lastName = @LASTNAME ";
+            selectQuery += " AND dateOfBirth = @DATEOFBIRTH";
+
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(insertQuery, cnn))
+                    {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@FIRSTNAME", firstName);
+                        cmd.Parameters.AddWithValue("@LASTNAME", lastName);
+                        cmd.Parameters.AddWithValue("@DATEOFBIRTH", dateOfBirth);
+                        cmd.Parameters.AddWithValue("@DOCUMENTTYPE", documentType);
+                        cmd.Parameters.AddWithValue("@DOCUMENTNUMBER", documentNumber);
+                        cmd.Parameters.AddWithValue("@DOCUMENTISSUEDDATE", documentIssuedDate);
+                        cmd.Parameters.AddWithValue("@DOCUMENTEXPIRATIONDATE", documentExpirationDate);
+                        cmd.Parameters.AddWithValue("@ZIPCODE", zipCode);
+                        cmd.Parameters.AddWithValue("@LINE1", line1);
+                        cmd.Parameters.AddWithValue("@LINE2", line2);
+                        cmd.Parameters.AddWithValue("@CITY", city);
+                        cmd.Parameters.AddWithValue("@PROVINCE", province);
+                        cmd.Parameters.AddWithValue("@COUNTRY", country);
+                        cmd.Parameters.AddWithValue("@PHONENUMBER", phoneNumber);
+                        cmd.Parameters.AddWithValue("@EMAILADDRESS", emailAddress);
+                        cmd.Parameters.AddWithValue("@BRANCHID", branchId);
+                        cmd.Parameters.AddWithValue("@FINANCIALADVISORID", financialAdvisorId);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@FIRSTNAME", firstName);
+                        cmd.Parameters.AddWithValue("@LASTNAME", lastName);
+                        cmd.Parameters.AddWithValue("@DATEOFBIRTH", dateOfBirth);
+
+                        return (int)cmd.ExecuteScalar();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
+                return 0;
+            }
+        }
+
+        internal bool UpdateCustomer(string customerId, string firstName, string lastName, string dateOfBirth, string documentType, string documentNumber, string documentIssuedDate, string documentExpirationDate, string zipCode, string line1, string line2, string city, string province, string country, string phoneNumber, string emailAddress, string branchId, string financialAdvisorId)
+        {
+            //Build Update Query
+
+
+            string updateQuery = "UPDATE dbo.Customers ";
+            updateQuery += "SET firstName = @FIRSTNAME, lastName = @LASTNAME, dateOfBirth = @DATEOFBIRTH, ";
+            updateQuery += " documentType = @DOCUMENTTYPE, documentNumber = @DOCUMENTNUMBER, documentIssuedDate = @DOCUMENTISSUEDDATE, "; ;
+            updateQuery += " documentExpirationDate = @DOCUMENTEXPIRATIONDATE, zipCode = @ZIPCODE, line1 = @LINE1, line2 = @LINE2, ";
+            updateQuery += " city = @CITY, province = @PROVINCE, country = @COUNTRY, phoneNumber = @PHONENUMBER, emailAddress = @EMAILADDRESS, branchId = @BRANCHID, financialAdvisorID = @FINANCIALADVISORID ";
+            updateQuery += " WHERE customerId = @CUSTOMERID ";
+
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(updateQuery, cnn))
+                    {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@CUSTOMERID", customerId);
+                        cmd.Parameters.AddWithValue("@FIRSTNAME", firstName);
+                        cmd.Parameters.AddWithValue("@LASTNAME", lastName);
+                        cmd.Parameters.AddWithValue("@DATEOFBIRTH", dateOfBirth);
+                        cmd.Parameters.AddWithValue("@DOCUMENTTYPE", documentType);
+                        cmd.Parameters.AddWithValue("@DOCUMENTNUMBER", documentNumber);
+                        cmd.Parameters.AddWithValue("@DOCUMENTISSUEDDATE", documentIssuedDate);
+                        cmd.Parameters.AddWithValue("@DOCUMENTEXPIRATIONDATE", documentExpirationDate);
+                        cmd.Parameters.AddWithValue("@ZIPCODE", zipCode);
+                        cmd.Parameters.AddWithValue("@LINE1", line1);
+                        cmd.Parameters.AddWithValue("@LINE2", line2);
+                        cmd.Parameters.AddWithValue("@CITY", city);
+                        cmd.Parameters.AddWithValue("@PROVINCE", province);
+                        cmd.Parameters.AddWithValue("@COUNTRY", country);
+                        cmd.Parameters.AddWithValue("@PHONENUMBER", phoneNumber);
+                        cmd.Parameters.AddWithValue("@EMAILADDRESS", emailAddress);
+                        cmd.Parameters.AddWithValue("@BRANCHID", branchId);
+                        cmd.Parameters.AddWithValue("@FINANCIALADVISORID", financialAdvisorId);
+
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
+                return false;
             }
         }
     }

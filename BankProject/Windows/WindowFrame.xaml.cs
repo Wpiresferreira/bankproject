@@ -122,7 +122,7 @@ namespace BankProject
         }
 
 
-        private void SwitchTabs(object newUserControl, Button buttonPressed)
+        public void SwitchTabs(object newUserControl, Button buttonPressed)
         {
             //Add newUserControl into new Item of tabControl_Frame
             TabItem newTabItem = new TabItem();
@@ -143,6 +143,17 @@ namespace BankProject
             buttonPressed.Style = (Style)Application.Current.Resources["menuButtonActive_Frame"];
         }
 
-        
+
+        public void SwitchTabs(object newUserControl)
+        {
+            //Add newUserControl into new Item of tabControl_Frame
+            TabItem newTabItem = new TabItem();
+            newTabItem.Content = newUserControl;
+            newTabItem.Visibility = Visibility.Collapsed; //Hide Item Tab in TabControl
+            tabControl_Frame.Items.Add(newTabItem);
+            tabControl_Frame.SelectedItem = newTabItem;
+
+        }
+
     }
 }

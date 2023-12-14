@@ -22,6 +22,9 @@
     <Compile Update="UserControls\UcCreateNewBranch.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UserControls\UcCustomerEditSave.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UserControls\UcDashboard.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -61,6 +64,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\UcCreateNewBranch.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\UcCustomerEditSave.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\UcDashboard.xaml">
