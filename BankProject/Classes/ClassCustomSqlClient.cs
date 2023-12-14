@@ -15,19 +15,23 @@ using System.Reflection.Emit;
 using System.Xml.Linq;
 using System.Windows.Controls;
 
-namespace BankProject.Classes {
-    internal class ClassCustomSqlClient {
+namespace BankProject.Classes
+{
+    internal class ClassCustomSqlClient
+    {
 
         public bool ConnectToLocalDatabase { get; set; }
         private string ConnectionString { get; set; }
 
 
-        public ClassCustomSqlClient() {
-        
+        public ClassCustomSqlClient()
+        {
+
             ConnectToLocalDatabase = true;
 
             //Build Connection String
-            if (ConnectToLocalDatabase) {
+            if (ConnectToLocalDatabase)
+            {
                 //string connetionString = "Server=MSI\\SQLEXPRESS; Database= bankproject;User Id=test;Password=123;";              //Old Connection String (DELETE)
                 string path_RootFolder = $"{Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent}";
                 //Debug.WriteLine(path_RootFolder);                                                                                 //DEBUG (DELETE)
@@ -35,7 +39,8 @@ namespace BankProject.Classes {
                 ConnectionString += $"AttachDbFilename={path_RootFolder}\\bankproject.mdf; ";
                 ConnectionString += "Integrated Security=True; ";
             }
-            else {
+            else
+            {
                 ConnectionString = "Server=tcp:137.186.165.104,49172; ";
                 ConnectionString += "Database=bankproject; ";
                 ConnectionString += "User Id=test; ";
@@ -44,14 +49,18 @@ namespace BankProject.Classes {
         }
 
 
-        public bool CreateNewEmployee(string inputFirstName, string inputLastName, string inputEmail, string inputPhone, string inputPositionId, string inputPassword) {
+        public bool CreateNewEmployee(string inputFirstName, string inputLastName, string inputEmail, string inputPhone, string inputPositionId, string inputPassword)
+        {
             //Build Insert Query
             string insertQuery = "INSERT INTO dbo.Employees (firstName, lastName, emailAddress, phoneNumber, positionId, password) ";
             insertQuery += $"VALUES (@FIRSTNAME, @LASTNAME, @EMAIL, @PHONE, @POSITIONID, @PASSWORD); ";
 
-            try {
-                using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
-                    using (SqlCommand cmd = new SqlCommand(insertQuery, cnn)) {
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(insertQuery, cnn))
+                    {
                         cnn.Open();
                         cmd.Parameters.AddWithValue("@FIRSTNAME", inputFirstName);
                         cmd.Parameters.AddWithValue("@LASTNAME", inputLastName);
@@ -64,29 +73,37 @@ namespace BankProject.Classes {
                 }
                 return true;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
                 return false;
             }
         }
 
 
-        public (ClassUserLogged?, int?) AuthenticateLogin(string inputEmail, string inputPassword) {
+        public (ClassUserLogged?, int?) AuthenticateLogin(string inputEmail, string inputPassword)
+        {
             //Build Select Query
             string selectQuery = "SELECT employeeId, firstName, lastName, emailAddress, positionId, branchId ";
             selectQuery += "FROM dbo.Employees ";
             selectQuery += $"WHERE emailAddress = @EMAIL AND password = @PASSWORD; ";
 
-            try {
-                using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
-                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
                         cnn.Open();
                         cmd.Parameters.AddWithValue("@EMAIL", inputEmail);
                         cmd.Parameters.AddWithValue("@PASSWORD", inputPassword);
-                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
-                            if (myReader.Read()) {
+                        using (SqlDataReader myReader = cmd.ExecuteReader())
+                        {
+                            if (myReader.Read())
+                            {
                                 //Create MyUserLogged Object
-                                ClassUserLogged MyUserLogged = new ClassUserLogged() {
+                                ClassUserLogged MyUserLogged = new ClassUserLogged()
+                                {
                                     EmployeeId = (int)myReader["employeeId"],
                                     FirstName = (string)myReader["firstName"],
                                     LastName = (string)myReader["lastName"],
@@ -97,7 +114,8 @@ namespace BankProject.Classes {
                                 Debug.WriteLine($"Login Sucessful\nLogged in as: {MyUserLogged.FirstName} {MyUserLogged.LastName}\nBranchId: {MyUserLoggedBranchId}");
                                 return (MyUserLogged, MyUserLoggedBranchId);
                             }
-                            else {
+                            else
+                            {
                                 MessageBox.Show("Incorrect Credentials!");
                                 return (null, null);
                             }
@@ -105,51 +123,62 @@ namespace BankProject.Classes {
                     }
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
                 return (null, null);
             }
         }
 
 
-        public ClassCustomer? SearchCustomer(string inputCustomerId, string inputFirstName, string inputLastName, string inputDateOfBirth) {
+        public ClassCustomer? SearchCustomer(string inputCustomerId, string inputFirstName, string inputLastName, string inputDateOfBirth)
+        {
             //Build Select Query
             string selectQuery = "";
-            if (inputCustomerId != "") {
+            if (inputCustomerId != "")
+            {
                 selectQuery = $"SELECT * FROM dbo.Customers ";
                 selectQuery += $"WHERE customerId = @CUSTOMERID";
             }
-            else {
+            else
+            {
                 selectQuery = $"SELECT * FROM dbo.Customers ";
                 selectQuery += $"WHERE firstName = @FIRSTNAME AND lastName = @LASTNAME AND dateOfBirth = @DATEOFBIRTH";
             };
 
-            try {
-                using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
-                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
                         cnn.Open();
                         cmd.Parameters.AddWithValue("@CUSTOMERID", inputCustomerId);
                         cmd.Parameters.AddWithValue("@FIRSTNAME", inputFirstName);
                         cmd.Parameters.AddWithValue("@LASTNAME", inputLastName);
                         cmd.Parameters.AddWithValue("@DATEOFBIRTH", inputDateOfBirth);
 
-                        using (SqlDataReader reader = cmd.ExecuteReader()) {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
                             reader.Read();
 
                             var listOfAccounts = new List<ClassAbstractAccount>();
 
-                            ClassCustomer customer = new ClassCustomer() {
+                            ClassCustomer customer = new ClassCustomer()
+                            {
                                 CustomerId = (int)reader["customerId"],
                                 FirstName = (string)reader["firstName"],
                                 LastName = (string)reader["lastName"],
                                 DateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(reader["dateOfBirth"])),
-                                Document = new ClassDocument () {
+                                Document = new ClassDocument()
+                                {
                                     DocumentType = (string)reader["documentType"],
                                     DocumentNumber = (string)reader["documentNumber"],
                                     DocumentIssuedDate = DateOnly.FromDateTime(Convert.ToDateTime(reader["documentIssuedDate"])),
                                     DocumentExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(reader["documentExpirationDate"]))
                                 },
-                                Address = new ClassAddress() {
+                                Address = new ClassAddress()
+                                {
                                     ZipCode = (string)reader["zipCode"],
                                     Line1 = (string)reader["line1"],
                                     Line2 = Convert.IsDBNull(reader["line2"]) ? null : (string)reader["line2"],
@@ -165,21 +194,26 @@ namespace BankProject.Classes {
                     }
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
                 return null;
             }
         }
 
 
-        public bool InsertNewBranch(string inputNewBranchName, string inputNewBranchCity) {
+        public bool InsertNewBranch(string inputNewBranchName, string inputNewBranchCity)
+        {
             //Build Insert Query
             string insertQuery = "INSERT INTO dbo.Branches (name, city) ";
             insertQuery += $"VALUES (@NAME, @CITY); ";
 
-            try {
-                using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
-                    using (SqlCommand cmd = new SqlCommand(insertQuery, cnn)) {
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(insertQuery, cnn))
+                    {
                         cnn.Open();
                         cmd.Parameters.AddWithValue("@NAME", inputNewBranchName);
                         cmd.Parameters.AddWithValue("@CITY", inputNewBranchCity);
@@ -188,14 +222,16 @@ namespace BankProject.Classes {
                 }
                 return true;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
                 return false;
             }
         }
 
 
-        public List<ClassBranch> GetListOfBranches() {
+        public List<ClassBranch> GetListOfBranches()
+        {
             //Initialize list of branches
             List<ClassBranch> _listBranches = new List<ClassBranch>();
 
@@ -203,14 +239,20 @@ namespace BankProject.Classes {
             string selectQuery = "SELECT branchId, name, city ";
             selectQuery += "FROM dbo.Branches; ";
 
-            try {
-                using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
-                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
                         cnn.Open();
-                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
-                            while (myReader.Read()) {
+                        using (SqlDataReader myReader = cmd.ExecuteReader())
+                        {
+                            while (myReader.Read())
+                            {
                                 //Create new Branch object
-                                ClassBranch _newBranch = new ClassBranch() {
+                                ClassBranch _newBranch = new ClassBranch()
+                                {
                                     IdBranch = (int)myReader["branchId"],
                                     Name = (string)myReader["name"],
                                     City = (string)myReader["city"]
@@ -222,14 +264,16 @@ namespace BankProject.Classes {
                 }
                 return _listBranches;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
                 return null;
             }
         }
 
 
-        public List<ClassCustomer> GetListCustomersOfSpecificBranch(int inputBranchId) {
+        public List<ClassCustomer> GetListCustomersOfSpecificBranch(int inputBranchId)
+        {
             //Initialize list of customers
             List<ClassCustomer> _listCustomers = new List<ClassCustomer>();
 
@@ -238,26 +282,34 @@ namespace BankProject.Classes {
             selectQuery += "FROM dbo.Customers ";
             selectQuery += "WHERE branchId = @BRANCHID; ";
 
-            try {
-                using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
-                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
                         cnn.Open();
                         cmd.Parameters.AddWithValue("@BRANCHID", inputBranchId);
-                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
-                            while (myReader.Read()) {
+                        using (SqlDataReader myReader = cmd.ExecuteReader())
+                        {
+                            while (myReader.Read())
+                            {
                                 //Create new Customer object
-                                ClassCustomer _newCustomer = new ClassCustomer() {
+                                ClassCustomer _newCustomer = new ClassCustomer()
+                                {
                                     CustomerId = (int)myReader["customerId"],
                                     FirstName = (string)myReader["firstName"],
                                     LastName = (string)myReader["lastName"],
                                     DateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(myReader["dateOfBirth"])),
-                                    Document = new ClassDocument() {
+                                    Document = new ClassDocument()
+                                    {
                                         DocumentType = (string)myReader["documentType"],
                                         DocumentNumber = (string)myReader["documentNumber"],
                                         DocumentIssuedDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentIssuedDate"])),
                                         DocumentExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentExpirationDate"])),
                                     },
-                                    Address = new ClassAddress() {
+                                    Address = new ClassAddress()
+                                    {
                                         ZipCode = (string)myReader["zipCode"],
                                         Line1 = (string)myReader["line1"],
                                         Line2 = Convert.IsDBNull(myReader["line2"]) ? null : (string)myReader["line2"],
@@ -275,7 +327,8 @@ namespace BankProject.Classes {
                 }
                 return _listCustomers;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
                 return null;
             }
@@ -283,7 +336,8 @@ namespace BankProject.Classes {
 
 
 
-        public List<ClassEmployee> GetListEmployeesOfSpecificBranch(int inputBranchId) {
+        public List<ClassEmployee> GetListEmployeesOfSpecificBranch(int inputBranchId)
+        {
             //Initialize list of employees
             List<ClassEmployee> _listEmployees = new List<ClassEmployee>();
 
@@ -292,26 +346,34 @@ namespace BankProject.Classes {
             selectQuery += "FROM dbo.Employees ";
             selectQuery += "WHERE branchId = @BRANCHID; ";
 
-            try {
-                using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
-                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
                         cnn.Open();
                         cmd.Parameters.AddWithValue("@BRANCHID", inputBranchId);
-                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
-                            while (myReader.Read()) {
+                        using (SqlDataReader myReader = cmd.ExecuteReader())
+                        {
+                            while (myReader.Read())
+                            {
                                 //Create new Employee object
-                                ClassEmployee _newEmployee = new ClassEmployee() {
+                                ClassEmployee _newEmployee = new ClassEmployee()
+                                {
                                     EmployeeId = (int)myReader["employeeId"],
                                     FirstName = (string)myReader["firstName"],
                                     LastName = (string)myReader["lastName"],
                                     DateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(myReader["dateOfBirth"])),
-                                    Document = new ClassDocument() {
+                                    Document = new ClassDocument()
+                                    {
                                         DocumentType = (string)myReader["documentType"],
                                         DocumentNumber = (string)myReader["documentNumber"],
                                         DocumentIssuedDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentIssuedDate"])),
                                         DocumentExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentExpirationDate"])),
                                     },
-                                    Address = new ClassAddress() {
+                                    Address = new ClassAddress()
+                                    {
                                         ZipCode = (string)myReader["zipCode"],
                                         Line1 = (string)myReader["line1"],
                                         Line2 = Convert.IsDBNull(myReader["line2"]) ? null : (string)myReader["line2"],
@@ -330,14 +392,16 @@ namespace BankProject.Classes {
                 }
                 return _listEmployees;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
                 return null;
             }
         }
 
 
-        public List<ClassAbstractAccount> GetListAccountsOfSpecificCustomer(int inputCustomerId) {
+        public List<ClassAbstractAccount> GetListAccountsOfSpecificCustomer(int inputCustomerId)
+        {
             //Initialize list of accounts
             List<ClassAbstractAccount> _listAccounts = new List<ClassAbstractAccount>();
 
@@ -351,15 +415,21 @@ namespace BankProject.Classes {
             selectQueryChecking += "FROM dbo.Accounts ";
             selectQueryChecking += "WHERE customerId = @CUSTOMERID AND accountType = 'CHECKING'; ";
 
-            try {
-                using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
-                    using (SqlCommand cmd = new SqlCommand(selectQuerySavings, cnn)) {
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(selectQuerySavings, cnn))
+                    {
                         cnn.Open();
                         cmd.Parameters.AddWithValue("@CUSTOMERID", inputCustomerId);
-                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
-                            while (myReader.Read()) {
+                        using (SqlDataReader myReader = cmd.ExecuteReader())
+                        {
+                            while (myReader.Read())
+                            {
                                 //Create new Savings Account object
-                                ClassSavingsAccount _newSavingsAccount = new ClassSavingsAccount() {
+                                ClassSavingsAccount _newSavingsAccount = new ClassSavingsAccount()
+                                {
                                     AccountId = (int)myReader["accountId"],
                                     Balance = (float)myReader["balance"],
                                     MostRecentActivity = Convert.ToDateTime(myReader["mostRecentActivity"]),
@@ -370,12 +440,16 @@ namespace BankProject.Classes {
                         }
                     }
 
-                    using (SqlCommand cmd = new SqlCommand(selectQueryChecking, cnn)) {
+                    using (SqlCommand cmd = new SqlCommand(selectQueryChecking, cnn))
+                    {
                         cmd.Parameters.AddWithValue("@CUSTOMERID", inputCustomerId);
-                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
-                            while (myReader.Read()) {
+                        using (SqlDataReader myReader = cmd.ExecuteReader())
+                        {
+                            while (myReader.Read())
+                            {
                                 //Create new Checking Account object
-                                ClassCheckingAccount _newCheckingAccount = new ClassCheckingAccount() {
+                                ClassCheckingAccount _newCheckingAccount = new ClassCheckingAccount()
+                                {
                                     AccountId = (int)myReader["accountId"],
                                     Balance = (float)myReader["balance"],
                                     MostRecentActivity = Convert.ToDateTime(myReader["mostRecentActivity"]),
@@ -388,7 +462,8 @@ namespace BankProject.Classes {
                 }
                 return _listAccounts;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
                 return null;
             }
@@ -531,6 +606,58 @@ namespace BankProject.Classes {
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
                 return false;
             }
+        }
+
+        public Class SearchAccount<T>(string accountId)
+        {
+            //Build Select Query
+            string selectQuery = "";
+            if (accountId != "")
+            {
+                selectQuery = $"SELECT * FROM dbo.Customers ";
+                selectQuery += $"WHERE accountId = @ACCOUNTID";
+            }
+
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@ACCOUNTID", accountId);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            reader.Read();
+
+                            if ((string)reader["accountType"] == "CHECKING")
+                            {
+                                ClassCheckingAccount AccountSelected = new ClassCheckingAccount();
+
+                                AccountSelected.AccountId = (int)reader["accountId"];
+                                AccountSelected.CustomerId = (int)reader["customerId"];
+                                AccountSelected.MontlhyFee = (float)reader["monthlyFee"];
+
+                                return (T)Convert.ChangeType(AccountSelected, typeof(T));
+
+
+
+                            }
+                            else
+                            {
+                                return default(T);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
+                return default(T);
+            }
+
         }
     }
 }

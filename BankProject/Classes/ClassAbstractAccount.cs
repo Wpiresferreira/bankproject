@@ -10,7 +10,7 @@ namespace BankProject.Classes {
         public int AccountId { get; set; }
         public float Balance {  get; set; }
         public DateTime MostRecentActivity { get; set; }
-
+        public int CustomerId { get; internal set; }
 
         public void Deposit (ClassAbstractTransaction t) {
             

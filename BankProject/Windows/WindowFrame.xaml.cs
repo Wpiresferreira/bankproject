@@ -155,5 +155,9 @@ namespace BankProject
 
         }
 
+        private void ButtonManageAccounts_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
