@@ -40,19 +40,47 @@ namespace BankProject.UserControls
         {
             string _accountId = myTextBoxAccountId.textBox.Text;
 
-            var foundAccount = MySqlClient.SearchAccount<ClassAbstractTransaction>(_accountId);
+            // Search the type of account
+            string typeOfAccount = MySqlClient.TypeOfAccount(_accountId);
 
-            if (foundAccount != null)
+
+            if (typeOfAccount == "CHECKING")
             {
-                MessageBox.Show($"{foundAccount}");
-                var newUcCustomerEditSave = new UcCustomerEditSave(MyController, foundCustomer);
-                WindowFrame parentWindow = (WindowFrame)Window.GetWindow(this);
-                parentWindow.SwitchTabs(newUcCustomerEditSave);
+                ClassCheckingAccount newCheckingAccount = MySqlClient.SearchChekingAccount(_accountId);
+
+                if (newCheckingAccount != null)
+                {
+                    //MessageBox.Show($"{foundCustomer}");
+                    var newUcAccountEditSave = new UcAccountEditSave(MyController, newCheckingAccount);
+                    WindowFrame parentWindow = (WindowFrame)Window.GetWindow(this);
+                    parentWindow.SwitchTabs(newUcAccountEditSave);
+
+                }
+                else
+                {
+                    MessageBox.Show($"[ERROR] Customer not found!");
+                }
 
             }
-            else
+            else if (typeOfAccount == "SAVINGS")
             {
-                MessageBox.Show($"[ERROR] Customer not found!");
+                ClassSavingsAccount newSavingsAccount = MySqlClient.SearchSavingsAccount(_accountId);
+
+                if (newSavingsAccount != null)
+                {
+                    //MessageBox.Show($"{foundCustomer}");
+                    var newUcAccountEditSave = new UcAccountEditSave(MyController, newSavingsAccount);
+                    WindowFrame parentWindow = (WindowFrame)Window.GetWindow(this);
+                    parentWindow.SwitchTabs(newUcAccountEditSave);
+
+                }
+                else
+                {
+                    MessageBox.Show($"[ERROR] Customer not found!");
+                }
+
+
+
             }
         }
 
@@ -64,9 +92,9 @@ namespace BankProject.UserControls
             //WindowFrame parentWindow = (WindowFrame)Window.GetWindow(this);
             //parentWindow.SwitchTabs(newTest);
 
-            var newUcCustomerEditSave = new UcCustomerEditSave(MyController);
+            var newUcAccountEditSave = new UcAccountEditSave(MyController);
             WindowFrame parentWindow = (WindowFrame)Window.GetWindow(this);
-            parentWindow.SwitchTabs(newUcCustomerEditSave);
+            parentWindow.SwitchTabs(newUcAccountEditSave);
 
         }
 
@@ -80,3 +108,4 @@ namespace BankProject.UserControls
         }
     }
 }
+

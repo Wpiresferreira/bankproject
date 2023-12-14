@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.Reflection.Emit;
 using System.Xml.Linq;
 using System.Windows.Controls;
+using System.Data.SqlClient;
 
 namespace BankProject.Classes
 {
@@ -635,13 +636,13 @@ namespace BankProject.Classes
             }
         }
 
-        public Class SearchAccount<T>(string accountId)
+        public ClassCheckingAccount SearchChekingAccount(string accountId)
         {
             //Build Select Query
             string selectQuery = "";
             if (accountId != "")
             {
-                selectQuery = $"SELECT * FROM dbo.Customers ";
+                selectQuery = $"SELECT * FROM dbo.Accounts ";
                 selectQuery += $"WHERE accountId = @ACCOUNTID";
             }
 
@@ -658,23 +659,18 @@ namespace BankProject.Classes
                         {
                             reader.Read();
 
-                            if ((string)reader["accountType"] == "CHECKING")
+
+                            ClassCheckingAccount AccountSelected = new ClassCheckingAccount()
                             {
-                                ClassCheckingAccount AccountSelected = new ClassCheckingAccount();
+                                AccountId = (int)reader["accountId"],
+                                CustomerId = (int)reader["customerId"],
+                                Balance = float.Parse(reader["balance"].ToString()),
+                                MonthlyFee = float.Parse(reader["monthlyFee"].ToString()),
+                                MostRecentActivity = Convert.ToDateTime(reader["mostRecentActivity"]),
+                                IsOverdrafted = (bool)reader["isOverdrafted"]
+                            };
 
-                                AccountSelected.AccountId = (int)reader["accountId"];
-                                AccountSelected.CustomerId = (int)reader["customerId"];
-                                AccountSelected.MontlhyFee = (float)reader["monthlyFee"];
-
-                                return (T)Convert.ChangeType(AccountSelected, typeof(T));
-
-
-
-                            }
-                            else
-                            {
-                                return default(T);
-                            }
+                            return AccountSelected;
                         }
                     }
                 }
@@ -682,9 +678,176 @@ namespace BankProject.Classes
             catch (Exception ex)
             {
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
-                return default(T);
+
+                return default(ClassCheckingAccount);
             }
 
         }
+
+        internal string TypeOfAccount(string accountId)
+        {
+            //Build Select Query
+            string selectQuery = "";
+            if (accountId != "")
+            {
+                selectQuery = $"SELECT accountType FROM dbo.Accounts ";
+                selectQuery += $"WHERE accountId = @ACCOUNTID";
+            }
+
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@ACCOUNTID", accountId);
+
+                        return cmd.ExecuteScalar().ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
+                return "";
+            }
+        }
+
+        internal ClassSavingsAccount SearchSavingsAccount(string accountId)
+        {
+            //Build Select Query
+            string selectQuery = "";
+            if (accountId != "")
+            {
+                selectQuery = $"SELECT * FROM dbo.Accounts ";
+                selectQuery += $"WHERE accountId = @ACCOUNTID";
+            }
+
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@ACCOUNTID", accountId);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            reader.Read();
+
+
+                            ClassSavingsAccount AccountSelected = new ClassSavingsAccount();
+
+                            AccountSelected.AccountId = (int)reader["accountId"];
+                            AccountSelected.CustomerId = (int)reader["customerId"];
+                            AccountSelected.Balance = float.Parse(reader["balance"].ToString());
+                            AccountSelected.MostRecentActivity = Convert.ToDateTime(reader["mostRecentActivity"]);
+                            AccountSelected.InterestRate = float.Parse(reader["interestRate"].ToString());
+
+
+                            return AccountSelected;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
+
+                return default(ClassSavingsAccount);
+            }
+
+        }
+
+        public int CreateNewAccount(string customerId, string accountType, string monthlyFee,
+           string interestRate)
+        {
+            //Build Insert Query
+
+
+            string insertQuery = "INSERT INTO dbo.Accounts (customerId, balance, mostRecentActivity, interestRate, monthlyFee, isOverdrafted, accountType) ";
+            insertQuery += $"VALUES (@CUSTOMERID, @BALANCE, @MOSTRECENTACTIVITY, @INTERESTRATE, @MONTHLYFEE, @ISOVERDRAFTED, @ACCOUNTTYPE); ";
+
+            string selectQuery = "SELECT accountId FROM dbo.Accounts ";
+            selectQuery += "WHERE customerId = @CUSTOMERID ";
+            selectQuery += " AND accountType = @ACCOUNTTYPE";
+
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(insertQuery, cnn))
+                    {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@CUSTOMERID", customerId);
+                        cmd.Parameters.AddWithValue("@BALANCE", "0");
+                        cmd.Parameters.AddWithValue("@MOSTRECENTACTIVITY", DateTime.Now);
+                        cmd.Parameters.AddWithValue("@INTERESTRATE", interestRate);
+                        cmd.Parameters.AddWithValue("@MONTHLYFEE", monthlyFee);
+                        cmd.Parameters.AddWithValue("@ISOVERDRAFTED", false);
+                        cmd.Parameters.AddWithValue("@ACCOUNTTYPE", accountType);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@CUSTOMERID", customerId);
+                        cmd.Parameters.AddWithValue("@ACCOUNTTYPE", accountType);
+
+                        return (int)cmd.ExecuteScalar();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
+                return 0;
+            }
+        }
+
+        internal bool UpdateAccount(string accountId, string customerId, string accountType, string monthlyFee,
+           string interestRate)
+        {
+            //Build Update Query
+
+
+            string updateQuery = "UPDATE dbo.Accounts ";
+            updateQuery += "SET monthlyFee = @MONTHLYFEE, interestRate = @INTERESTRATE";
+            updateQuery += " WHERE accountId = @ACCOUNTID ";
+
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(updateQuery, cnn))
+                    {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@MONTHLYFEE", monthlyFee);
+                        cmd.Parameters.AddWithValue("@INTERESTRATE", interestRate);
+                        cmd.Parameters.AddWithValue("@ACCOUNTID", accountId);
+
+                        cmd.ExecuteNonQuery();
+                        return true;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
+                return false;
+            }
+        }
+
     }
+
+
 }

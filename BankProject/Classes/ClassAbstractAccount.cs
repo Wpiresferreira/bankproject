@@ -8,6 +8,7 @@ namespace BankProject.Classes {
     public class ClassAbstractAccount : IComparable<ClassAbstractAccount> {
 
         public int AccountId { get; set; }
+        public int CustomerId { get; set; }
         public float Balance {  get; set; }
         public DateTime MostRecentActivity { get; set; }
         public List<ClassTransaction> MyListAbstractTransactions { get; set; }
