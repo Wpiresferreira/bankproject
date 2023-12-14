@@ -23,10 +23,10 @@ namespace BankProject.Classes {
 
 
         public override string ToString() {
-            string _result = $"EmployeeId: {EmployeeId}";
-            _result += $" | First Name: {FirstName}";
-            _result += $" | Last Name: {LastName}";
-            _result += $" | Email: {Email}";
+            string _result = $"EmployeeId: {EmployeeId}\n";
+            _result += $"First Name: {FirstName}\n";
+            _result += $"Last Name: {LastName}\n";
+            _result += $"Email: {Email}\n";
 
             return _result;
         }

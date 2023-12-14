@@ -17,10 +17,10 @@ namespace BankProject.Classes {
 
 
         public override string ToString() {
-            string _result = $"IdAccount: {IdAccount}";
+            string _result = $"[CHECKING ACCOUNT] AccountId: {AccountId}";
             _result += $" | Balance: {Balance}";
             _result += $" | MostRecentActivity: {MostRecentActivity}";
-            _result += $" | IsOverdrafted: {IsOverdrafted}";
+            _result += $" | IsOverdrafted: {IsOverdrafted}\n";
 
             return _result;
         }
