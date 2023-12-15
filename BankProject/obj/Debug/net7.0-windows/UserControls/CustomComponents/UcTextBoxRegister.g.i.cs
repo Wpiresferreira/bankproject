@@ -9,7 +9,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using BankProject.UserControls;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;

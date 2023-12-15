@@ -21,13 +21,11 @@ namespace BankProject.UserControls {
     /// </summary>
     public partial class UcCreateNewBranch : UserControl {
 
-        ClassCustomSqlClient MySqlClient;
         public ClassController MyController { get; set; }
         public ClassUserLogged MyUserLogged { get; set; }
 
 
         public UcCreateNewBranch(ClassController myController) {
-            MySqlClient = new ClassCustomSqlClient();
             MyController = myController;
             MyUserLogged = myController.MyUserLogged;
             InitializeComponent();

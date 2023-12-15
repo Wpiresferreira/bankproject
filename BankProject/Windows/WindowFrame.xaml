@@ -73,6 +73,12 @@
                     <TextBlock Text="Customer Search" Style="{StaticResource menuButtonText_Frame}" />
                 </StackPanel>
             </Button>
+            <Button Style="{StaticResource menuButton_Frame}" Click="ButtonCreateNewEmployee_Click">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Icon="UserPlus" Style="{StaticResource menuButtonIcon_Frame}" />
+                    <TextBlock Text="Create New Employee" Style="{StaticResource menuButtonText_Frame}" />
+                </StackPanel>
+            </Button>
             <Button Style="{StaticResource menuButton_Frame}" Click="ButtonCreateNewBranch_Click">
                 <StackPanel Orientation="Horizontal">
                     <fa:ImageAwesome Icon="BanK" Style="{StaticResource menuButtonIcon_Frame}" />
@@ -141,7 +147,7 @@
                     <GradientStop Color="#2c386c" Offset="1" />
                 </LinearGradientBrush>
             </Border.Background>
-            <TabControl x:Name="tabControl_Frame" Margin="0 40 5 25" BorderThickness="0" Background="Transparent" />
+            <TabControl x:Name="tabControl_Frame" Margin="0 50 5 20" BorderThickness="0" Background="Transparent" />
         </Border>
 
     </Grid>
