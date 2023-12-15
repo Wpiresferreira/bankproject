@@ -129,7 +129,7 @@ namespace BankProject.Classes {
         /* ----------------------------------------------------------------------------------------------------------------------------------
            ------------------------------------------------------- ACCOUNT METHODS ----------------------------------------------------------
            ---------------------------------------------------------------------------------------------------------------------------------- */
-
+       
 
 
         /* ----------------------------------------------------------------------------------------------------------------------------------
@@ -207,5 +207,14 @@ namespace BankProject.Classes {
 
              return false;
         }
+        public List<ClassTransaction> GetStatment(int accountId, DateTime startDate, DateTime endDate)
+        {
+            return MySqlClient.GetListTransactionsBetweenDates(accountId, startDate, endDate);
+        }
+        public List<ClassTransaction> GetListTransactionsOfSpecificAccount(int accountId)
+        {
+            return MySqlClient.GetListTransactionsOfSpecificAccount(accountId);
+        }
+
     }
 }

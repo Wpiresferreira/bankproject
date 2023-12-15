@@ -21,30 +21,37 @@ namespace BankProject.UserControls
     /// </summary>
     public partial class UcAccountStatment : UserControl
     {
-            ClassController MyController { get; set; }
+        ClassController MyController { get; set; }
 
-            public UcAccountStatment(ClassController myController, string accountId)
-            {
-                MyController = myController;
-                InitializeComponent();
+        public UcAccountStatment(ClassController myController, string accountId)
+        {
+            MyController = myController;
+            InitializeComponent();
 
-                textBlockBranchId.Text = $"Current Branch: {MyController.MyUserLogged.BranchId}";
+            textBlockBranchId.Text = $"Current Branch: {MyController.MyUserLogged.BranchId}";
 
-                //Find Branch data that corresponds to Branch of Logged User
-                foreach (ClassBranch b in MyController.MyListBranches)
-                {
-                    if (b.BranchId == MyController.MyUserLogged.)
-                    {
-                        //Bind Data
-                        listViewListCustomersFromMyBranch.ItemsSource = b.MyListCustomers;
-                        break;
-                    }
-                }
-            }
+            // filling StartDate and EndDate
+            DateTime startDate = DateTime.Now.AddMonths(-1);
+            DateTime endDate = DateTime.Now;
+
+            textBoxStartDate.textBox.Text = startDate.ToString();
+            textBoxEndDate.textBox.Text = endDate.ToString();
+
+
+
+            //Find Branch data that corresponds to Branch of Logged User
+
+            int accountIdint = Int32.Parse(accountId);
+            //List<ClassTransaction> MyListTransactions = MyController.GetListTransactionsOfSpecificAccount(accountIdint);
+            List<ClassTransaction> MyListTransactions = MyController.GetStatment(accountIdint, startDate, endDate);
+
+
+            listTransactions.ItemsSource = MyListTransactions;
+        }
 
         private void ButtonFilter_Click(object sender, RoutedEventArgs e)
         {
 
         }
     }
-    }
+}

@@ -14,7 +14,6 @@ using System.Windows.Shapes;
 using System.Reflection.Emit;
 using System.Xml.Linq;
 using System.Windows.Controls;
-using System.Data.SqlClient;
 using BankProject.UserControls;
 
 namespace BankProject.Classes
@@ -1053,6 +1052,57 @@ namespace BankProject.Classes
                 return null;
             }
         }
+
+        public List<ClassTransaction> GetListTransactionsBetweenDates(int inputAccountId, DateTime dateStart, DateTime dateEnd)
+        {
+            //Initialize list of transactions
+            List<ClassTransaction> _listTransactions = new List<ClassTransaction>();
+
+            //Build Select Query for Savings Accounts
+            string selectQuery = "SELECT * ";
+            selectQuery += "FROM dbo.Transactions ";
+            selectQuery += "WHERE accountId = @ACCOUNTID ";
+            selectQuery += "AND datetimeTransaction >= '" + dateStart.ToString("yyyy-MM-dd")+ "' ";
+            selectQuery += "AND datetimeTransaction <= '" + dateEnd.ToString("yyyy-MM-dd") + " 23:59:59' ; ";
+
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@ACCOUNTID", inputAccountId);
+                        using (SqlDataReader myReader = cmd.ExecuteReader())
+                        {
+                            while (myReader.Read())
+                            {
+                                //Create new object
+                                ClassTransaction _newTransaction = new ClassTransaction();
+
+
+                                _newTransaction.TransactionId = (int)myReader["transactionId"];
+                                _newTransaction.AccountId = (int)myReader["accountId"];
+                                _newTransaction.DatetimeTransaction = Convert.ToDateTime(myReader["datetimeTransaction"]);
+                                _newTransaction.AmountCredit = float.Parse(myReader["amountCredit"].ToString());
+                                _newTransaction.AmountDebit = float.Parse(myReader["amountDebit"].ToString());
+                                _newTransaction.OtherAccountId = (int)myReader["otherAccountId"];
+                                _newTransaction.TypeTransaction = myReader["typeTransaction"].ToString();
+                                _listTransactions.Add(_newTransaction);
+                            }
+                        }
+                    }
+                }
+                return _listTransactions;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
+                Debug.WriteLine($"[ERROR] Something went wrong!\n{ex.Message}");
+                return null;
+            }
+        }
+
 
 
 

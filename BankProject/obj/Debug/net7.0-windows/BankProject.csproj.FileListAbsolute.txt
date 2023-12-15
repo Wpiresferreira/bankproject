@@ -289,3 +289,15 @@ C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcCrea
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcCreateNewEmployee.baml
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\CustomComponents\UcTextBoxRegisterReadOnly.baml
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\CustomComponents\UcTextBoxRegisterReadOnly.g.cs
+C:\Users\wagne\source\repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserControls\CustomComponents\UcTextBoxRegisterReadOnly.baml
+C:\Users\wagne\source\repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserControls\CustomComponents\UcTextBoxRegisterReadOnly.g.cs
+C:\Users\wagne\source\repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserControls\UcAccountStatment.g.cs
+C:\Users\wagne\source\repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserControls\UcCreateNewEmployee.g.cs
+C:\Users\wagne\source\repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserControls\UcMakeDeposit.g.cs
+C:\Users\wagne\source\repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserControls\UcMakeTransfer.g.cs
+C:\Users\wagne\source\repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserControls\UcMakeWithdraw.g.cs
+C:\Users\wagne\source\repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserControls\UcAccountStatment.baml
+C:\Users\wagne\source\repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserControls\UcCreateNewEmployee.baml
+C:\Users\wagne\source\repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserControls\UcMakeDeposit.baml
+C:\Users\wagne\source\repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserControls\UcMakeTransfer.baml
+C:\Users\wagne\source\repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserControls\UcMakeWithdraw.baml

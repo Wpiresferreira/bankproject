@@ -75,26 +75,23 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <TextBlock Grid.Column="0" Grid.Row="0" Text="From " FontSize="20" Foreground="#ccd7ff" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                            <uc:UcTextBoxRegister Grid.Column="1" Grid.Row="0" x:Name="textBoxDateFrom" Hint="01/11/2023" FontSize="20" Foreground="#ccd7ff" HorizontalAlignment="Left" />
+                            <uc:UcTextBoxRegister Grid.Column="1" Grid.Row="0" x:Name="textBoxStartDate" FontSize="20" Foreground="#ccd7ff" HorizontalAlignment="Left" />
 
                             <TextBlock Grid.Column="2" Grid.Row="0" Text="To " FontSize="20" Foreground="#ccd7ff" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                            <uc:UcTextBoxRegister Grid.Column="3" Grid.Row="0" x:Name="textBoxDateTo" Hint="01/11/2023" FontSize="20" Foreground="#ccd7ff" HorizontalAlignment="Left" />
+                            <uc:UcTextBoxRegister Grid.Column="3" Grid.Row="0" x:Name="textBoxEndDate" Hint="01/11/2023" FontSize="20" Foreground="#ccd7ff" HorizontalAlignment="Left" />
                             <Button Content="Filter" Margin="10 0 0 0" Grid.Column="4" Style="{StaticResource buttonMainGreen_Register}" Click="ButtonFilter_Click"/>
 
                         </Grid>
 
                         <Border CornerRadius="25" Background="#FF653BBD" MaxHeight="1000">
-                            <ListView Margin="10" Name="listViewListCustomersFromMyBranch" MaxHeight="2000">
+                            <ListView Margin="10" Name="listTransactions" MaxHeight="2000">
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Header="Date" Width="70" DisplayMemberBinding="{Binding CustomerId}" />
-                                        <GridViewColumn Header="FirstName" Width="100" DisplayMemberBinding="{Binding FirstName}" />
-                                        <GridViewColumn Header="LastName" Width="100" DisplayMemberBinding="{Binding LastName}" />
-                                        <GridViewColumn Header="Email" Width="100" DisplayMemberBinding="{Binding Email}" />
-                                        <GridViewColumn Header="Phone" Width="100" DisplayMemberBinding="{Binding Phone}" />
-                                        <GridViewColumn Header="dateOfBirth" Width="100" DisplayMemberBinding="{Binding DateOfBirth}" />
-                                        <!--<GridViewColumn Header="Document" Width="100" DisplayMemberBinding="{Binding Document}" />
-                                        <GridViewColumn Header="Address" Width="150" DisplayMemberBinding="{Binding Address}" />-->
+                                        <GridViewColumn Header="Date" Width="70" DisplayMemberBinding="{Binding DatetimeTransaction}" />
+                                        <GridViewColumn Header="Doc Number" Width="100" DisplayMemberBinding="{Binding TransactionId}" />
+                                        <GridViewColumn Header="Historic" Width="100" DisplayMemberBinding="{Binding TypeTransaction}" />
+                                        <GridViewColumn Header="Debit" Width="100" DisplayMemberBinding="{Binding AmountDebit}" />
+                                        <GridViewColumn Header="Credit" Width="100" DisplayMemberBinding="{Binding AmountCredit}" />
                                     </GridView>
                                 </ListView.View>
                             </ListView>
