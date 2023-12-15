@@ -46,7 +46,7 @@ namespace BankProject.UserControls
 
             if (typeOfAccount == "CHECKING")
             {
-                ClassCheckingAccount newCheckingAccount = MySqlClient.SearchChekingAccount(_accountId);
+                ClassCheckingAccount newCheckingAccount = MySqlClient.SearchCheckingAccount(_accountId);
 
                 if (newCheckingAccount != null)
                 {

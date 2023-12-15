@@ -81,14 +81,74 @@ namespace BankProject.Classes
         }
 
 
-        public bool MakeDeposit(int inputAccountId, float inputAmountToDeposit) {
+        public bool MakeDeposit(int inputAccountIdDestination, float inputAmountToCredit) {
 
-            int _otherAccountId = 19; //Account INTERNAL BANK
+             int _accountIdOrigin = 9; //Account INTERNAL BANK
+
+            //Check input data
+            if (inputAmountToCredit <= 0) {
+                MessageBox.Show($"[ERROR] Amount to Credit must be a positive number!");
+                return false;
+            }
+            else if (inputAccountIdDestination <= 0) {
+                MessageBox.Show($"[ERROR] Invalid Account Id!");
+                return false;
+            }
+
+            //Create Transaction
+             if(MySqlClient.CreateTransaction(inputAccountIdDestination, 0, inputAmountToCredit, _accountIdOrigin)) {
+                return true;
+            };
+
+             return false;
+        }
 
 
-            //MySqlClient.CreateTransaction(inputAccountId, inputAmountToDeposit, _otherAccountId, 0);
+        public bool MakeWithdraw(int inputAccountIdOrigin, float inputAmountToDebit) {
 
-            return true;
+             int _accountIdDestination = 9; //Account INTERNAL BANK
+
+            //Check input data
+            if (inputAmountToDebit <= 0) {
+                MessageBox.Show($"[ERROR] Amount to Debit must be a positive number!");
+                return false;
+            }
+            else if (inputAccountIdOrigin <= 0) {
+                MessageBox.Show($"[ERROR] Invalid Account Id!");
+                return false;
+            }
+
+            //Create Transaction
+             if(MySqlClient.CreateTransaction(inputAccountIdOrigin, inputAmountToDebit, 0, _accountIdDestination)) {
+                return true;
+            };
+
+             return false;
+        }
+
+
+        public bool MakeTransfer(int inputAccountIdOrigin, int inputAccountIdDestination, float inputAmountToTransfer) {
+
+            //Check input data
+            if (inputAmountToTransfer <= 0) {
+                MessageBox.Show($"[ERROR] Amount to Transfer must be a positive number!");
+                return false;
+            }
+            else if (inputAccountIdOrigin <= 0) {
+                MessageBox.Show($"[ERROR] Invalid Account Id Origin!");
+                return false;
+            }
+            else if (inputAccountIdDestination <= 0) {
+                MessageBox.Show($"[ERROR] Invalid Account Id Destination!");
+                return false;
+            }
+
+            //Create Transaction
+             if(MySqlClient.CreateTransaction(inputAccountIdOrigin, inputAmountToTransfer, 0, inputAccountIdDestination)) {
+                return true;
+            };
+
+             return false;
         }
     }
 }

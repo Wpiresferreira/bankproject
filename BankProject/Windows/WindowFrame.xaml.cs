@@ -129,6 +129,19 @@ namespace BankProject
         }
 
 
+        private void ButtonMakeWithdraw_Click(object sender, RoutedEventArgs e) {
+            UcMakeWithdraw newMakeWithdraw = new UcMakeWithdraw(MyController);
+            Button buttonPressed = (Button)sender;
+            SwitchTabs(newMakeWithdraw, buttonPressed);
+        }
+
+
+        private void ButtonMakeTransfer_Click(object sender, RoutedEventArgs e) {
+            UcMakeTransfer newMakeTransfer = new UcMakeTransfer(MyController);
+            Button buttonPressed = (Button)sender;
+            SwitchTabs(newMakeTransfer, buttonPressed);
+        }
+
         public void SwitchTabs(object newUserControl, Button buttonPressed)
         {
             //Add newUserControl into new Item of tabControl_Frame

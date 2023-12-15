@@ -97,18 +97,31 @@
                     <TextBlock Text="Manage Accounts" Style="{StaticResource menuButtonText_Frame}" />
                 </StackPanel>
             </Button>
+            <Button Style="{StaticResource menuButton_Frame}" Click="ButtonMakeDeposit_Click">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Icon="ArrowCircleDown" Style="{StaticResource menuButtonIcon_Frame}" />
+                    <TextBlock Text="Make Deposit" Style="{StaticResource menuButtonText_Frame}" />
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource menuButton_Frame}" Click="ButtonMakeWithdraw_Click">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Icon="ArrowCircleUp" Style="{StaticResource menuButtonIcon_Frame}" />
+                    <TextBlock Text="Make Withdraw" Style="{StaticResource menuButtonText_Frame}" />
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource menuButton_Frame}" Click="ButtonMakeTransfer_Click">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Icon="ArrowsH" Style="{StaticResource menuButtonIcon_Frame}" />
+                    <TextBlock Text="Make Transfer" Style="{StaticResource menuButtonText_Frame}" />
+                </StackPanel>
+            </Button>
             <Button Style="{StaticResource menuButton_Frame}">
                 <StackPanel Orientation="Horizontal">
                     <fa:ImageAwesome Icon="FlagCheckered" Style="{StaticResource menuButtonIcon_Frame}" />
                     <TextBlock Text="Promote (Placeholder)" Style="{StaticResource menuButtonText_Frame}" />
                 </StackPanel>
             </Button>
-            <Button Style="{StaticResource menuButton_Frame}" Click="ButtonMakeDeposit_Click">
-                <StackPanel Orientation="Horizontal">
-                    <fa:ImageAwesome Icon="FlagCheckered" Style="{StaticResource menuButtonIcon_Frame}" />
-                    <TextBlock Text="Make Deposit" Style="{StaticResource menuButtonText_Frame}" />
-                </StackPanel>
-            </Button>
+            
 
 
             <Separator Background="#e0e0e0" Opacity="0.5" Margin="40 15 40 15" />

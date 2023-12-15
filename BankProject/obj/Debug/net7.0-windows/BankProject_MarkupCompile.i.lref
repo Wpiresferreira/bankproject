@@ -1,16 +1,5 @@
-﻿C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\GeneratedInternalTypeHelper.g.i.cs
+﻿
 
-FC:\0_Github\bankproject\BankProject\UserControls\CustomComponents\UcInfoCardDashboard.xaml;;
-FC:\0_Github\bankproject\BankProject\UserControls\CustomComponents\UcOptionRegister.xaml;;
-FC:\0_Github\bankproject\BankProject\UserControls\UcAccountEditSave.xaml;;
-FC:\0_Github\bankproject\BankProject\UserControls\UcAccountSearch.xaml;;
-FC:\0_Github\bankproject\BankProject\UserControls\UcCreateNewBranch.xaml;;
-FC:\0_Github\bankproject\BankProject\UserControls\UcCustomerEditSave.xaml;;
-FC:\0_Github\bankproject\BankProject\UserControls\UcCustomerSearch.xaml;;
-FC:\0_Github\bankproject\BankProject\UserControls\UcDashboard.xaml;;
-FC:\0_Github\bankproject\BankProject\UserControls\UcListBranches.xaml;;
-FC:\0_Github\bankproject\BankProject\UserControls\UcListCustomersFromMyBranch.xaml;;
-FC:\0_Github\bankproject\BankProject\UserControls\UcMakeDeposit.xaml;;
-FC:\0_Github\bankproject\BankProject\Windows\WindowFrame.xaml;;
-FC:\0_Github\bankproject\BankProject\Windows\WindowRegister.xaml;;
+FC:\0_Github\bankproject\BankProject\UserControls\UcMakeTransfer.xaml;;
+FC:\0_Github\bankproject\BankProject\UserControls\UcMakeWithdraw.xaml;;
 
