@@ -4,10 +4,13 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace BankProject.Classes {
     public class ClassController {
@@ -17,8 +20,7 @@ namespace BankProject.Classes {
         public List<ClassBranch>? MyListBranches { get; set; }
 
 
-        public ClassController()
-        {
+        public ClassController() {
             MySqlClient = new ClassCustomSqlClient();
             MyUserLogged = null;
             MyListBranches = new List<ClassBranch>();
@@ -37,6 +39,9 @@ namespace BankProject.Classes {
         }
 
 
+        /* ----------------------------------------------------------------------------------------------------------------------------------
+           ------------------------------------------------------- BRANCH METHODS -----------------------------------------------------------
+           ---------------------------------------------------------------------------------------------------------------------------------- */
         public void PopulateMyListBranches() {
             MyListBranches = MySqlClient.GetListOfBranches();
 
@@ -60,11 +65,11 @@ namespace BankProject.Classes {
 
         public bool CreateNewBranch(string inputName, string inputCity) {
             
+            //Create new Branch in the database
             ClassBranch _newBranch = MySqlClient.InsertNewBranch(inputName, inputCity);
             
-            //Create new Branch on the database
             if(_newBranch!=null) {
-                //Refresh list of branches in the model
+                //Add new Branch in the model
                 MyListBranches.Add(_newBranch);
 
                 return true;
@@ -82,6 +87,54 @@ namespace BankProject.Classes {
         }
 
 
+        /* ----------------------------------------------------------------------------------------------------------------------------------
+           ------------------------------------------------------ EMPLOYEE METHODS ----------------------------------------------------------
+           ---------------------------------------------------------------------------------------------------------------------------------- */
+        public bool CreateNewEmployee(
+            string firstName, string lastName, string emailAddress, string phoneNumber, int positionId,
+            string password, int branchId, DateOnly startDate, DateOnly dateOfBirth, string zipCode,
+            string line1, string line2, string city, string province, string country,
+            string documentType, string documentNumber, string documentIssuedDate, string documentExpirationDate) {
+            
+            //Create new Employee in the database
+            ClassEmployee _newEmployee = MySqlClient.InsertNewEmployee(
+                firstName, lastName, emailAddress, phoneNumber, positionId,
+                password, branchId, startDate, dateOfBirth, zipCode,
+                line1, line2, city, province, country,
+                documentType, documentNumber, documentIssuedDate, documentExpirationDate);
+            
+            if(_newEmployee!=null) {
+                //Add new Employee in the model
+                foreach (ClassBranch b in MyListBranches) {
+                    if(b.BranchId == branchId) {
+                        b.MyListEmployees.Add(_newEmployee);
+                        Debug.WriteLine($"[New Employee Created] {_newEmployee}");
+                        return true;
+                    }
+                }
+                return false;
+            }
+            else {
+                return false;
+            }
+        }
+
+
+        /* ----------------------------------------------------------------------------------------------------------------------------------
+           ------------------------------------------------------ CUSTOMER METHODS ----------------------------------------------------------
+           ---------------------------------------------------------------------------------------------------------------------------------- */
+
+
+
+        /* ----------------------------------------------------------------------------------------------------------------------------------
+           ------------------------------------------------------- ACCOUNT METHODS ----------------------------------------------------------
+           ---------------------------------------------------------------------------------------------------------------------------------- */
+
+
+
+        /* ----------------------------------------------------------------------------------------------------------------------------------
+           ---------------------------------------------------- TRANSACTION METHODS ---------------------------------------------------------
+           ---------------------------------------------------------------------------------------------------------------------------------- */
         public bool MakeDeposit(int inputAccountIdDestination, float inputAmountToCredit) {
 
              int _accountIdOrigin = 9; //Account INTERNAL BANK
@@ -98,7 +151,7 @@ namespace BankProject.Classes {
 
             //Create Transaction
              if(MySqlClient.CreateTransaction(inputAccountIdDestination, 0, inputAmountToCredit, _accountIdOrigin)) {
-                PopulateMyListBranches();
+                PopulateMyListBranches(); //TODO: REFACTOR LATER
                 return true;
             };
 
@@ -122,7 +175,7 @@ namespace BankProject.Classes {
 
             //Create Transaction
              if(MySqlClient.CreateTransaction(inputAccountIdOrigin, inputAmountToDebit, 0, _accountIdDestination)) {
-                PopulateMyListBranches();
+                PopulateMyListBranches(); //TODO: REFACTOR LATER
                 return true;
             };
 
@@ -148,7 +201,7 @@ namespace BankProject.Classes {
 
             //Create Transaction
              if(MySqlClient.CreateTransaction(inputAccountIdOrigin, inputAmountToTransfer, 0, inputAccountIdDestination)) {
-                PopulateMyListBranches();
+                PopulateMyListBranches(); //TODO: REFACTOR LATER
                 return true;
             };
 

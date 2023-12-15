@@ -85,7 +85,7 @@
                                     <TextBlock Grid.Row="9" Grid.Column="3" Focusable="True" Text="Document Expiration Date:" Style="{StaticResource text_Register}"  Foreground="White" />
 
 
-                                    <uc:UcTextBoxRegister Grid.Row="0" Grid.Column="1" x:Name="myTextBoxEmployeeId" Hint="1" />
+                                    <uc:UcTextBoxRegisterReadOnly Grid.Row="0" Grid.Column="1" x:Name="myTextBoxEmployeeId" Hint="1" />
                                     <uc:UcTextBoxRegister Grid.Row="1" Grid.Column="1" x:Name="myTextBoxFirstName" Hint="John" />
                                     <uc:UcTextBoxRegister Grid.Row="2" Grid.Column="1" x:Name="myTextBoxLastName" Hint="Doe" />
                                     <uc:UcTextBoxRegister Grid.Row="3" Grid.Column="1" x:Name="myTextBoxEmailAddress" Hint="john.doe@gmail.com" />

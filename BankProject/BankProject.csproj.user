@@ -55,6 +55,9 @@
     <Compile Update="UserControls\UcMakeWithdraw.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UserControls\CustomComponents\UcTextBoxRegisterReadOnly.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UserControls\UcWallet.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -118,6 +121,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\UcMakeWithdraw.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\CustomComponents\UcTextBoxRegisterReadOnly.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\UcWallet.xaml">

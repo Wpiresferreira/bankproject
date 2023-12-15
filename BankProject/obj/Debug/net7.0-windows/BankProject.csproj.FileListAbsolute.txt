@@ -287,3 +287,5 @@ C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcMake
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcMakeWithdraw.baml
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcCreateNewEmployee.g.cs
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcCreateNewEmployee.baml
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\CustomComponents\UcTextBoxRegisterReadOnly.baml
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\CustomComponents\UcTextBoxRegisterReadOnly.g.cs
