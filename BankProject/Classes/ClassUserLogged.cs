@@ -12,6 +12,7 @@ namespace BankProject.Classes {
         public string LastName { get; set; }
         public string Email { get; set; }
         public int PositionId { get; set; }
+        public int BranchId { get; set; }
 
 
         public ClassUserLogged() {

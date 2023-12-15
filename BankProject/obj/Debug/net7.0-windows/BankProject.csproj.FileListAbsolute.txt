@@ -276,3 +276,12 @@ C:\Users\rafam\OneDrive\Documentos\GitHub\bankproject\BankProject\obj\Debug\net7
 C:\Users\rafam\OneDrive\Documentos\GitHub\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject.pdb
 C:\Users\rafam\OneDrive\Documentos\GitHub\bankproject\BankProject\obj\Debug\net7.0-windows\BankProject.genruntimeconfig.cache
 C:\Users\rafam\OneDrive\Documentos\GitHub\bankproject\BankProject\obj\Debug\net7.0-windows\ref\BankProject.dll
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcAccountStatment.g.cs
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcMakeTransfer.g.cs
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcMakeWithdraw.g.cs
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcAccountEditSave.baml
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcAccountSearch.baml
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcAccountStatment.baml
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcMakeDeposit.baml
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcMakeTransfer.baml
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\UcMakeWithdraw.baml

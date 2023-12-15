@@ -10,6 +10,8 @@
 //------------------------------------------------------------------------------
 
 using BankProject.UserControls;
+using FontAwesome.WPF;
+using FontAwesome.WPF.Converters;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -85,7 +87,7 @@ namespace BankProject.UserControls {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BankProject;V1.0.0.0;component/usercontrols/ucmaketransfer.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BankProject;component/usercontrols/ucmaketransfer.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\UserControls\UcMakeTransfer.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

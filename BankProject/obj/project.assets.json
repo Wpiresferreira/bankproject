@@ -577,23 +577,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\rafam\\.nuget\\packages\\": {},
+    "C:\\Users\\danie\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rafam\\OneDrive\\Documentos\\GitHub\\bankproject\\BankProject\\BankProject.csproj",
+      "projectUniqueName": "C:\\0_Github\\bankproject\\BankProject\\BankProject.csproj",
       "projectName": "BankProject",
-      "projectPath": "C:\\Users\\rafam\\OneDrive\\Documentos\\GitHub\\bankproject\\BankProject\\BankProject.csproj",
-      "packagesPath": "C:\\Users\\rafam\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\rafam\\OneDrive\\Documentos\\GitHub\\bankproject\\BankProject\\obj\\",
+      "projectPath": "C:\\0_Github\\bankproject\\BankProject\\BankProject.csproj",
+      "packagesPath": "C:\\Users\\danie\\.nuget\\packages\\",
+      "outputPath": "C:\\0_Github\\bankproject\\BankProject\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\rafam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\danie\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -652,7 +652,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
       }
     }
   },

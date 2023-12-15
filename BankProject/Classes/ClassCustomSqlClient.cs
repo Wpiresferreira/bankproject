@@ -81,7 +81,7 @@ namespace BankProject.Classes
         }
 
 
-        public (ClassUserLogged?, int?) AuthenticateLogin(string inputEmail, string inputPassword)
+        public ClassUserLogged? AuthenticateLogin(string inputEmail, string inputPassword)
         {
             //Build Select Query
             string selectQuery = "SELECT employeeId, firstName, lastName, emailAddress, positionId, branchId ";
@@ -108,16 +108,16 @@ namespace BankProject.Classes
                                     FirstName = (string)myReader["firstName"],
                                     LastName = (string)myReader["lastName"],
                                     Email = (string)myReader["emailAddress"],
-                                    PositionId = (int)myReader["positionId"]
+                                    PositionId = (int)myReader["positionId"],
+                                    BranchId = (int)myReader["branchId"]
                                 };
-                                int MyUserLoggedBranchId = (int)myReader["branchId"];
-                                Debug.WriteLine($"Login Sucessful\nLogged in as: {MyUserLogged.FirstName} {MyUserLogged.LastName}\nBranchId: {MyUserLoggedBranchId}");
-                                return (MyUserLogged, MyUserLoggedBranchId);
+                                Debug.WriteLine($"Login Sucessful\nLogged in as: {MyUserLogged.FirstName} {MyUserLogged.LastName}\nBranchId: {MyUserLogged.BranchId}");
+                                return MyUserLogged;
                             }
                             else
                             {
                                 MessageBox.Show("Incorrect Credentials!");
-                                return (null, null);
+                                return null;
                             }
                         }
                     }
@@ -126,7 +126,7 @@ namespace BankProject.Classes
             catch (Exception ex)
             {
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
-                return (null, null);
+                return null;
             }
         }
 

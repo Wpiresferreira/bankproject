@@ -14,7 +14,6 @@ namespace BankProject.Classes
     {
         private ClassCustomSqlClient MySqlClient { get; set; }
         public ClassUserLogged? MyUserLogged { get; set; }
-        public int? MyUserLoggedBranchId { get; set; }
         public List<ClassBranch>? MyListBranches { get; set; }
 
 
@@ -28,7 +27,7 @@ namespace BankProject.Classes
         }
 
         public void LoginUser(string inputEmail, string inputPassword) {
-            (MyUserLogged, MyUserLoggedBranchId) = MySqlClient.AuthenticateLogin(inputEmail, inputPassword);
+            MyUserLogged = MySqlClient.AuthenticateLogin(inputEmail, inputPassword);
             
             if (MyUserLogged != null) {
                 //Populate MyController.MyListBranches
@@ -97,6 +96,7 @@ namespace BankProject.Classes
 
             //Create Transaction
              if(MySqlClient.CreateTransaction(inputAccountIdDestination, 0, inputAmountToCredit, _accountIdOrigin)) {
+                PopulateMyListBranches();
                 return true;
             };
 
@@ -120,6 +120,7 @@ namespace BankProject.Classes
 
             //Create Transaction
              if(MySqlClient.CreateTransaction(inputAccountIdOrigin, inputAmountToDebit, 0, _accountIdDestination)) {
+                PopulateMyListBranches();
                 return true;
             };
 
@@ -145,6 +146,7 @@ namespace BankProject.Classes
 
             //Create Transaction
              if(MySqlClient.CreateTransaction(inputAccountIdOrigin, inputAmountToTransfer, 0, inputAccountIdDestination)) {
+                PopulateMyListBranches();
                 return true;
             };
 

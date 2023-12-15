@@ -9,9 +9,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using BankProject;
-using BankProject.UserControls;
-using LiveCharts.Wpf;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -103,7 +100,7 @@ namespace BankProject {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BankProject;V1.0.0.0;component/windows/windowlogin.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BankProject;component/windows/windowlogin.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Windows\WindowLogin.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
