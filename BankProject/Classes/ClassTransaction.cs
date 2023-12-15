@@ -13,6 +13,7 @@ namespace BankProject.Classes {
         public float AmountDebit {  get; set; }
         public float AmountCredit {  get; set; }
         public int OtherAccountId { get; set; }
+        public string TypeTransaction { get; set; }
         
 
         public override string ToString() {
@@ -23,6 +24,7 @@ namespace BankProject.Classes {
             _result += $" | AmountDebit: {AmountDebit}";
             _result += $" | AmountCredit: {AmountCredit}";
             _result += $" | OtherAccountId: {OtherAccountId}";
+            _result += $" | TypeTransaction: {TypeTransaction}";
 
             return _result;
         }

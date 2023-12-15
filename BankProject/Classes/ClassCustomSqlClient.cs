@@ -1038,7 +1038,8 @@ namespace BankProject.Classes
                                     DatetimeTransaction = Convert.ToDateTime(myReader["datetimeTransaction"]),
                                     AmountCredit = float.Parse(myReader["amountCredit"].ToString()),
                                     AmountDebit = float.Parse(myReader["amountDebit"].ToString()),
-                                    OtherAccountId = (int)myReader["otherAccountId"]
+                                    OtherAccountId = (int)myReader["otherAccountId"],
+                                    TypeTransaction = (string)myReader["typeTransaction"],
                                 };
                                 _listTransactions.Add(_newTransaction);
                             }
