@@ -57,12 +57,15 @@ namespace BankProject.Classes {
         }
 
 
-        public bool CreateNewBranch(string _nameNewBranch, string _cityNewBranch) {
+        public bool CreateNewBranch(string inputName, string inputCity) {
+            
+            ClassBranch _newBranch = MySqlClient.InsertNewBranch(inputName, inputCity);
             
             //Create new Branch on the database
-            if(MySqlClient.InsertNewBranch(_nameNewBranch, _cityNewBranch)) {
-                //Refresh list of branches in the model (needs to be updated from the database to get the branchId of the new branch created)
-                PopulateMyListBranches();
+            if(_newBranch!=null) {
+                //Refresh list of branches in the model
+                MyListBranches.Add(_newBranch);
+
                 return true;
             }
             else {

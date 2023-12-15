@@ -15,6 +15,7 @@ using System.Reflection.Emit;
 using System.Xml.Linq;
 using System.Windows.Controls;
 using System.Data.SqlClient;
+using BankProject.UserControls;
 
 namespace BankProject.Classes
 {
@@ -202,30 +203,49 @@ namespace BankProject.Classes
         }
 
 
-        public bool InsertNewBranch(string inputNewBranchName, string inputNewBranchCity)
-        {
+        public ClassBranch InsertNewBranch(string inputNewBranchName, string inputNewBranchCity) {
             //Build Insert Query
             string insertQuery = "INSERT INTO dbo.Branches (name, city) ";
             insertQuery += $"VALUES (@NAME, @CITY); ";
 
-            try
-            {
-                using (SqlConnection cnn = new SqlConnection(ConnectionString))
-                {
-                    using (SqlCommand cmd = new SqlCommand(insertQuery, cnn))
-                    {
+            //Select Query
+            string selectQuery = "SELECT * FROM dbo.Branches ";
+            selectQuery += $"WHERE name = @NAME AND city = @CITY; ";
+
+            try {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
+                    using (SqlCommand cmd = new SqlCommand(insertQuery, cnn)) {
                         cnn.Open();
                         cmd.Parameters.AddWithValue("@NAME", inputNewBranchName);
                         cmd.Parameters.AddWithValue("@CITY", inputNewBranchCity);
                         cmd.ExecuteNonQuery();
                     }
                 }
-                return true;
+
+                using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@NAME", inputNewBranchName);
+                        cmd.Parameters.AddWithValue("@CITY", inputNewBranchCity);
+                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
+                            if (myReader.Read()) {
+                                //Create new Branch object
+                                ClassBranch _newBranch = new ClassBranch() {
+                                    BranchId = (int)myReader["branchId"],
+                                    Name = (string)myReader["name"],
+                                    City = (string)myReader["city"]
+                                };
+                                return _newBranch;
+                            }
+                        }
+                    }
+                }
+                return null;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
-                return false;
+                return null;
             }
         }
 
