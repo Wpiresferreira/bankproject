@@ -49,10 +49,16 @@ namespace BankProject.UserControls
             myTextBoxAccountType.textBox.Text = "CHECKING";
             myTextBoxMonthlyFee.textBox.Text = myCheckingAccount.MonthlyFee.ToString("0.00");
             myTextBoxInterestRate.textBox.Text = "0.00";
+            myTextBoxBalance.textBox.Text = myCheckingAccount.Balance.ToString("0.00");
             myTextBoxAccountId.textBox.IsEnabled = false;
             myTextBoxCustomerId.textBox.IsEnabled = false;
             myTextBoxAccountType.textBox.IsEnabled = false;
             myTextBoxInterestRate.textBox.IsEnabled = false;
+            myTextBoxBalance.textBox.IsEnabled = false;
+
+            ClassCustomer myCustomer = MySqlClient.GetCustomerById((int)myCheckingAccount.CustomerId);
+
+            MyTextBlockCustomerName.Text = myCustomer.FirstName + " " + myCustomer.LastName;
 
         }
 
@@ -68,10 +74,17 @@ namespace BankProject.UserControls
             myTextBoxAccountType.textBox.Text = "SAVINGS";
             myTextBoxMonthlyFee.textBox.Text = "0.00";
             myTextBoxInterestRate.textBox.Text = mySavingsAccount.InterestRate.ToString("0.00");
+            myTextBoxBalance.textBox.Text = mySavingsAccount.Balance.ToString("#,##0.00");
             myTextBoxAccountId.textBox.IsEnabled = false;
             myTextBoxCustomerId.textBox.IsEnabled = false;
             myTextBoxAccountType.textBox.IsEnabled = false;
             myTextBoxMonthlyFee.textBox.IsEnabled = false;
+            myTextBoxBalance.textBox.IsEnabled = false;
+
+
+            ClassCustomer myCustomer = MySqlClient.GetCustomerById((int)mySavingsAccount.CustomerId);
+            MyTextBlockCustomerName.Text = myCustomer.FirstName + " " + myCustomer.LastName;
+
 
         }
 
@@ -145,5 +158,7 @@ namespace BankProject.UserControls
             WindowFrame parentWindow = (WindowFrame)Window.GetWindow(this);
             parentWindow.SwitchTabs(newUcAccountStatment);
         }
+
+        
     }
 }

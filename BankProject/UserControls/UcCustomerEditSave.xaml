@@ -86,7 +86,7 @@
 
                     <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="Address" Style="{StaticResource text_Register}"  Foreground="White" />
                     <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="Zip Code  " Style="{StaticResource text_Register}"  Foreground="White" TextAlignment="Right" />
-                    <uc:UcTextBoxRegister x:Name="myTextBoxZipCode" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" />
+                    <uc:UcTextBoxRegister x:Name="myTextBoxZipCode" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" LostFocus="myTextBoxZipCode_LostFocus" />
                     <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Text="Street  " Style="{StaticResource text_Register}"  Foreground="White" TextAlignment="Right" />
                     <uc:UcTextBoxRegister x:Name="myTextBoxLine1" Grid.Column="2" Grid.ColumnSpan="4" Grid.Row="5" />
                     <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Text="Complement  " Style="{StaticResource text_Register}"  Foreground="White" TextAlignment="Right" />

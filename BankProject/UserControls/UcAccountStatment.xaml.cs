@@ -28,7 +28,7 @@ namespace BankProject.UserControls
                 MyController = myController;
                 InitializeComponent();
 
-                textBlockBranchId.Text = $"Current Branch: {MyController.MyUserLoggedBranchId}";
+                textBlockBranchId.Text = MyController.MyUserLoggedBranchId.ToString();
 
                 //Find Branch data that corresponds to Branch of Logged User
                 foreach (ClassBranch b in MyController.MyListBranches)
