@@ -33,6 +33,7 @@ namespace BankProject
             MyUserLogged = MyController.MyUserLogged;
 
             nameMenu.Text = $"{MyUserLogged.FirstName} {MyUserLogged.LastName}";
+            lowerTextMenu.Text = $"Branch {MyUserLogged.BranchId}";
             initialsMenu.Text = $"{MyUserLogged.FirstName[0].ToString().ToUpper()}{MyUserLogged.LastName[0].ToString().ToUpper()}";
             UcDashboard newDashboard = new UcDashboard(MyController);
             TabItem newTabItem = new TabItem();

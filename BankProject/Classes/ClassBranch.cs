@@ -19,28 +19,6 @@ namespace BankProject.Classes {
         }
 
 
-        public ClassBranch(int branchId, string name, string city)
-        {
-            BranchId = branchId;
-            Name = name;
-            City = city;
-            MyListCustomers = null;
-            MyListEmployees = null;
-        }
-
-
-        public string DetailsAllMyCustomers() {
-            string _result = string.Empty;
-            return _result;
-        }
-
-
-        public string DetailsAllMyEmployees() {
-            string _result = string.Empty;
-            return _result;
-        }
-
-
         public override string ToString() {
             string _result = string.Empty;
             _result += $"BranchId :{BranchId}\n";

@@ -8,14 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace BankProject.Classes
-{
-    public class ClassController
-    {
+namespace BankProject.Classes {
+    public class ClassController {
+
         private ClassCustomSqlClient MySqlClient { get; set; }
         public ClassUserLogged? MyUserLogged { get; set; }
         public List<ClassBranch>? MyListBranches { get; set; }
-
 
 
         public ClassController()
@@ -23,8 +21,8 @@ namespace BankProject.Classes
             MySqlClient = new ClassCustomSqlClient();
             MyUserLogged = null;
             MyListBranches = new List<ClassBranch>();
-
         }
+
 
         public void LoginUser(string inputEmail, string inputPassword) {
             MyUserLogged = MySqlClient.AuthenticateLogin(inputEmail, inputPassword);

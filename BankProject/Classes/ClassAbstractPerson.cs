@@ -10,7 +10,6 @@ namespace BankProject.Classes {
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        
         public string Phone { get; set; }
         public DateOnly DateOfBirth { get; set; }
         public ClassDocument Document { get; set; }
@@ -28,14 +27,6 @@ namespace BankProject.Classes {
 
         public ClassDocument() {
 
-        }
-
-
-        public ClassDocument(string documentType, string documentNumber, DateOnly documentIssuedDate, DateOnly documentExpirationDate) {
-            DocumentType = documentType;
-            DocumentNumber = documentNumber;
-            DocumentIssuedDate = documentIssuedDate;
-            DocumentExpirationDate = documentExpirationDate;
         }
 
 
@@ -61,16 +52,6 @@ namespace BankProject.Classes {
 
         public ClassAddress() {
 
-        }
-
-
-        public ClassAddress(string zipCode, string line1, string line2, string city, string province, string country) {
-            ZipCode = zipCode;
-            Line1 = line1;
-            Line2 = line2;
-            City = city;
-            Province = province;
-            Country = country;
         }
 
 
