@@ -109,7 +109,7 @@ namespace BankProject.UserControls {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BankProject;component/usercontrols/ucaccountstatment.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BankProject;V1.0.0.0;component/usercontrols/ucaccountstatment.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\UserControls\UcAccountStatment.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -13,30 +13,110 @@ namespace BankProject.Classes {
         public DateTime MostRecentActivity { get; set; }
         public List<ClassTransaction> MyListAbstractTransactions { get; set; }
 
+        public ClassAbstractAccount()
+        {
+            MyListAbstractTransactions = new List<ClassTransaction>();
+        }
 
-
-        public void Deposit (ClassTransaction t) {
-            
+        public string Deposit(float amount)
+        {
+            if (amount > 0)
+            {
+                Balance += amount;
+                MostRecentActivity = DateTime.Now;
+                var depositTransaction = new ClassTransaction
+                {
+                    AccountId = this.AccountId,
+                    DatetimeTransaction = MostRecentActivity,
+                    AmountCredit = amount
+                };
+                MyListAbstractTransactions.Add(depositTransaction);
+                return $"Deposited {amount:C} successfully. New balance: {Balance:C}";
+            }
+            else
+            {
+                return "Invalid deposit amount.";
+            }
         }
 
 
-        public void Withdraw (ClassTransaction t) {
-            
+
+        public string Withdraw(float amount)
+        {
+            if (amount > 0 && amount <= Balance)
+            {
+                Balance -= amount;
+                MostRecentActivity = DateTime.Now;
+                var withdrawalTransaction = new ClassTransaction
+                {
+                    AccountId = this.AccountId,
+                    DatetimeTransaction = MostRecentActivity,
+                    AmountDebit = amount
+                };
+                MyListAbstractTransactions.Add(withdrawalTransaction);
+                return $"Withdrawal of {amount:C} successful. New balance: {Balance:C}";
+            }
+            else
+            {
+                return "Invalid withdrawal amount or insufficient funds.";
+            }
         }
 
 
-        public void CheckBalance () {
-            
+        public string  CheckBalance()
+        {
+            return $"Account Balance: {Balance:C}";
         }
 
 
-        public void CheckStatement () {
-            
+
+        public string CheckStatement()
+        {
+            string statement = "";
+
+            foreach (var transaction in MyListAbstractTransactions)
+            {
+                statement += transaction.ToString() + "\n";
+            }
+
+            return statement;
         }
 
 
-        public void Transfer (ClassTransaction t, int IdAccountTarget) {
-            
+        public string Transfer(float amount, int targetAccountId)
+        {
+            if (amount > 0 && amount <= Balance)
+            {
+                Balance -= amount;
+                MostRecentActivity = DateTime.Now;
+
+                var transferDebitTransaction = new ClassTransaction
+                {
+                    AccountId = this.AccountId,
+                    DatetimeTransaction = MostRecentActivity,
+                    AmountDebit = amount,
+                    OtherAccountId = targetAccountId
+                };
+                MyListAbstractTransactions.Add(transferDebitTransaction);
+
+                // Simulate credit transaction on the target account
+                var transferCreditTransaction = new ClassTransaction
+                {
+                    AccountId = targetAccountId,
+                    DatetimeTransaction = MostRecentActivity,
+                    AmountCredit = amount,
+                    OtherAccountId = this.AccountId
+                };
+                // Assuming the target account is another instance of ClassAbstractAccount
+                // and you have access to it, you can add the credit transaction to its transaction list
+                // targetAccount.MyListAbstractTransactions.Add(transferCreditTransaction);
+
+               return $"Transfer of {amount:C} to Account ID {targetAccountId} successful. New balance: {Balance:C}";
+            }
+            else
+            {
+               return "Invalid transfer amount or insufficient funds.";
+            }
         }
 
 
