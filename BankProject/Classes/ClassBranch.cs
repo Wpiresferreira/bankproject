@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BankProject.Classes {
     public class ClassBranch {
 
-        public int IdBranch { get; set; }
+        public int BranchId { get; set; }
         public string Name { get; set; }
         public string City { get; set; }
         public List<ClassCustomer>? MyListCustomers { get; set; }
@@ -19,9 +19,9 @@ namespace BankProject.Classes {
         }
 
 
-        public ClassBranch(int idBranch, string name, string city)
+        public ClassBranch(int branchId, string name, string city)
         {
-            IdBranch = idBranch;
+            BranchId = branchId;
             Name = name;
             City = city;
             MyListCustomers = null;
@@ -43,7 +43,7 @@ namespace BankProject.Classes {
 
         public override string ToString() {
             string _result = string.Empty;
-            _result += $"IdBranch :{IdBranch}\n";
+            _result += $"BranchId :{BranchId}\n";
             _result += $"Name :{Name}\n";
             _result += $"City :{City} \n";
             _result += $"MyListCustomers : [\n";

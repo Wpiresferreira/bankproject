@@ -253,7 +253,7 @@ namespace BankProject.Classes
                                 //Create new Branch object
                                 ClassBranch _newBranch = new ClassBranch()
                                 {
-                                    IdBranch = (int)myReader["branchId"],
+                                    BranchId = (int)myReader["branchId"],
                                     Name = (string)myReader["name"],
                                     City = (string)myReader["city"]
                                 };

@@ -33,7 +33,7 @@ namespace BankProject.UserControls
                 //Find Branch data that corresponds to Branch of Logged User
                 foreach (ClassBranch b in MyController.MyListBranches)
                 {
-                    if (b.IdBranch == MyController.MyUserLogged.BranchId)
+                    if (b.BranchId == MyController.MyUserLogged.BranchId)
                     {
                         //Bind Data
                         listViewListCustomersFromMyBranch.ItemsSource = b.MyListCustomers;

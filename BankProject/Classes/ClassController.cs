@@ -42,7 +42,7 @@ namespace BankProject.Classes
             MyListBranches = MySqlClient.GetListOfBranches();
 
             foreach (ClassBranch b in MyListBranches) {
-                int _branchId = b.IdBranch;
+                int _branchId = b.BranchId;
                 b.MyListCustomers = MySqlClient.GetListCustomersOfSpecificBranch(_branchId);
                 b.MyListEmployees = MySqlClient.GetListEmployeesOfSpecificBranch(_branchId);
 
