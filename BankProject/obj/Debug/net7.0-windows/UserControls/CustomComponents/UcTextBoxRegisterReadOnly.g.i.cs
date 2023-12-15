@@ -69,8 +69,8 @@ namespace BankProject.UserControls {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BankProject;component/usercontrols/customcomponents/uctextboxregisterreadonly.xa" +
-                    "ml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BankProject;V1.0.0.0;component/usercontrols/customcomponents/uctextboxregisterre" +
+                    "adonly.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\UserControls\CustomComponents\UcTextBoxRegisterReadOnly.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

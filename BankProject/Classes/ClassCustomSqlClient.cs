@@ -973,13 +973,13 @@ namespace BankProject.Classes
         /* ----------------------------------------------------------------------------------------------------------------------------------
            ---------------------------------------------------- TRANSACTION METHODS ---------------------------------------------------------
            ---------------------------------------------------------------------------------------------------------------------------------- */
-        public bool CreateTransaction(int inputAccountId, float inputAmountToDebit, float inputAmountToCredit, int inputOtherAccountId) {
+        public bool CreateTransaction(int inputAccountId, float inputAmountToDebit, float inputAmountToCredit, int inputOtherAccountId, string inputTypeTransaction) {
             //TRANSACTIONS MUST BE CREATED IN PAIRS
             //Build Insert Query
-            string insertQuery = "INSERT INTO dbo.Transactions (accountId, datetimeTransaction, amountDebit, amountCredit, otherAccountId) ";
+            string insertQuery = "INSERT INTO dbo.Transactions (accountId, datetimeTransaction, amountDebit, amountCredit, otherAccountId, typeTransaction) ";
             insertQuery += $"VALUES ";
-            insertQuery += $"(@ACCOUNTID, @DATETIMETRANSACTION, @AMOUNTDEBIT, @AMOUNTCREDIT, @OTHERACCOUNTID), ";     //Transaction
-            insertQuery += $"(@OTHERACCOUNTID, @DATETIMETRANSACTION, @AMOUNTCREDIT, @AMOUNTDEBIT, @ACCOUNTID); ";    //Mirror Transaction
+            insertQuery += $"(@ACCOUNTID, @DATETIMETRANSACTION, @AMOUNTDEBIT, @AMOUNTCREDIT, @OTHERACCOUNTID, @TYPETRANSACTION), ";     //Transaction
+            insertQuery += $"(@OTHERACCOUNTID, @DATETIMETRANSACTION, @AMOUNTCREDIT, @AMOUNTDEBIT, @ACCOUNTID, @TYPETRANSACTION); ";    //Mirror Transaction
 
             try
             {
@@ -993,6 +993,7 @@ namespace BankProject.Classes
                         cmd.Parameters.AddWithValue("@AMOUNTDEBIT", inputAmountToDebit);
                         cmd.Parameters.AddWithValue("@AMOUNTCREDIT", inputAmountToCredit);
                         cmd.Parameters.AddWithValue("@OTHERACCOUNTID", inputOtherAccountId);
+                        cmd.Parameters.AddWithValue("@TYPETRANSACTION", inputTypeTransaction);
 
                         cmd.ExecuteNonQuery();
                     }
