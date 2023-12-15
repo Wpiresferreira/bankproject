@@ -1,27 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BankProject.Classes {
-    public class ClassAbstractAccount : IComparable<ClassAbstractAccount> {
+namespace BankProject.Classes
+{
+    // Class representing an abstract bank account
+    public class ClassAbstractAccount : IComparable<ClassAbstractAccount>
+    {
 
+        // Properties of the account
         public int AccountId { get; set; }
         public int CustomerId { get; set; }
-        public float Balance {  get; set; }
+        public float Balance { get; set; }
         public DateTime MostRecentActivity { get; set; }
         public List<ClassTransaction> MyListAbstractTransactions { get; set; }
 
+        // Constructor to initialize the account
         public ClassAbstractAccount()
         {
             MyListAbstractTransactions = new List<ClassTransaction>();
         }
 
+        // Method to deposit money into the account
         public string Deposit(float amount)
         {
             if (amount > 0)
             {
+                // Update balance and record transaction
                 Balance += amount;
                 MostRecentActivity = DateTime.Now;
                 var depositTransaction = new ClassTransaction
@@ -39,12 +43,12 @@ namespace BankProject.Classes {
             }
         }
 
-
-
+        // Method to withdraw money from the account
         public string Withdraw(float amount)
         {
             if (amount > 0 && amount <= Balance)
             {
+                // Update balance and record transaction
                 Balance -= amount;
                 MostRecentActivity = DateTime.Now;
                 var withdrawalTransaction = new ClassTransaction
@@ -62,31 +66,29 @@ namespace BankProject.Classes {
             }
         }
 
-
-        public string  CheckBalance()
+        // Method to check the account balance
+        public string CheckBalance()
         {
             return $"Account Balance: {Balance:C}";
         }
 
-
-
+        // Method to generate a statement of all transactions
         public string CheckStatement()
         {
             string statement = "";
-
             foreach (var transaction in MyListAbstractTransactions)
             {
                 statement += transaction.ToString() + "\n";
             }
-
             return statement;
         }
 
-
+        // Method to transfer money to another account
         public string Transfer(float amount, int targetAccountId)
         {
             if (amount > 0 && amount <= Balance)
             {
+                // Update balances and record transactions for both accounts
                 Balance -= amount;
                 MostRecentActivity = DateTime.Now;
 
@@ -99,7 +101,6 @@ namespace BankProject.Classes {
                 };
                 MyListAbstractTransactions.Add(transferDebitTransaction);
 
-                // Simulate credit transaction on the target account
                 var transferCreditTransaction = new ClassTransaction
                 {
                     AccountId = targetAccountId,
@@ -108,17 +109,17 @@ namespace BankProject.Classes {
                     OtherAccountId = this.AccountId
                 };
 
-
-               return $"Transfer of {amount:C} to Account ID {targetAccountId} successful. New balance: {Balance:C}";
+                return $"Transfer of {amount:C} to Account ID {targetAccountId} successful. New balance: {Balance:C}";
             }
             else
             {
-               return "Invalid transfer amount or insufficient funds.";
+                return "Invalid transfer amount or insufficient funds.";
             }
         }
 
-
-        public int CompareTo(ClassAbstractAccount otherAccount) {
+        // Method required by the IComparable interface to compare accounts based on balance
+        public int CompareTo(ClassAbstractAccount otherAccount)
+        {
             return this.Balance.CompareTo(otherAccount.Balance);
         }
     }
