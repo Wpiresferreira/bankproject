@@ -16,5 +16,5 @@ C:\Users\rafam\OneDrive\Documentos\GitHub\bankproject\BankProject\App.xaml
 202-850896320
 UserControls\CustomComponents\UcInfoCardDashboard.xaml;UserControls\CustomComponents\UcOptionRegister.xaml;UserControls\CustomComponents\UcOrderDashboard.xaml;UserControls\CustomComponents\UcTextBoxRegister.xaml;UserControls\UcAccountEditSave.xaml;UserControls\UcAccountSearch.xaml;UserControls\UcAccountStatment.xaml;UserControls\UcCreateNewBranch.xaml;UserControls\UcCustomerEditSave.xaml;UserControls\UcCustomerSearch.xaml;UserControls\UcDashboard.xaml;UserControls\UcListBranches.xaml;UserControls\UcListCustomersFromMyBranch.xaml;UserControls\UcMakeDeposit.xaml;UserControls\UcWallet.xaml;Windows\WindowFrame.xaml;Windows\WindowLogin.xaml;Windows\WindowRegister.xaml;
 
-True
+False
 

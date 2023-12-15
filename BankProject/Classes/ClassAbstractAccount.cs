@@ -107,9 +107,7 @@ namespace BankProject.Classes {
                     AmountCredit = amount,
                     OtherAccountId = this.AccountId
                 };
-                // Assuming the target account is another instance of ClassAbstractAccount
-                // and you have access to it, you can add the credit transaction to its transaction list
-                // targetAccount.MyListAbstractTransactions.Add(transferCreditTransaction);
+
 
                return $"Transfer of {amount:C} to Account ID {targetAccountId} successful. New balance: {Balance:C}";
             }
