@@ -52,7 +52,7 @@ namespace BankProject.Classes
 
                     foreach (ClassAbstractAccount aa in c.MyListAccounts) {
                         int _accountId = aa.AccountId;
-                        aa.MyListAbstractTransactions = MySqlClient.GetListTransactionsOfSpecificAccount(_accountId);
+                        aa.MyListTransactions = MySqlClient.GetListTransactionsOfSpecificAccount(_accountId);
                     }
                 }
             }
