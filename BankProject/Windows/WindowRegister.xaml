@@ -10,7 +10,7 @@
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="350" />
+            <ColumnDefinition Width="300" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
@@ -21,12 +21,12 @@
         </StackPanel>
         
         <!--Left Section-->
-        <Border Background="#ffd500" Padding="30" CornerRadius="25 0 0 25">
+        <Border Background="#ffd500" Padding="10" CornerRadius="25 0 0 25">
             <StackPanel VerticalAlignment="Center">
                 <Image Source="../Images/IconUser.png" Width="160" Height="160" Margin="0 0 0 40" />
 
                 <TextBlock Text="Let's get you set up" TextAlignment="Center" FontWeight="SemiBold" FontSize="28" Foreground="#363636" />
-                <TextBlock Text="It should only take a couple of minutes to pair with your watch" TextWrapping="Wrap" TextAlignment="Center" FontSize="16" Foreground="#363636" Margin="0 20 0 20" />
+                <TextBlock Text="It should only take a couple of minutes" TextWrapping="Wrap" TextAlignment="Center" FontSize="16" Foreground="#363636" Margin="0 20 0 20" />
 
                 <Button Style="{StaticResource buttonBlack_Register}" Click="ButtonBack_Click">
                     <fa:ImageAwesome Icon="AngleLeft" Width="25" Height="25" Foreground="#ffd500" Margin="0 0 5 0" />
@@ -41,8 +41,11 @@
             <Grid>
                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 10 0 0">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120" />
                         <ColumnDefinition Width="150" />
-                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="150" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto" />
@@ -55,22 +58,22 @@
 
                     </Grid.RowDefinitions>
 
-                    <TextBlock Grid.Row="0" Text="First Name" Style="{StaticResource text_Register}" />
-                    <TextBlock Grid.Row="1" Text="Last Name" Style="{StaticResource text_Register}" />
-                    <TextBlock Grid.Row="2" Text="Date of Birth" Style="{StaticResource text_Register}" />
-                    <TextBlock Grid.Row="3" Text="Phone" Style="{StaticResource text_Register}" />
-                    <TextBlock Grid.Row="4" Text="Email" Style="{StaticResource text_Register}" />
-                    <TextBlock Grid.Row="5" Text="Password" Style="{StaticResource text_Register}" />
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="First Name" Style="{StaticResource text_Register}" />
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Last Name" Style="{StaticResource text_Register}" />
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Date of Birth" Style="{StaticResource text_Register}" />
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Phone" Style="{StaticResource text_Register}" />
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Email" Style="{StaticResource text_Register}" />
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="Password" Style="{StaticResource text_Register}" />
 
-                    <uc:UcTextBoxRegister x:Name="myTextBoxFirstName" Grid.Column="1" Grid.Row="0" Hint="John" />
-                    <uc:UcTextBoxRegister x:Name="myTextBoxLastName" Grid.Column="1" Grid.Row="1" Hint="Doe" />
-                    <uc:UcTextBoxRegister x:Name="myTextBoxDataOfBirth" Grid.Column="1" Grid.Row="2" Hint="01/01/2000" />
-                    <uc:UcTextBoxRegister x:Name="myTextBoxPhone" Grid.Column="1" Grid.Row="3" Hint="+1 234 567 8910" />
-                    <uc:UcTextBoxRegister x:Name="myTextBoxEmail" Grid.Column="1" Grid.Row="4" Hint="johndoe@email.com" />
-                    <PasswordBox x:Name="myTextBoxPassword" Grid.Column="1" Grid.Row="5" Style="{StaticResource passwordBox_Register}" />
+                    <uc:UcTextBoxRegister Grid.Row="0" Grid.Column="1" x:Name="myTextBoxFirstName" Hint="John" />
+                    <uc:UcTextBoxRegister Grid.Row="1" Grid.Column="1" x:Name="myTextBoxLastName" Hint="Doe" />
+                    <uc:UcTextBoxRegister Grid.Row="2" Grid.Column="1" x:Name="myTextBoxDataOfBirth" Hint="01/01/2000" />
+                    <uc:UcTextBoxRegister Grid.Row="3" Grid.Column="1" x:Name="myTextBoxPhone" Hint="+1 234 567 8910" />
+                    <uc:UcTextBoxRegister Grid.Row="4" Grid.Column="1" x:Name="myTextBoxEmail" Hint="johndoe@email.com" />
+                    <PasswordBox Grid.Row="5" Grid.Column="1" x:Name="myTextBoxPassword" Style="{StaticResource passwordBox_Register}" />
 
 
-                    <Grid Grid.Column="1" Grid.Row="7" Margin="0 40 0 0">
+                    <Grid Grid.Row="7" Grid.Column="4" Margin="0 40 0 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />

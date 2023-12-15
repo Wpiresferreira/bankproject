@@ -9,10 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 
-namespace BankProject.Classes
-{
-    public class ClassCustomer : ClassAbstractPerson
-    {
+namespace BankProject.Classes {
+    public class ClassCustomer : ClassAbstractPerson {
+
         public int CustomerId { get; set; }
         public ClassEmployee? FinancialAdvisor { get; set; }
         public List<ClassAbstractAccount>? MyListAccounts { get; set; }
@@ -23,9 +22,7 @@ namespace BankProject.Classes
         }
 
 
-
-        public override string ToString()
-        {
+        public override string ToString() {
             string _result = $"CustomerId: {CustomerId}\n";
             _result += $"FirstName: {FirstName}\n";
             _result += $"LastName: {LastName}\n";
@@ -43,16 +40,5 @@ namespace BankProject.Classes
             _result += $"]\n";
             return _result;
         }
-
-
-        public string DetailsAllMyAccounts()
-        {
-            string _result = string.Empty;
-            return _result;
-        }
-
     }
-
-
-    
 }

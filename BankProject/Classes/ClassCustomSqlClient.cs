@@ -27,7 +27,6 @@ namespace BankProject.Classes
 
         public ClassCustomSqlClient()
         {
-
             ConnectToLocalDatabase = true;
 
             //Build Connection String
@@ -82,7 +81,7 @@ namespace BankProject.Classes
         }
 
 
-        public (ClassUserLogged?, int?) AuthenticateLogin(string inputEmail, string inputPassword)
+        public ClassUserLogged? AuthenticateLogin(string inputEmail, string inputPassword)
         {
             //Build Select Query
             string selectQuery = "SELECT employeeId, firstName, lastName, emailAddress, positionId, branchId ";
@@ -109,16 +108,16 @@ namespace BankProject.Classes
                                     FirstName = (string)myReader["firstName"],
                                     LastName = (string)myReader["lastName"],
                                     Email = (string)myReader["emailAddress"],
-                                    PositionId = (int)myReader["positionId"]
+                                    PositionId = (int)myReader["positionId"],
+                                    BranchId = (int)myReader["branchId"]
                                 };
-                                int MyUserLoggedBranchId = (int)myReader["branchId"];
-                                Debug.WriteLine($"Login Sucessful\nLogged in as: {MyUserLogged.FirstName} {MyUserLogged.LastName}\nBranchId: {MyUserLoggedBranchId}");
-                                return (MyUserLogged, MyUserLoggedBranchId);
+                                Debug.WriteLine($"Login Sucessful\nLogged in as: {MyUserLogged.FirstName} {MyUserLogged.LastName}\nBranchId: {MyUserLogged.BranchId}");
+                                return MyUserLogged;
                             }
                             else
                             {
                                 MessageBox.Show("Incorrect Credentials!");
-                                return (null, null);
+                                return null;
                             }
                         }
                     }
@@ -127,7 +126,7 @@ namespace BankProject.Classes
             catch (Exception ex)
             {
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
-                return (null, null);
+                return null;
             }
         }
 
@@ -254,7 +253,7 @@ namespace BankProject.Classes
                                 //Create new Branch object
                                 ClassBranch _newBranch = new ClassBranch()
                                 {
-                                    IdBranch = (int)myReader["branchId"],
+                                    BranchId = (int)myReader["branchId"],
                                     Name = (string)myReader["name"],
                                     City = (string)myReader["city"]
                                 };
@@ -470,7 +469,7 @@ namespace BankProject.Classes
             }
         }
 
-
+        
         public List<ClassTransaction> GetListTransactionsOfSpecificAccount(int inputAccountId)
         {
             //Initialize list of transactions
@@ -483,8 +482,7 @@ namespace BankProject.Classes
 
             try
             {
-                using (SqlConnection cnn = new SqlConnection(ConnectionString))
-                {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
                     using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
                     {
                         cnn.Open();
@@ -596,8 +594,6 @@ namespace BankProject.Classes
         internal bool UpdateCustomer(string customerId, string firstName, string lastName, string dateOfBirth, string documentType, string documentNumber, string documentIssuedDate, string documentExpirationDate, string zipCode, string line1, string line2, string city, string province, string country, string phoneNumber, string emailAddress, string branchId, string financialAdvisorId)
         {
             //Build Update Query
-
-
             string updateQuery = "UPDATE dbo.Customers ";
             updateQuery += "SET firstName = @FIRSTNAME, lastName = @LASTNAME, dateOfBirth = @DATEOFBIRTH, ";
             updateQuery += " documentType = @DOCUMENTTYPE, documentNumber = @DOCUMENTNUMBER, documentIssuedDate = @DOCUMENTISSUEDDATE, "; ;
@@ -635,7 +631,6 @@ namespace BankProject.Classes
                         return true;
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -644,7 +639,7 @@ namespace BankProject.Classes
             }
         }
 
-        public ClassCheckingAccount SearchChekingAccount(string accountId)
+        public ClassCheckingAccount SearchCheckingAccount(string accountId)
         {
             //Build Select Query
             string selectQuery = "";
@@ -666,7 +661,6 @@ namespace BankProject.Classes
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             reader.Read();
-
 
                             ClassCheckingAccount AccountSelected = new ClassCheckingAccount()
                             {
@@ -754,7 +748,6 @@ namespace BankProject.Classes
                             AccountSelected.MostRecentActivity = Convert.ToDateTime(reader["mostRecentActivity"]);
                             AccountSelected.InterestRate = float.Parse(reader["interestRate"].ToString());
 
-
                             return AccountSelected;
                         }
                     }
@@ -769,12 +762,11 @@ namespace BankProject.Classes
 
         }
 
+
         public int CreateNewAccount(string customerId, string accountType, string monthlyFee,
            string interestRate)
         {
             //Build Insert Query
-
-
             string insertQuery = "INSERT INTO dbo.Accounts (customerId, balance, mostRecentActivity, interestRate, monthlyFee, isOverdrafted, accountType) ";
             insertQuery += $"VALUES (@CUSTOMERID, @BALANCE, @MOSTRECENTACTIVITY, @INTERESTRATE, @MONTHLYFEE, @ISOVERDRAFTED, @ACCOUNTTYPE); ";
 
@@ -812,7 +804,6 @@ namespace BankProject.Classes
                         return (int)cmd.ExecuteScalar();
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -825,8 +816,6 @@ namespace BankProject.Classes
            string interestRate)
         {
             //Build Update Query
-
-
             string updateQuery = "UPDATE dbo.Accounts ";
             updateQuery += "SET monthlyFee = @MONTHLYFEE, interestRate = @INTERESTRATE";
             updateQuery += " WHERE accountId = @ACCOUNTID ";
@@ -846,7 +835,41 @@ namespace BankProject.Classes
                         return true;
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
+                return false;
+            }
+        }
 
+
+
+        public bool CreateTransaction(int inputAccountId, float inputAmountToDebit, float inputAmountToCredit, int inputOtherAccountId) {
+            //TRANSACTIONS MUST BE CREATED IN PAIRS
+            //Build Insert Query
+            string insertQuery = "INSERT INTO dbo.Transactions (accountId, datetimeTransaction, amountDebit, amountCredit, otherAccountId) ";
+            insertQuery += $"VALUES ";
+            insertQuery += $"(@ACCOUNTID, @DATETIMETRANSACTION, @AMOUNTDEBIT, @AMOUNTCREDIT, @OTHERACCOUNTID), ";     //Transaction
+            insertQuery += $"(@OTHERACCOUNTID, @DATETIMETRANSACTION, @AMOUNTCREDIT, @AMOUNTDEBIT, @ACCOUNTID); ";    //Mirror Transaction
+
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(insertQuery, cnn))
+                    {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@ACCOUNTID", inputAccountId);
+                        cmd.Parameters.AddWithValue("@DATETIMETRANSACTION", DateTime.Now);
+                        cmd.Parameters.AddWithValue("@AMOUNTDEBIT", inputAmountToDebit);
+                        cmd.Parameters.AddWithValue("@AMOUNTCREDIT", inputAmountToCredit);
+                        cmd.Parameters.AddWithValue("@OTHERACCOUNTID", inputOtherAccountId);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                return true;
             }
             catch (Exception ex)
             {

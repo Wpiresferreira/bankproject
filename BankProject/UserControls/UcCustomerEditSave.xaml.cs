@@ -37,11 +37,11 @@ namespace BankProject.UserControls
 
         public UcCustomerEditSave(ClassController myController)
         {
+            InitializeComponent();
             MySqlClient = new ClassCustomSqlClient();
             MyController = myController;
             MyUserLogged = myController.MyUserLogged;
             myTextBoxCustomerId.textBox.IsEnabled = false;
-            InitializeComponent();
         }
 
         public UcCustomerEditSave(ClassController myController, ClassCustomer myCustomerSelected)

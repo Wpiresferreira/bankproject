@@ -33,6 +33,7 @@ namespace BankProject
             MyUserLogged = MyController.MyUserLogged;
 
             nameMenu.Text = $"{MyUserLogged.FirstName} {MyUserLogged.LastName}";
+            lowerTextMenu.Text = $"Branch {MyUserLogged.BranchId}";
             initialsMenu.Text = $"{MyUserLogged.FirstName[0].ToString().ToUpper()}{MyUserLogged.LastName[0].ToString().ToUpper()}";
             UcDashboard newDashboard = new UcDashboard(MyController);
             TabItem newTabItem = new TabItem();
@@ -128,6 +129,19 @@ namespace BankProject
             SwitchTabs(newMakeDeposit, buttonPressed);
         }
 
+
+        private void ButtonMakeWithdraw_Click(object sender, RoutedEventArgs e) {
+            UcMakeWithdraw newMakeWithdraw = new UcMakeWithdraw(MyController);
+            Button buttonPressed = (Button)sender;
+            SwitchTabs(newMakeWithdraw, buttonPressed);
+        }
+
+
+        private void ButtonMakeTransfer_Click(object sender, RoutedEventArgs e) {
+            UcMakeTransfer newMakeTransfer = new UcMakeTransfer(MyController);
+            Button buttonPressed = (Button)sender;
+            SwitchTabs(newMakeTransfer, buttonPressed);
+        }
 
         public void SwitchTabs(object newUserControl, Button buttonPressed)
         {

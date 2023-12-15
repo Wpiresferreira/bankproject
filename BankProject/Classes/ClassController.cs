@@ -9,15 +9,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace BankProject.Classes
-{
-    public class ClassController
-    {
+namespace BankProject.Classes {
+    public class ClassController {
+
         private ClassCustomSqlClient MySqlClient { get; set; }
         public ClassUserLogged? MyUserLogged { get; set; }
-        public int? MyUserLoggedBranchId { get; set; }
         public List<ClassBranch>? MyListBranches { get; set; }
-
 
 
         public ClassController()
@@ -25,11 +22,11 @@ namespace BankProject.Classes
             MySqlClient = new ClassCustomSqlClient();
             MyUserLogged = null;
             MyListBranches = new List<ClassBranch>();
-
         }
 
+
         public void LoginUser(string inputEmail, string inputPassword) {
-            (MyUserLogged, MyUserLoggedBranchId) = MySqlClient.AuthenticateLogin(inputEmail, inputPassword);
+            MyUserLogged = MySqlClient.AuthenticateLogin(inputEmail, inputPassword);
             
             if (MyUserLogged != null) {
                 //Populate MyController.MyListBranches
@@ -44,7 +41,7 @@ namespace BankProject.Classes
             MyListBranches = MySqlClient.GetListOfBranches();
 
             foreach (ClassBranch b in MyListBranches) {
-                int _branchId = b.IdBranch;
+                int _branchId = b.BranchId;
                 b.MyListCustomers = MySqlClient.GetListCustomersOfSpecificBranch(_branchId);
                 b.MyListEmployees = MySqlClient.GetListEmployeesOfSpecificBranch(_branchId);
 
@@ -54,7 +51,7 @@ namespace BankProject.Classes
 
                     foreach (ClassAbstractAccount aa in c.MyListAccounts) {
                         int _accountId = aa.AccountId;
-                        aa.MyListAbstractTransactions = MySqlClient.GetListTransactionsOfSpecificAccount(_accountId);
+                        aa.MyListTransactions = MySqlClient.GetListTransactionsOfSpecificAccount(_accountId);
                     }
                 }
             }
@@ -82,14 +79,77 @@ namespace BankProject.Classes
         }
 
 
-        public bool MakeDeposit(int inputAccountId, float inputAmountToDeposit) {
+        public bool MakeDeposit(int inputAccountIdDestination, float inputAmountToCredit) {
 
-            int _otherAccountId = 19; //Account INTERNAL BANK
+             int _accountIdOrigin = 9; //Account INTERNAL BANK
+
+            //Check input data
+            if (inputAmountToCredit <= 0) {
+                MessageBox.Show($"[ERROR] Amount to Credit must be a positive number!");
+                return false;
+            }
+            else if (inputAccountIdDestination <= 0) {
+                MessageBox.Show($"[ERROR] Invalid Account Id!");
+                return false;
+            }
+
+            //Create Transaction
+             if(MySqlClient.CreateTransaction(inputAccountIdDestination, 0, inputAmountToCredit, _accountIdOrigin)) {
+                PopulateMyListBranches();
+                return true;
+            };
+
+             return false;
+        }
 
 
-            //MySqlClient.CreateTransaction(inputAccountId, inputAmountToDeposit, _otherAccountId, 0);
+        public bool MakeWithdraw(int inputAccountIdOrigin, float inputAmountToDebit) {
 
-            return true;
+             int _accountIdDestination = 9; //Account INTERNAL BANK
+
+            //Check input data
+            if (inputAmountToDebit <= 0) {
+                MessageBox.Show($"[ERROR] Amount to Debit must be a positive number!");
+                return false;
+            }
+            else if (inputAccountIdOrigin <= 0) {
+                MessageBox.Show($"[ERROR] Invalid Account Id!");
+                return false;
+            }
+
+            //Create Transaction
+             if(MySqlClient.CreateTransaction(inputAccountIdOrigin, inputAmountToDebit, 0, _accountIdDestination)) {
+                PopulateMyListBranches();
+                return true;
+            };
+
+             return false;
+        }
+
+
+        public bool MakeTransfer(int inputAccountIdOrigin, int inputAccountIdDestination, float inputAmountToTransfer) {
+
+            //Check input data
+            if (inputAmountToTransfer <= 0) {
+                MessageBox.Show($"[ERROR] Amount to Transfer must be a positive number!");
+                return false;
+            }
+            else if (inputAccountIdOrigin <= 0) {
+                MessageBox.Show($"[ERROR] Invalid Account Id Origin!");
+                return false;
+            }
+            else if (inputAccountIdDestination <= 0) {
+                MessageBox.Show($"[ERROR] Invalid Account Id Destination!");
+                return false;
+            }
+
+            //Create Transaction
+             if(MySqlClient.CreateTransaction(inputAccountIdOrigin, inputAmountToTransfer, 0, inputAccountIdDestination)) {
+                PopulateMyListBranches();
+                return true;
+            };
+
+             return false;
         }
     }
 }

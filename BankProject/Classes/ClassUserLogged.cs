@@ -5,13 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BankProject.Classes {
-    public class ClassUserLogged {
+    public class ClassUserLogged : ClassEmployee {
 
-        public int EmployeeId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
         public int PositionId { get; set; }
+        public int BranchId { get; set; }
 
 
         public ClassUserLogged() {

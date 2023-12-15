@@ -20,16 +20,13 @@ namespace BankProject.UserControls {
     /// </summary>
     public partial class UcMakeDeposit : UserControl {
 
-        ClassCustomSqlClient MySqlClient;
         public ClassController MyController { get; set; }
         public ClassUserLogged MyUserLogged { get; set; }
 
 
         public UcMakeDeposit(ClassController myController) {
-            MySqlClient = new ClassCustomSqlClient();
             MyController = myController;
             MyUserLogged = myController.MyUserLogged;
-
             InitializeComponent();
         }
 
@@ -47,7 +44,7 @@ namespace BankProject.UserControls {
                 MessageBox.Show($"[Deposit Done] AccountId: {_accountId} | Amount Deposited: {_amountToDeposit}");
             }
             else {
-                MessageBox.Show($"[ERROR] There was a problem making ...");
+                MessageBox.Show($"[ERROR] There was a problem making the deposit transaction...");
             }
 
         }

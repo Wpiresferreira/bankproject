@@ -11,11 +11,6 @@ namespace BankProject.Classes {
         public float InterestRate { get; set; }
 
 
-        public void SetInterestRate(float newInterestRate) {
-            InterestRate = newInterestRate;
-        }
-
-
         public override string ToString() {
             string _result = $"[SAVINGS ACCOUNT] AccountId: {AccountId}";
             _result += $" | Balance: {Balance}";
