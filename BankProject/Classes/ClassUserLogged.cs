@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace BankProject.Classes {
     public class ClassUserLogged : ClassEmployee {
-
-        public int PositionId { get; set; }
         public int BranchId { get; set; }
 
 

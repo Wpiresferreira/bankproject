@@ -31,6 +31,9 @@
     <Compile Update="UserControls\UcCreateNewBranch.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UserControls\UcCreateNewEmployee.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UserControls\UcCustomerEditSave.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -50,6 +53,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UserControls\UcMakeWithdraw.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserControls\CustomComponents\UcTextBoxRegisterReadOnly.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="UserControls\UcWallet.xaml.cs">
@@ -93,6 +99,9 @@
     <Page Update="UserControls\UcCreateNewBranch.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="UserControls\UcCreateNewEmployee.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UserControls\UcCustomerEditSave.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -112,6 +121,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\UcMakeWithdraw.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\CustomComponents\UcTextBoxRegisterReadOnly.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\UcWallet.xaml">

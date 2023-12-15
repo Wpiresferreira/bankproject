@@ -11,6 +11,7 @@ namespace BankProject.Classes {
         protected string Password { get; set; }
         public ClassEmployee? Manager { get; set; }
         public DateOnly StartDate { get; set; }
+        public int PositionId { get; set; }
 
 
         public void SetManager(ClassEmployee newManager) {

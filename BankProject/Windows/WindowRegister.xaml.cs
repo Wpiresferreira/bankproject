@@ -51,16 +51,16 @@ namespace BankProject {
             string inputPositionId = "3";
             string inputPassword = myTextBoxPassword.Password;
 
-            if(MySqlClient.CreateNewEmployee(inputFirstName, inputLastName, inputEmail, inputPhone, inputPositionId, inputPassword)) {
-                MessageBox.Show($"[New User Added] New User {inputFirstName} {inputLastName} was registered!");
+            //if(MySqlClient.CreateNewEmployee(inputFirstName, inputLastName, inputEmail, inputPhone, inputPositionId, inputPassword)) {
+            //    MessageBox.Show($"[New User Added] New User {inputFirstName} {inputLastName} was registered!");
                 
-                //Switch windows
-                this.Close();
-                this.Owner.Show();
-            }
-            else {
-                MessageBox.Show($"[ERROR] Something went wrong...");
-            }
+            //    //Switch windows
+            //    this.Close();
+            //    this.Owner.Show();
+            //}
+            //else {
+            //    MessageBox.Show($"[ERROR] Something went wrong...");
+            //}
 
 
         }

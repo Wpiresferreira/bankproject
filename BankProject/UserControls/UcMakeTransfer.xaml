@@ -52,8 +52,8 @@
                                     <RowDefinition Height="auto" />
                                 </Grid.RowDefinitions>
 
-                                <TextBlock Grid.Row="0" Grid.Column="0" Focusable="True" Text="Account Id From:" Style="{StaticResource text_Register}" Foreground="White"/>
-                                <TextBlock Grid.Row="1" Grid.Column="0" Focusable="True" Text="Account Id To:" Style="{StaticResource text_Register}" Foreground="White"/>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Focusable="True" Text="Account Id Origin:" Style="{StaticResource text_Register}" Foreground="White"/>
+                                <TextBlock Grid.Row="1" Grid.Column="0" Focusable="True" Text="Account Id Destination:" Style="{StaticResource text_Register}" Foreground="White"/>
                                 <TextBlock Grid.Row="2" Grid.Column="0" Focusable="True" Text="Amount To Transfer (CAD):" Style="{StaticResource text_Register}"  Foreground="White" />
 
 

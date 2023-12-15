@@ -100,6 +100,14 @@ namespace BankProject
         }
 
 
+        private void ButtonCreateNewEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            UcCreateNewEmployee newCreateNewEmployee = new UcCreateNewEmployee(MyController);
+            Button buttonPressed = (Button)sender;
+            SwitchTabs(newCreateNewEmployee, buttonPressed);
+        }
+
+
         private void ButtonCreateNewBranch_Click(object sender, RoutedEventArgs e)
         {
             UcCreateNewBranch newCreateNewBranch = new UcCreateNewBranch(MyController);
