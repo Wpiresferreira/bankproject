@@ -65,4 +65,15 @@ namespace BankProject.Classes {
             return _result;
         }
     }
+
+    public class ClassZipCode {
+
+        public string ZipCode { get; set; }
+        public string City { get; set; }
+        public string Province { get; set; }
+        public string Country { get; set; }
+        public ClassZipCode() { }
+
+
+    }
 }

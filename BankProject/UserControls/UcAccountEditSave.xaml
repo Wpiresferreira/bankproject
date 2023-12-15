@@ -7,7 +7,7 @@
              xmlns:uc="clr-namespace:BankProject.UserControls"
              xmlns:local="clr-namespace:BankProject.UserControls"
              mc:Ignorable="d"  Background="Transparent" Height="700" Width="1000"
-             Focusable="True">
+             Focusable="True" >
 
     <Border CornerRadius="0" BorderThickness="0">
         <Border.Background>
@@ -53,6 +53,7 @@
 
                             <TextBlock Grid.Row="0" Text="Account ID" Style="{StaticResource text_Register}" Foreground="White"/>
                             <TextBlock Grid.Row="1" Text="Customer ID" Style="{StaticResource text_Register}" Foreground="White"/>
+                            <TextBlock x:Name="MyTextBlockCustomerName" Margin=" 10 0 0 0" Grid.Row="1" Text="Customer Name" Grid.Column="2" Style="{StaticResource text_Register}" Foreground="White"/>
                             <TextBlock Grid.Row="2" Text="Account Type" Style="{StaticResource text_Register}" Foreground="White"/>
                             <TextBlock Grid.Row="3" Text="Monthly Fee" Style="{StaticResource text_Register}" Foreground="White"/>
                             <TextBlock Grid.Row="4" Text="Interest Rate" Style="{StaticResource text_Register}" Foreground="White"/>

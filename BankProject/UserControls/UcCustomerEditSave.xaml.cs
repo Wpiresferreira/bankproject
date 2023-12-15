@@ -151,5 +151,26 @@ namespace BankProject.UserControls
             parentWindow.SwitchTabs(newUcCustomerSearch);
 
         }
+
+       
+
+        private void myTextBoxZipCode_LostFocus(object sender, RoutedEventArgs e)
+        {
+
+            string inputZipCode = myTextBoxZipCode.textBox.Text;
+            ClassZipCode MyZipCode = MySqlClient.UpdateZipCode(inputZipCode);
+
+            if (MyZipCode == null)
+            {
+                MessageBox.Show("Invalid Zip Code.");
+            }
+            else
+            {
+                myTextBoxCity.textBox.Text = MyZipCode.City;
+                myTextBoxProvince.textBox.Text = MyZipCode.Province;
+                myTextBoxCountry.textBox.Text = MyZipCode.Country;
+                myTextBoxZipCode.textBox.Text = MyZipCode.ZipCode;
+            }
+        }
     }
 }

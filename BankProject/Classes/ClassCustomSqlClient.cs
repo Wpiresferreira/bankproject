@@ -896,11 +896,115 @@ namespace BankProject.Classes
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
                 return false;
             }
-
         }
 
 
 
+
+
+
+        internal ClassZipCode UpdateZipCode(string inputZipCode)
+        {
+            //Build Select Query
+            string selectQuery = "";
+            if (inputZipCode.Length == 6)
+            {
+                string inputZipCodeFormated = inputZipCode.Substring(0, 3) + " " + inputZipCode.Substring(3);
+                selectQuery = $"SELECT * FROM dbo.ZipCode ";
+                selectQuery += $"WHERE postalCode = '" + inputZipCodeFormated + "'";
+            }
+            else
+            {
+                selectQuery = $"SELECT * FROM dbo.ZipCode ";
+                selectQuery += $"WHERE postalCode = '" + inputZipCode + "'";
+            };
+
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
+                        cnn.Open();
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            reader.Read();
+
+                            ClassZipCode MyZipCode = new ClassZipCode()
+                            {
+                                ZipCode = (string)reader["postalCode"],
+                                City = (string)reader["city"],
+                                Province = (string)reader["province"],
+                                Country = (string)reader["country"],
+                            };
+                            return MyZipCode;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        internal ClassCustomer GetCustomerById(int id)
+        {
+            //Build Select Query
+            string selectQuery = "";
+            selectQuery = $"SELECT * FROM dbo.Customers ";
+            selectQuery += $"WHERE customerId = @CUSTOMERID";
+
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@CUSTOMERID", id);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            reader.Read();
+
+                            ClassCustomer customer = new ClassCustomer()
+                            {
+                                CustomerId = (int)reader["customerId"],
+                                FirstName = (string)reader["firstName"],
+                                LastName = (string)reader["lastName"],
+                                DateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(reader["dateOfBirth"])),
+                                Document = new ClassDocument()
+                                {
+                                    DocumentType = (string)reader["documentType"],
+                                    DocumentNumber = (string)reader["documentNumber"],
+                                    DocumentIssuedDate = DateOnly.FromDateTime(Convert.ToDateTime(reader["documentIssuedDate"])),
+                                    DocumentExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(reader["documentExpirationDate"]))
+                                },
+                                Address = new ClassAddress()
+                                {
+                                    ZipCode = (string)reader["zipCode"],
+                                    Line1 = (string)reader["line1"],
+                                    Line2 = Convert.IsDBNull(reader["line2"]) ? null : (string)reader["line2"],
+                                    City = (string)reader["city"],
+                                    Province = (string)reader["province"],
+                                    Country = (string)reader["country"]
+                                },
+                                Phone = (string)reader["phoneNumber"],
+                                Email = (string)reader["emailAddress"],
+                            };
+                            return customer;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
+                return null;
+            }
+        }
     }
 
 
