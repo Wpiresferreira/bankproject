@@ -150,7 +150,7 @@ namespace BankProject.Classes {
             }
 
             //Create Transaction
-             if(MySqlClient.CreateTransaction(inputAccountIdDestination, 0, inputAmountToCredit, _accountIdOrigin)) {
+             if(MySqlClient.CreateTransaction(inputAccountIdDestination, 0, inputAmountToCredit, _accountIdOrigin, "DEPOSIT")) {
                 PopulateMyListBranches(); //TODO: REFACTOR LATER
                 return true;
             };
@@ -174,7 +174,7 @@ namespace BankProject.Classes {
             }
 
             //Create Transaction
-             if(MySqlClient.CreateTransaction(inputAccountIdOrigin, inputAmountToDebit, 0, _accountIdDestination)) {
+             if(MySqlClient.CreateTransaction(inputAccountIdOrigin, inputAmountToDebit, 0, _accountIdDestination, "WITHDRAW")) {
                 PopulateMyListBranches(); //TODO: REFACTOR LATER
                 return true;
             };
@@ -200,7 +200,7 @@ namespace BankProject.Classes {
             }
 
             //Create Transaction
-             if(MySqlClient.CreateTransaction(inputAccountIdOrigin, inputAmountToTransfer, 0, inputAccountIdDestination)) {
+             if(MySqlClient.CreateTransaction(inputAccountIdOrigin, inputAmountToTransfer, 0, inputAccountIdDestination, "TRANSFER")) {
                 PopulateMyListBranches(); //TODO: REFACTOR LATER
                 return true;
             };

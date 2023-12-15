@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\wagne\source\repos\ourbank\BankProject\obj\Debug\net7.0-windows\
+C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\
 BankProject
 none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
-C:\Users\wagne\source\repos\ourbank\BankProject\App.xaml
-22-284645730
+C:\0_Github\bankproject\BankProject\App.xaml
+211427947346
 
-371988007917
-202-1738639308
-UserControls\CustomComponents\UcInfoCardDashboard.xaml;UserControls\CustomComponents\UcOptionRegister.xaml;UserControls\CustomComponents\UcOrderDashboard.xaml;UserControls\CustomComponents\UcTextBoxRegister.xaml;UserControls\CustomComponents\UcTextBoxRegisterReadOnly.xaml;UserControls\UcAccountEditSave.xaml;UserControls\UcAccountSearch.xaml;UserControls\UcAccountStatment.xaml;UserControls\UcCreateNewBranch.xaml;UserControls\UcCreateNewEmployee.xaml;UserControls\UcCustomerEditSave.xaml;UserControls\UcCustomerSearch.xaml;UserControls\UcDashboard.xaml;UserControls\UcListBranches.xaml;UserControls\UcListCustomersFromMyBranch.xaml;UserControls\UcMakeDeposit.xaml;UserControls\UcMakeTransfer.xaml;UserControls\UcMakeWithdraw.xaml;UserControls\UcWallet.xaml;Windows\WindowFrame.xaml;Windows\WindowLogin.xaml;Windows\WindowRegister.xaml;
+361601164157
+2021419982955
+UserControls\CustomComponents\UcInfoCardDashboard.xaml;UserControls\CustomComponents\UcOptionRegister.xaml;UserControls\CustomComponents\UcOrderDashboard.xaml;UserControls\CustomComponents\UcTextBoxRegister.xaml;UserControls\CustomComponents\UcTextBoxRegisterReadOnly.xaml;UserControls\UcAccountEditSave.xaml;UserControls\UcAccountSearch.xaml;UserControls\UcAccountStatment.xaml;UserControls\UcCreateNewBranch.xaml;UserControls\UcCreateNewEmployee.xaml;UserControls\UcCustomerEditSave.xaml;UserControls\UcCustomerSearch.xaml;UserControls\UcDashboard.xaml;UserControls\UcListBranches.xaml;UserControls\UcListCustomersFromMyBranch.xaml;UserControls\UcMakeDeposit.xaml;UserControls\UcMakeTransfer.xaml;UserControls\UcMakeWithdraw.xaml;UserControls\UcWallet.xaml;Windows\WindowFrame.xaml;Windows\WindowLogin.xaml;
 
-True
+False
 

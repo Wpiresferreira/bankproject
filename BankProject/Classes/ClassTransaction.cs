@@ -13,9 +13,7 @@ namespace BankProject.Classes {
         public float AmountDebit {  get; set; }
         public float AmountCredit {  get; set; }
         public int OtherAccountId { get; set; }
-
-        public string TypeTransaction {  get; set; }
-
+        public string TypeTransaction { get; set; }
         
 
         public override string ToString() {
