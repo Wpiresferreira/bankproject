@@ -76,9 +76,7 @@ C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\UserControls\Custom
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\Windows\WindowLogin.baml
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\Windows\WindowFrame.g.cs
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\Windows\WindowLogin.g.cs
-C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\Windows\WindowRegister.g.cs
 C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\Windows\WindowFrame.baml
-C:\0_Github\bankproject\BankProject\obj\Debug\net7.0-windows\Windows\WindowRegister.baml
 C:\Users\wagne\Source\Repos\bankproject\BankProject\bin\Debug\net7.0-windows\BankProject.exe
 C:\Users\wagne\Source\Repos\bankproject\BankProject\bin\Debug\net7.0-windows\BankProject.deps.json
 C:\Users\wagne\Source\Repos\bankproject\BankProject\bin\Debug\net7.0-windows\BankProject.runtimeconfig.json

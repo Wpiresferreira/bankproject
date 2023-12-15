@@ -15,7 +15,6 @@ namespace BankProject
 
         private ClassCustomSqlClient MySqlClient { get; set; }
         private ClassController MyController { get; set; }
-        private WindowRegister? MyWindowRegister { get; set; }
         private WindowFrame? MyWindowFrame { get; set; }
 
 
@@ -27,7 +26,6 @@ namespace BankProject
             MyController = new ClassController();
             MySqlClient = new ClassCustomSqlClient();
             //Initialize Windows
-            MyWindowRegister = null;
             MyWindowFrame = null;
         }
 
@@ -36,7 +34,6 @@ namespace BankProject
             //Reset Objects
             MyController.MyUserLogged = null;
             //Reset Windows
-            MyWindowRegister = null;
             MyWindowFrame = null;
             textBoxEmail.Focus();
         }
@@ -111,13 +108,6 @@ namespace BankProject
         }
 
 
-        private void ButtonRegister_Click(object sender, RoutedEventArgs e) {
-            //Switch windows
-            MyWindowRegister = new WindowRegister();
-            MyWindowRegister.Owner = this;
-            this.Hide();
-            MyWindowRegister.Show();
-        }
 
         private void PasswordBlock_KeyDown(object sender, KeyEventArgs e)
         {

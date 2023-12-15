@@ -67,9 +67,6 @@
     <Compile Update="Windows\WindowFrame.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Windows\WindowRegister.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Windows\WindowLogin.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -133,9 +130,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\WindowFrame.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Windows\WindowRegister.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Windows\WindowLogin.xaml">
