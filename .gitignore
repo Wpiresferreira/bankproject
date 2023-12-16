@@ -5,3 +5,9 @@
 ~$*
 *.vsidx
 /BankProject/obj/Debug/net7.0-windows/BankProject.AssemblyInfo.cs
+/BankProject/obj/Debug/net7.0-windows/BankProject.dll
+/BankProject/obj/Debug/net7.0-windows/BankProject.g.resources
+/BankProject/obj/Debug/net7.0-windows/BankProject.pdb
+/BankProject/obj/Debug/net7.0-windows/BankProject.sourcelink.json
+*.cache
+*.BuildWithSkipAnalyzers
