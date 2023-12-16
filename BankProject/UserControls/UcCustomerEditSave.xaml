@@ -73,16 +73,16 @@
                     <TextBlock Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Text="Last Name  " Style="{StaticResource text_Register}"  Foreground="White" TextAlignment="Right" />
                     <uc:UcTextBoxRegister x:Name="myTextBoxLastName" Grid.Column="6" Grid.ColumnSpan="2" Grid.Row="1" />
                     <TextBlock Grid.Row="1" Grid.Column="8" Grid.ColumnSpan="3" Text="Date of Birth  " Style="{StaticResource text_Register}"  Foreground="White" TextAlignment="Right" />
-                    <uc:UcTextBoxRegister x:Name="myTextBoxDateOfBirth" Grid.Column="11" Grid.ColumnSpan="2" Grid.Row="1" />
+                    <DatePicker x:Name="myTextBoxDateOfBirth" Grid.Column="11" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" />
 
                     <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="Doc Type  " Style="{StaticResource text_Register}"  Foreground="White" TextAlignment="Right" />
                     <uc:UcTextBoxRegister x:Name="myTextBoxDocumentType" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" />
                     <TextBlock Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="2" Text="Doc Number  " Style="{StaticResource text_Register}"  Foreground="White" TextAlignment="Right" />
                     <uc:UcTextBoxRegister x:Name="myTextBoxDocNumber" Grid.Column="6" Grid.ColumnSpan="2" Grid.Row="2" />
                     <TextBlock Grid.Row="2" Grid.Column="8" Grid.ColumnSpan="2" Text="Issued Date  " Style="{StaticResource text_Register}"  Foreground="White" TextAlignment="Right" />
-                    <uc:UcTextBoxRegister x:Name="myTextBoxIssuedDate" Grid.Column="10" Grid.ColumnSpan="2" Grid.Row="2" />
+                    <DatePicker x:Name="myTextBoxIssuedDate" Grid.Column="10" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center"/>
                     <TextBlock Grid.Row="2" Grid.Column="12" Grid.ColumnSpan="2" Text="Exp Date  " Style="{StaticResource text_Register}"  Foreground="White" TextAlignment="Right" />
-                    <uc:UcTextBoxRegister x:Name="myTextBoxExpDate" Grid.Column="14" Grid.ColumnSpan="2" Grid.Row="2" />
+                    <DatePicker x:Name="myTextBoxExpDate" Grid.Column="14" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center"/>
 
                     <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Text="Address" Style="{StaticResource text_Register}"  Foreground="White" />
                     <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="Zip Code  " Style="{StaticResource text_Register}"  Foreground="White" TextAlignment="Right" />

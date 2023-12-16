@@ -35,6 +35,7 @@ namespace BankProject.UserControls
             MyUserLogged = myController.MyUserLogged;
             InitializeComponent();
             myTextBoxAccountId.IsEnabled = false;
+            ButtonStatment.Visibility = Visibility.Collapsed;
         }
 
         public UcAccountEditSave(ClassController myController, ClassCheckingAccount myCheckingAccount)
@@ -46,13 +47,13 @@ namespace BankProject.UserControls
 
             myTextBoxAccountId.textBox.Text = myCheckingAccount.AccountId.ToString();
             myTextBoxCustomerId.textBox.Text = myCheckingAccount.CustomerId.ToString();
-            myTextBoxAccountType.textBox.Text = "CHECKING";
+            myTextBoxAccountType.Text = "CHECKING";
             myTextBoxMonthlyFee.textBox.Text = myCheckingAccount.MonthlyFee.ToString("0.00");
             myTextBoxInterestRate.textBox.Text = "0.00";
             myTextBoxBalance.textBox.Text = myCheckingAccount.Balance.ToString("0.00");
             myTextBoxAccountId.textBox.IsEnabled = false;
             myTextBoxCustomerId.textBox.IsEnabled = false;
-            myTextBoxAccountType.textBox.IsEnabled = false;
+            myTextBoxAccountType.IsEnabled = false;
             myTextBoxInterestRate.textBox.IsEnabled = false;
             myTextBoxBalance.textBox.IsEnabled = false;
 
@@ -71,13 +72,13 @@ namespace BankProject.UserControls
 
             myTextBoxAccountId.textBox.Text = mySavingsAccount.AccountId.ToString();
             myTextBoxCustomerId.textBox.Text = mySavingsAccount.CustomerId.ToString();
-            myTextBoxAccountType.textBox.Text = "SAVINGS";
+            myTextBoxAccountType.Text = "SAVINGS";
             myTextBoxMonthlyFee.textBox.Text = "0.00";
             myTextBoxInterestRate.textBox.Text = mySavingsAccount.InterestRate.ToString("0.00");
             myTextBoxBalance.textBox.Text = mySavingsAccount.Balance.ToString("#,##0.00");
             myTextBoxAccountId.textBox.IsEnabled = false;
             myTextBoxCustomerId.textBox.IsEnabled = false;
-            myTextBoxAccountType.textBox.IsEnabled = false;
+            myTextBoxAccountType.IsEnabled = false;
             myTextBoxMonthlyFee.textBox.IsEnabled = false;
             myTextBoxBalance.textBox.IsEnabled = false;
 
@@ -90,16 +91,14 @@ namespace BankProject.UserControls
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            //Build Insert / Update Queries
             string accountId = myTextBoxAccountId.textBox.Text;
             string customerId = myTextBoxCustomerId.textBox.Text;
-            string accountType = myTextBoxAccountType.textBox.Text;
+            string accountType = myTextBoxAccountType.Text;
             string monthlyFee = myTextBoxMonthlyFee.textBox.Text;
             string interestRate = myTextBoxInterestRate.textBox.Text;
 
 
             // If there is no ID, try Insert.
-
             if (accountId == "")
             {
 
@@ -159,6 +158,15 @@ namespace BankProject.UserControls
             parentWindow.SwitchTabs(newUcAccountStatment);
         }
 
-        
+        private void myTextBoxCustomerId_LostFocus(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int _customerId = Int32.Parse(myTextBoxCustomerId.textBox.Text);
+            ClassCustomer customer = MySqlClient.GetCustomerById(_customerId);
+            MyTextBlockCustomerName.Text = $"{customer.FirstName} {customer.LastName}";
+            }
+            catch { }
+        }
     }
 }

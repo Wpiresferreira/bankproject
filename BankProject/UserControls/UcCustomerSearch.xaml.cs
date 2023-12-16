@@ -42,21 +42,12 @@ namespace BankProject.UserControls
             string _customerId = myTextBoxCustomerID.textBox.Text;
             string _firstName = myTextBoxFirstName.textBox.Text;
             string _lastName = myTextBoxLastName.textBox.Text;
-            string _dateOfBirth = myTextBoxDataOfBirth.textBox.Text;
-            string _dateOfBirthFormatted;
-            if (_dateOfBirth != "")
-            {
-                _dateOfBirthFormatted = $"{_dateOfBirth.Substring(6, 4)}-{_dateOfBirth.Substring(3, 2)}-{_dateOfBirth.Substring(0, 2)}";
-            }
-            else
-            {
-                _dateOfBirthFormatted = "";
-            }
+            string _dateOfBirth = myTextBoxDataOfBirth.Text;
+            
 
-            ClassCustomer foundCustomer = MySqlClient.SearchCustomer(_customerId, _firstName, _lastName, _dateOfBirthFormatted);
+            ClassCustomer foundCustomer = MySqlClient.SearchCustomer(_customerId, _firstName, _lastName, _dateOfBirth);
             if (foundCustomer != null)
             {
-                //MessageBox.Show($"{foundCustomer}");
                 var newUcCustomerEditSave = new UcCustomerEditSave(MyController, foundCustomer);
                 WindowFrame parentWindow = (WindowFrame)Window.GetWindow(this);
                 parentWindow.SwitchTabs(newUcCustomerEditSave);

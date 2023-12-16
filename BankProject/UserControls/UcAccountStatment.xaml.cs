@@ -28,30 +28,84 @@ namespace BankProject.UserControls
             MyController = myController;
             InitializeComponent();
 
-            textBlockBranchId.Text = $"Current Branch: {MyController.MyUserLogged.BranchId}";
+            textBlockBranchId.Text = MyController.MyUserLogged.BranchId.ToString("0000");
+            textBlockAccountId.Text = accountId.ToString();
 
             // filling StartDate and EndDate
             DateTime startDate = DateTime.Now.AddMonths(-1);
             DateTime endDate = DateTime.Now;
 
-            textBoxStartDate.textBox.Text = startDate.ToString();
-            textBoxEndDate.textBox.Text = endDate.ToString();
-
-
-
-            //Find Branch data that corresponds to Branch of Logged User
-
+            textBoxStartDate.Text = startDate.ToString("yyyy-MM-dd");
+            textBoxEndDate.Text = endDate.ToString("yyyy-MM-dd");
             int accountIdint = Int32.Parse(accountId);
-            //List<ClassTransaction> MyListTransactions = MyController.GetListTransactionsOfSpecificAccount(accountIdint);
             List<ClassTransaction> MyListTransactions = MyController.GetStatment(accountIdint, startDate, endDate);
 
+             var statement = new List<ClassLineStatment>();
 
-            listTransactions.ItemsSource = MyListTransactions;
+            foreach (ClassTransaction transaction in MyListTransactions)
+            {
+                var _lineStatement = new ClassLineStatment();
+                _lineStatement.DatetimeTransaction = transaction.DatetimeTransaction.ToString("yyyy-MM-dd");
+                _lineStatement.TransactionId = transaction.TransactionId.ToString("000000");
+                _lineStatement.TypeTransaction = transaction.TypeTransaction;
+                if (transaction.AmountDebit == 0)
+                {
+                    _lineStatement.Amount = transaction.AmountCredit.ToString("#,##0.00");
+                    _lineStatement.DebitOrCredit = "C";
+                }
+                else
+                {
+                    _lineStatement.Amount = transaction.AmountDebit.ToString("#,##0.00");
+                    _lineStatement.DebitOrCredit = "D";
+
+                }
+
+                statement.Add(_lineStatement);
+            }
+
+            listTransactions.ItemsSource = statement;
         }
 
-        private void ButtonFilter_Click(object sender, RoutedEventArgs e)
+    
+    private void ButtonFilter_Click(object sender, RoutedEventArgs e)
         {
+            DateTime startDate = DateTime.ParseExact(textBoxStartDate.Text, "yyyy-MM-dd",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+            DateTime endDate = DateTime.ParseExact(textBoxEndDate.Text, "yyyy-MM-dd",
+                                       System.Globalization.CultureInfo.InvariantCulture);
 
+
+            //string startDate = textBoxStartDate.Text;
+            //string endDate = textBoxEndDate.Text;
+            int accountIdint = Int32.Parse(textBlockAccountId.Text);
+            List<ClassTransaction> MyListTransactions = MyController.GetStatment(accountIdint, startDate, endDate);
+
+            var statement = new List<ClassLineStatment>();
+
+            foreach (ClassTransaction transaction in MyListTransactions)
+            {
+                var _lineStatement = new ClassLineStatment();
+                _lineStatement.DatetimeTransaction = transaction.DatetimeTransaction.ToString("yyyy-MM-dd");
+                _lineStatement.TransactionId = transaction.TransactionId.ToString("000000");
+                _lineStatement.TypeTransaction = transaction.TypeTransaction;
+                if(transaction.AmountDebit == 0)
+                {
+                    _lineStatement.Amount = transaction.AmountCredit.ToString("#,##0.00");
+                    _lineStatement.DebitOrCredit = "C";
+                }
+                else
+                {
+                    _lineStatement.Amount = transaction.AmountDebit.ToString("#,##0.00");
+                    _lineStatement.DebitOrCredit = "D";
+
+                }
+
+                statement.Add(_lineStatement);
+            }
+            
+            listTransactions.ItemsSource = statement;
         }
+
+
     }
 }
