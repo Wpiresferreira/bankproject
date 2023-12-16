@@ -297,6 +297,7 @@ namespace BankProject.Classes {
 
             //Create Transaction
              if(MySqlClient.CreateTransaction(inputAccountIdDestination, 0, inputAmountToCredit, _accountIdOrigin, "DEPOSIT")) {
+
                 PopulateMyListBranches(); //TODO: REFACTOR LATER
                 return true;
             };

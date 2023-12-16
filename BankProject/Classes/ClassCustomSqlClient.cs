@@ -1207,13 +1207,72 @@ namespace BankProject.Classes
         }
 
 
+        internal float GetAccountBalanceById(int accountId) {
+            //Build Select Query in Accounts
+            string selectQuery = "SELECT balance FROM dbo.Accounts ";
+            selectQuery += "WHERE accountId = @ACCOUNTID; ";
+
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@ACCOUNTID", accountId);
+
+                        return float.Parse(cmd.ExecuteScalar().ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
+                Debug.WriteLine($"[ERROR] Something went wrong!\n{ex.Message}");
+                return 0;
+            }
+        }
+
+
+        internal void UpdateAccountAfterTransaction(int accountId, float newBalance, DateTime newMostRecentActivity, bool newIsOverdrafted) {
+            //Build UPDATE Query in Accounts
+            string updateQuery = "UPDATE dbo.Accounts ";
+            updateQuery += "SET balance = @NEWBALANCE, mostRecentActivity = @NEWMOSTRECENTACTIVITY, isOverdrafted = @NEWISOVERDRAFTED ";
+            updateQuery += "WHERE accountId = @ACCOUNTID; ";
+
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(updateQuery, cnn))
+                    {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@ACCOUNTID", accountId);
+                        cmd.Parameters.AddWithValue("@NEWBALANCE", newBalance);
+                        cmd.Parameters.AddWithValue("@NEWMOSTRECENTACTIVITY", newMostRecentActivity.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+                        cmd.Parameters.AddWithValue("@NEWISOVERDRAFTED", newIsOverdrafted);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
+                Debug.WriteLine($"[ERROR] Something went wrong!\n{ex.Message}");
+            }
+        }
+
 
         /* ----------------------------------------------------------------------------------------------------------------------------------
            ---------------------------------------------------- TRANSACTION METHODS ---------------------------------------------------------
            ---------------------------------------------------------------------------------------------------------------------------------- */
         public bool CreateTransaction(int inputAccountId, float inputAmountToDebit, float inputAmountToCredit, int inputOtherAccountId, string inputTypeTransaction) {
+            
+            DateTime _timestampTransaction = DateTime.Now;
+
             //TRANSACTIONS MUST BE CREATED IN PAIRS
-            //Build Insert Query
+            //Build Insert Query in Transactions
             string insertQuery = "INSERT INTO dbo.Transactions (accountId, datetimeTransaction, amountDebit, amountCredit, otherAccountId, typeTransaction) ";
             insertQuery += $"VALUES ";
             insertQuery += $"(@ACCOUNTID, @DATETIMETRANSACTION, @AMOUNTDEBIT, @AMOUNTCREDIT, @OTHERACCOUNTID, @TYPETRANSACTION), ";     //Transaction
@@ -1221,13 +1280,14 @@ namespace BankProject.Classes
 
             try
             {
+                //Create Transactions
                 using (SqlConnection cnn = new SqlConnection(ConnectionString))
                 {
                     using (SqlCommand cmd = new SqlCommand(insertQuery, cnn))
                     {
                         cnn.Open();
                         cmd.Parameters.AddWithValue("@ACCOUNTID", inputAccountId);
-                        cmd.Parameters.AddWithValue("@DATETIMETRANSACTION", DateTime.Now);
+                        cmd.Parameters.AddWithValue("@DATETIMETRANSACTION", _timestampTransaction);
                         cmd.Parameters.AddWithValue("@AMOUNTDEBIT", inputAmountToDebit);
                         cmd.Parameters.AddWithValue("@AMOUNTCREDIT", inputAmountToCredit);
                         cmd.Parameters.AddWithValue("@OTHERACCOUNTID", inputOtherAccountId);
@@ -1236,7 +1296,21 @@ namespace BankProject.Classes
                         cmd.ExecuteNonQuery();
                     }
                 }
+                
+                //Get Old Balance of Accounts
+                float _oldBalanceAccount1 = GetAccountBalanceById(inputAccountId);
+                float _oldBalanceAccount2 = GetAccountBalanceById(inputOtherAccountId);
+                float _newBalanceAccount1 = _oldBalanceAccount1 - inputAmountToDebit + inputAmountToCredit;
+                float _newBalanceAccount2 = _oldBalanceAccount2 + inputAmountToDebit - inputAmountToCredit;
+                bool _newIsOverdrafted1 = (_newBalanceAccount1<0) ? true : false;
+                bool _newIsOverdrafted2 = (_newBalanceAccount2<0) ? true : false;
+
+                //Update Accounts Information
+                UpdateAccountAfterTransaction(inputAccountId, _newBalanceAccount1, _timestampTransaction, _newIsOverdrafted1);
+                UpdateAccountAfterTransaction(inputOtherAccountId, _newBalanceAccount2, _timestampTransaction, _newIsOverdrafted2);
+
                 return true;
+
             }
             catch (Exception ex)
             {
