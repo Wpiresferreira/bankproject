@@ -55,11 +55,11 @@ namespace BankProject.UserControls
             myTextBoxCustomerId.textBox.Text = myCustomerSelected.CustomerId.ToString();
             myTextBoxFirstName.textBox.Text = myCustomerSelected.FirstName;
             myTextBoxLastName.textBox.Text = myCustomerSelected.LastName;
-            myTextBoxDateOfBirth.textBox.Text = myCustomerSelected.DateOfBirth.ToString();
+            myTextBoxDateOfBirth.Text = myCustomerSelected.DateOfBirth.ToString();
             myTextBoxDocumentType.textBox.Text = myCustomerSelected.Document.DocumentType.ToString();
             myTextBoxDocNumber.textBox.Text = myCustomerSelected.Document.DocumentNumber.ToString();
-            myTextBoxIssuedDate.textBox.Text = myCustomerSelected.Document.DocumentIssuedDate.ToString();
-            myTextBoxExpDate.textBox.Text = myCustomerSelected.Document.DocumentExpirationDate.ToString();
+            myTextBoxIssuedDate.Text = myCustomerSelected.Document.DocumentIssuedDate.ToString();
+            myTextBoxExpDate.Text = myCustomerSelected.Document.DocumentExpirationDate.ToString();
             myTextBoxZipCode.textBox.Text = myCustomerSelected.Address.ZipCode.ToString();
             myTextBoxLine1.textBox.Text = myCustomerSelected.Address.Line1.ToString();
             myTextBoxLine2.textBox.Text = myCustomerSelected.Address.Line2.ToString();

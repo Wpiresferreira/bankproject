@@ -29,4 +29,14 @@ namespace BankProject.Classes {
             return _result;
         }
     }
+
+    public class ClassLineStatment {
+
+        public string DatetimeTransaction { get; set; }
+        public string TransactionId { get; set; }
+        public string TypeTransaction { get; set; }
+        public string Amount { get; set; }
+        public string DebitOrCredit { get; set; }
+
+    }
 }

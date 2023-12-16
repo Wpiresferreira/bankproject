@@ -169,7 +169,6 @@ C:\Users\wagne\Source\Repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserCon
 C:\Users\wagne\Source\Repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserControls\UcWallet.g.cs
 C:\Users\wagne\Source\Repos\ourbank\BankProject\obj\Debug\net7.0-windows\Windows\WindowFrame.g.cs
 C:\Users\wagne\Source\Repos\ourbank\BankProject\obj\Debug\net7.0-windows\Windows\WindowLogin.g.cs
-C:\Users\wagne\Source\Repos\ourbank\BankProject\obj\Debug\net7.0-windows\Windows\WindowRegister.g.cs
 C:\Users\wagne\Source\Repos\ourbank\BankProject\obj\Debug\net7.0-windows\App.g.cs
 C:\Users\wagne\Source\Repos\ourbank\BankProject\obj\Debug\net7.0-windows\GeneratedInternalTypeHelper.g.cs
 C:\Users\wagne\Source\Repos\ourbank\BankProject\obj\Debug\net7.0-windows\BankProject_MarkupCompile.cache
@@ -182,7 +181,6 @@ C:\Users\wagne\Source\Repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserCon
 C:\Users\wagne\Source\Repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserControls\UcListBranches.baml
 C:\Users\wagne\Source\Repos\ourbank\BankProject\obj\Debug\net7.0-windows\UserControls\UcListCustomersFromMyBranch.baml
 C:\Users\wagne\Source\Repos\ourbank\BankProject\obj\Debug\net7.0-windows\Windows\WindowFrame.baml
-C:\Users\wagne\Source\Repos\ourbank\BankProject\obj\Debug\net7.0-windows\Windows\WindowRegister.baml
 C:\Users\wagne\Source\Repos\ourbank\BankProject\obj\Debug\net7.0-windows\BankProject.g.resources
 C:\Users\wagne\Source\Repos\ourbank\BankProject\obj\Debug\net7.0-windows\BankProject.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\wagne\Source\Repos\ourbank\BankProject\obj\Debug\net7.0-windows\BankProject.AssemblyInfoInputs.cache

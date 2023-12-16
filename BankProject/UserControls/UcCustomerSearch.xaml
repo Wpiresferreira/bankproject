@@ -58,7 +58,7 @@
                             <uc:UcTextBoxRegister x:Name="myTextBoxCustomerID" KeyDown="myTextBoxCustomerID_KeyDown" Grid.Column="1" Grid.Row="0" />
                             <uc:UcTextBoxRegister x:Name="myTextBoxFirstName" KeyDown="myTextBoxFirstName_KeyDown" Grid.Column="1" Grid.Row="2"  />
                             <uc:UcTextBoxRegister x:Name="myTextBoxLastName" KeyDown="myTextBoxLastName_KeyDown" Grid.Column="1" Grid.Row="3" />
-                            <uc:UcTextBoxRegister x:Name="myTextBoxDataOfBirth" KeyDown="myTextBoxDataOfBirth_KeyDown" Grid.Column="1" Grid.Row="4" Hint="dd/mm/yyyy" />
+                            <DatePicker x:Name="myTextBoxDataOfBirth" KeyDown="myTextBoxDataOfBirth_KeyDown" Grid.Column="1" Grid.Row="4" />
 
 
                             <Grid Grid.Column="1" Grid.Row="7" Margin="10 40 10 10">

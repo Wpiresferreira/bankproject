@@ -75,23 +75,32 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <TextBlock Grid.Column="0" Grid.Row="0" Text="From " FontSize="20" Foreground="#ccd7ff" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                            <uc:UcTextBoxRegister Grid.Column="1" Grid.Row="0" x:Name="textBoxStartDate" FontSize="20" Foreground="#ccd7ff" HorizontalAlignment="Left" />
+                            <DatePicker Grid.Column="1" Grid.Row="0" x:Name="textBoxStartDate" FontSize="12" Foreground="#ccd7ff" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
                             <TextBlock Grid.Column="2" Grid.Row="0" Text="To " FontSize="20" Foreground="#ccd7ff" HorizontalAlignment="Right" VerticalAlignment="Center" />
-                            <uc:UcTextBoxRegister Grid.Column="3" Grid.Row="0" x:Name="textBoxEndDate" Hint="01/11/2023" FontSize="20" Foreground="#ccd7ff" HorizontalAlignment="Left" />
+                            <DatePicker Grid.Column="3" Grid.Row="0" x:Name="textBoxEndDate" FontSize="12" Foreground="#ccd7ff" HorizontalAlignment="Left" VerticalAlignment="Center" />
                             <Button Content="Filter" Margin="10 0 0 0" Grid.Column="4" Style="{StaticResource buttonMainGreen_Register}" Click="ButtonFilter_Click"/>
 
                         </Grid>
 
                         <Border CornerRadius="25" Background="#FF653BBD" MaxHeight="1000">
                             <ListView Margin="10" Name="listTransactions" MaxHeight="2000">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Header="Date" Width="70" DisplayMemberBinding="{Binding DatetimeTransaction}" />
+                                        <GridViewColumn Header="Date" Width="100" DisplayMemberBinding="{Binding DatetimeTransaction}" />
                                         <GridViewColumn Header="Doc Number" Width="100" DisplayMemberBinding="{Binding TransactionId}" />
                                         <GridViewColumn Header="Historic" Width="100" DisplayMemberBinding="{Binding TypeTransaction}" />
-                                        <GridViewColumn Header="Debit" Width="100" DisplayMemberBinding="{Binding AmountDebit}" />
-                                        <GridViewColumn Header="Credit" Width="100" DisplayMemberBinding="{Binding AmountCredit}" />
+                                        <GridViewColumn Header="Amount" Width="100" DisplayMemberBinding="{Binding Amount}" />
+                                        <GridViewColumn  Header="D/C" Width="20"  DisplayMemberBinding="{Binding DebitOrCredit}" >
+                                            <GridViewColumn.CellTemplateSelector>
+                                                <DataTemplateSelector/>
+                                            </GridViewColumn.CellTemplateSelector>
+                                        </GridViewColumn>
                                     </GridView>
                                 </ListView.View>
                             </ListView>
