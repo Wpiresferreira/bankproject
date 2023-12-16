@@ -4,3 +4,4 @@
 # Ignore MS Office temporary files
 ~$*
 *.vsidx
+/BankProject/obj/Debug/net7.0-windows/BankProject.AssemblyInfo.cs
