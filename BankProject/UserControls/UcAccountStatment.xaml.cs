@@ -38,7 +38,7 @@ namespace BankProject.UserControls
             textBoxStartDate.Text = startDate.ToString("yyyy-MM-dd");
             textBoxEndDate.Text = endDate.ToString("yyyy-MM-dd");
             int accountIdint = Int32.Parse(accountId);
-            List<ClassTransaction> MyListTransactions = MyController.GetStatment(accountIdint, startDate, endDate);
+            List<ClassTransaction> MyListTransactions = MyController.GetStatement(accountIdint, startDate, endDate);
 
              var statement = new List<ClassLineStatment>();
 
@@ -78,7 +78,7 @@ namespace BankProject.UserControls
             //string startDate = textBoxStartDate.Text;
             //string endDate = textBoxEndDate.Text;
             int accountIdint = Int32.Parse(textBlockAccountId.Text);
-            List<ClassTransaction> MyListTransactions = MyController.GetStatment(accountIdint, startDate, endDate);
+            List<ClassTransaction> MyListTransactions = MyController.GetStatement(accountIdint, startDate, endDate);
 
             var statement = new List<ClassLineStatment>();
 

@@ -56,7 +56,7 @@ namespace BankProject
         }
 
 
-        private void ButtonSignIn_Click(object sender, RoutedEventArgs e) {
+        private async void ButtonSignIn_Click(object sender, RoutedEventArgs e) {
             
             string _emailToAuthenticate = textBoxEmail.Text;
             string _passwordToAuthenticate = textBoxPassword.Password;

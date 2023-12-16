@@ -73,15 +73,15 @@ namespace BankProject.UserControls
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             //Build Insert / Update Queries
-
-            string customerId = myTextBoxCustomerId.textBox.Text;
+            string customerIdText = myTextBoxCustomerId.textBox.Text;
+            int customerId = int.Parse(customerIdText);
             string firstName = myTextBoxFirstName.textBox.Text;
             string lastName = myTextBoxLastName.textBox.Text;
-            string dateOfBirth = myTextBoxDateOfBirth.Text;
+            DateOnly dateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(myTextBoxDateOfBirth.Text));
             string documentType = myTextBoxDocumentType.textBox.Text;
             string documentNumber = myTextBoxDocNumber.textBox.Text;
-            string documentIssuedDate = myTextBoxIssuedDate.Text;
-            string documentExpirationDate = myTextBoxExpDate.Text;
+            DateOnly documentIssuedDate = DateOnly.FromDateTime(Convert.ToDateTime(myTextBoxIssuedDate.Text));
+            DateOnly documentExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(myTextBoxExpDate.Text));
             string zipCode = myTextBoxZipCode.textBox.Text;
             string line1 = myTextBoxLine1.textBox.Text;
             string line2 = myTextBoxLine2.textBox.Text;
@@ -90,24 +90,27 @@ namespace BankProject.UserControls
             string country = myTextBoxCountry.textBox.Text;
             string phoneNumber = myTextBoxPhone.textBox.Text;
             string emailAddress = myTextBoxEmail.textBox.Text;
-            string branchId = "2";
-            string financialAdvisorId = "2";
+            int branchId = 2;
+            int financialAdvisorId = 2;
 
             // If there is no ID, try Insert.
 
-            if (customerId == "")
+            if (customerIdText == "")
             {
 
 
-                int returnInsert = MySqlClient.CreateNewCustomer(firstName, lastName, dateOfBirth, documentType,
-                    documentNumber, documentIssuedDate, documentExpirationDate, zipCode, line1, line2, city,
-                    province, country, phoneNumber, emailAddress, branchId, financialAdvisorId);
+                ClassCustomer? _newCustomer = MyController.CreateNewCustomer(
+                    firstName, lastName, dateOfBirth, documentType, documentNumber,
+                    documentIssuedDate, documentExpirationDate, zipCode, line1, line2,
+                    city, province, country, phoneNumber, emailAddress,
+                    branchId, financialAdvisorId
+                );
 
-                if (returnInsert != 0)
+                if (_newCustomer != null)
                 {
-                    MessageBox.Show($"[New Customer Added] New Customer {firstName} {lastName} was registered! \nCustomerId: {returnInsert}");
+                    MessageBox.Show($"[New Customer Added] New Customer {firstName} {lastName} was registered! \nCustomerId: {_newCustomer.CustomerId}");
 
-                    myTextBoxCustomerId.textBox.Text = returnInsert.ToString();
+                    myTextBoxCustomerId.textBox.Text = _newCustomer.CustomerId.ToString();
 
                     //Switch windows
                     //var newUcCustomerSearch = new UcCustomerSearch(MyController);
@@ -125,11 +128,13 @@ namespace BankProject.UserControls
             }
             else  // try UPDATE
             {
-                bool update = MySqlClient.UpdateCustomer(customerId, firstName, lastName, dateOfBirth, documentType,
-                    documentNumber, documentIssuedDate, documentExpirationDate, zipCode, line1, line2, city,
-                    province, country, phoneNumber, emailAddress, branchId, financialAdvisorId);
+                ClassCustomer? _updatedCustomer = MyController.EditCustomer(
+                    customerId, firstName, lastName, dateOfBirth, documentType,
+                    documentNumber, documentIssuedDate, documentExpirationDate, zipCode, line1,
+                    line2, city, province, country, phoneNumber,
+                    emailAddress, branchId, financialAdvisorId);
 
-                if (update)
+                if (_updatedCustomer!=null)
                 {
                     MessageBox.Show($"[Customer Updated] Customer {firstName} {lastName} was updated! \nCustomerId: {customerId}");
 
