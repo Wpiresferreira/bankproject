@@ -16,5 +16,5 @@ C:\Users\wagne\source\repos\ourbank\BankProject\App.xaml
 202-1738639308
 UserControls\CustomComponents\UcInfoCardDashboard.xaml;UserControls\CustomComponents\UcOptionRegister.xaml;UserControls\CustomComponents\UcOrderDashboard.xaml;UserControls\CustomComponents\UcTextBoxRegister.xaml;UserControls\CustomComponents\UcTextBoxRegisterReadOnly.xaml;UserControls\UcAccountEditSave.xaml;UserControls\UcAccountSearch.xaml;UserControls\UcAccountStatment.xaml;UserControls\UcCreateNewBranch.xaml;UserControls\UcCreateNewEmployee.xaml;UserControls\UcCustomerEditSave.xaml;UserControls\UcCustomerSearch.xaml;UserControls\UcDashboard.xaml;UserControls\UcListBranches.xaml;UserControls\UcListCustomersFromMyBranch.xaml;UserControls\UcMakeDeposit.xaml;UserControls\UcMakeTransfer.xaml;UserControls\UcMakeWithdraw.xaml;UserControls\UcWallet.xaml;Windows\WindowFrame.xaml;Windows\WindowLogin.xaml;
 
-True
+False
 
