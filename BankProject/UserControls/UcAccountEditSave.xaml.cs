@@ -91,26 +91,27 @@ namespace BankProject.UserControls
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
             //Build Insert / Update Queries
-            string accountId = myTextBoxAccountId.textBox.Text;
-            string customerId = myTextBoxCustomerId.textBox.Text;
+            string accountIdText = myTextBoxAccountId.textBox.Text;
+            int accountId = int.Parse(accountIdText);
+            int customerId = int.Parse(myTextBoxCustomerId.textBox.Text);
             string accountType = myTextBoxAccountType.textBox.Text;
-            string monthlyFee = myTextBoxMonthlyFee.textBox.Text;
-            string interestRate = myTextBoxInterestRate.textBox.Text;
+            float monthlyFee = float.Parse(myTextBoxMonthlyFee.textBox.Text);
+            float interestRate = float.Parse(myTextBoxInterestRate.textBox.Text);
 
 
             // If there is no ID, try Insert.
 
-            if (accountId == "")
+            if (accountIdText == "")
             {
 
 
-                int returnInsert = MySqlClient.CreateNewAccount(customerId, accountType, monthlyFee, interestRate);
+                ClassAbstractAccount _newAccount = MyController.CreateNewAccount(customerId, accountType, monthlyFee, interestRate);
 
-                if (returnInsert != 0)
+                if (_newAccount!=null)
                 {
-                    MessageBox.Show($"[New Account Added] New Account was registered! \nAccountId: {returnInsert}");
+                    MessageBox.Show($"[New Account Added] New Account was registered! Account Id: {_newAccount.AccountId}");
 
-                    myTextBoxAccountId.textBox.Text = returnInsert.ToString();
+                    myTextBoxAccountId.textBox.Text = _newAccount.AccountId.ToString();
 
                     //Switch windows
                     //var newUcCustomerSearch = new UcCustomerSearch(MyController);
@@ -128,9 +129,9 @@ namespace BankProject.UserControls
             }
             else  // try UPDATE
             {
-                bool update = MySqlClient.UpdateAccount(accountId, customerId, accountType, monthlyFee, interestRate);
+                 ClassAbstractAccount? _editedAccount = MyController.EditAccount(accountId, customerId, accountType, monthlyFee, interestRate);
 
-                if (update)
+                if (_editedAccount!=null)
                 {
                     MessageBox.Show($"[Account Updated] Account {accountId} was updated!");
 

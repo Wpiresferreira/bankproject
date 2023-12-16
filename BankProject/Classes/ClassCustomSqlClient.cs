@@ -220,6 +220,7 @@ namespace BankProject.Classes
             {
                 using (SqlConnection cnn = new SqlConnection(ConnectionString))
                 {
+                    //Do insert Employee
                     using (SqlCommand cmd = new SqlCommand(insertQuery, cnn))
                     {
                         cnn.Open();
@@ -245,6 +246,7 @@ namespace BankProject.Classes
                         cmd.ExecuteNonQuery();
                     }
 
+                    //Retrieve inserted Employee
                     using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
                         cmd.Parameters.AddWithValue("@EMAILADDRESS", inputEmailAddress);
                         using (SqlDataReader myReader = cmd.ExecuteReader()) {
@@ -362,33 +364,29 @@ namespace BankProject.Classes
         /* ----------------------------------------------------------------------------------------------------------------------------------
            ------------------------------------------------------ CUSTOMER METHODS ----------------------------------------------------------
            ---------------------------------------------------------------------------------------------------------------------------------- */
-        public int CreateNewCustomer(string firstName, string lastName, string dateOfBirth,
-           string documentType, string documentNumber, string documentIssuedDate,
-           string documentExpirationDate, string zipCode, string line1, string line2,
-           string city, string province, string country, string phoneNumber, string emailAddress,
-           string branchId, string financialAdvisorId)
+        public ClassCustomer? InsertNewCustomer(
+            string firstName, string lastName, DateOnly dateOfBirth, string documentType, string documentNumber,
+            DateOnly documentIssuedDate, DateOnly documentExpirationDate, string zipCode, string line1, string line2,
+            string city, string province, string country, string phoneNumber, string emailAddress,
+            int branchId, int financialAdvisorId)
         {
             //Build Insert Query
-
-
             string insertQuery = "INSERT INTO dbo.Customers (firstName, lastName, dateOfBirth, documentType," +
             " documentNumber, documentIssuedDate, documentExpirationDate, zipCode, line1, line2, city, province," +
             "country, phoneNumber, emailAddress, branchId, financialAdvisorID ) ";
-            //string insertQuery = "INSERT INTO dbo.Customers (firstName, lastName, email, phone, positionId, password) ";
             insertQuery += $"VALUES (@FIRSTNAME, @LASTNAME, @DATEOFBIRTH, @DOCUMENTTYPE, @DOCUMENTNUMBER," +
                 $"@DOCUMENTISSUEDDATE, @DOCUMENTEXPIRATIONDATE, @ZIPCODE, @LINE1, @LINE2, @CITY, @PROVINCE," +
                 $"@COUNTRY, @PHONENUMBER, @EMAILADDRESS, @BRANCHID, @FINANCIALADVISORID); ";
-            //insertQuery += $"VALUES (@FIRSTNAME, @LASTNAME, @EMAIL, @PHONE, @POSITIONID, @PASSWORD); ";
 
-            string selectQuery = "SELECT customerId FROM dbo.Customers ";
-            selectQuery += "WHERE firstName = @FIRSTNAME ";
-            selectQuery += " AND lastName = @LASTNAME ";
-            selectQuery += " AND dateOfBirth = @DATEOFBIRTH";
+            //Build Select Query
+            string selectQuery = "SELECT * FROM dbo.Customers ";
+            selectQuery += "WHERE emailAddress = @EMAILADDRESS; ";
 
             try
             {
                 using (SqlConnection cnn = new SqlConnection(ConnectionString))
                 {
+                    //Do Customer Insert
                     using (SqlCommand cmd = new SqlCommand(insertQuery, cnn))
                     {
                         cnn.Open();
@@ -412,32 +410,59 @@ namespace BankProject.Classes
 
                         cmd.ExecuteNonQuery();
                     }
-                }
-
-                using (SqlConnection cnn = new SqlConnection(ConnectionString))
-                {
-                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
-                    {
-                        cnn.Open();
-                        cmd.Parameters.AddWithValue("@FIRSTNAME", firstName);
-                        cmd.Parameters.AddWithValue("@LASTNAME", lastName);
-                        cmd.Parameters.AddWithValue("@DATEOFBIRTH", dateOfBirth);
-
-                        return (int)cmd.ExecuteScalar();
+                    //Retrieve inserted Customer
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
+                        cmd.Parameters.AddWithValue("@EMAILADDRESS", emailAddress);
+                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
+                            if (myReader.Read()) {
+                                ClassCustomer _newCustomer = new ClassCustomer()
+                                {
+                                    CustomerId = (int)myReader["customerId"],
+                                    FirstName = (string)myReader["firstName"],
+                                    LastName = (string)myReader["lastName"],
+                                    Email = (string)myReader["emailAddress"],
+                                    Phone = (string)myReader["phoneNumber"],
+                                    DateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(myReader["dateOfBirth"])),
+                                    Address = new ClassAddress()
+                                    {
+                                        ZipCode = (string)myReader["zipCode"],
+                                        Line1 = (string)myReader["line1"],
+                                        Line2 = Convert.IsDBNull(myReader["line2"]) ? null : (string)myReader["line2"],
+                                        City = (string)myReader["city"],
+                                        Province = (string)myReader["province"],
+                                        Country = (string)myReader["country"]
+                                    },
+                                    Document = new ClassDocument()
+                                    {
+                                        DocumentType = (string)myReader["documentType"],
+                                        DocumentNumber = (string)myReader["documentNumber"],
+                                        DocumentIssuedDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentIssuedDate"])),
+                                        DocumentExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentExpirationDate"])),
+                                    },
+                                    FinancialAdvisor = new ClassEmployee(),
+                                    MyListAccounts = new List<ClassAbstractAccount>(),
+                                };
+                                return _newCustomer;
+                            }
+                            return null;
+                        }
                     }
                 }
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
                 Debug.WriteLine($"[ERROR] Something went wrong!\n{ex.Message}");
-                return 0;
+                return null;
             }
         }
 
 
-        internal bool UpdateCustomer(string customerId, string firstName, string lastName, string dateOfBirth, string documentType, string documentNumber, string documentIssuedDate, string documentExpirationDate, string zipCode, string line1, string line2, string city, string province, string country, string phoneNumber, string emailAddress, string branchId, string financialAdvisorId)
+        internal ClassCustomer? UpdateCustomer(
+            int customerId, string firstName, string lastName, DateOnly dateOfBirth, string documentType,
+            string documentNumber, DateOnly documentIssuedDate, DateOnly documentExpirationDate, string zipCode, string line1,
+            string line2, string city, string province, string country, string phoneNumber,
+            string emailAddress, int branchId, int financialAdvisorId)
         {
             //Build Update Query
             string updateQuery = "UPDATE dbo.Customers ";
@@ -447,10 +472,15 @@ namespace BankProject.Classes
             updateQuery += " city = @CITY, province = @PROVINCE, country = @COUNTRY, phoneNumber = @PHONENUMBER, emailAddress = @EMAILADDRESS, branchId = @BRANCHID, financialAdvisorID = @FINANCIALADVISORID ";
             updateQuery += " WHERE customerId = @CUSTOMERID ";
 
+            //Build Select Query
+            string selectQuery = "SELECT * FROM dbo.Customers ";
+            selectQuery += "WHERE customerId = @CUSTOMERID; ";
+
             try
             {
                 using (SqlConnection cnn = new SqlConnection(ConnectionString))
                 {
+                    //Do Customer Update
                     using (SqlCommand cmd = new SqlCommand(updateQuery, cnn))
                     {
                         cnn.Open();
@@ -474,7 +504,44 @@ namespace BankProject.Classes
                         cmd.Parameters.AddWithValue("@FINANCIALADVISORID", financialAdvisorId);
 
                         cmd.ExecuteNonQuery();
-                        return true;
+                    }
+
+                    //Retrieve inserted Customer
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
+                        cmd.Parameters.AddWithValue("@CUSTOMERID", customerId);
+                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
+                            if (myReader.Read()) {
+                                ClassCustomer _newCustomer = new ClassCustomer()
+                                {
+                                    CustomerId = (int)myReader["customerId"],
+                                    FirstName = (string)myReader["firstName"],
+                                    LastName = (string)myReader["lastName"],
+                                    Email = (string)myReader["emailAddress"],
+                                    Phone = (string)myReader["phoneNumber"],
+                                    DateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(myReader["dateOfBirth"])),
+                                    Address = new ClassAddress()
+                                    {
+                                        ZipCode = (string)myReader["zipCode"],
+                                        Line1 = (string)myReader["line1"],
+                                        Line2 = Convert.IsDBNull(myReader["line2"]) ? null : (string)myReader["line2"],
+                                        City = (string)myReader["city"],
+                                        Province = (string)myReader["province"],
+                                        Country = (string)myReader["country"]
+                                    },
+                                    Document = new ClassDocument()
+                                    {
+                                        DocumentType = (string)myReader["documentType"],
+                                        DocumentNumber = (string)myReader["documentNumber"],
+                                        DocumentIssuedDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentIssuedDate"])),
+                                        DocumentExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentExpirationDate"])),
+                                    },
+                                    FinancialAdvisor = new ClassEmployee(),
+                                    MyListAccounts = new List<ClassAbstractAccount>(),
+                                };
+                                return _newCustomer;
+                            }
+                            return null;
+                        }
                     }
                 }
             }
@@ -482,7 +549,7 @@ namespace BankProject.Classes
             {
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
                 Debug.WriteLine($"[ERROR] Something went wrong!\n{ex.Message}");
-                return false;
+                return null;
             }
         }
 
@@ -686,16 +753,21 @@ namespace BankProject.Classes
         /* ----------------------------------------------------------------------------------------------------------------------------------
            ------------------------------------------------------- ACCOUNT METHODS ----------------------------------------------------------
            ---------------------------------------------------------------------------------------------------------------------------------- */
-        public int CreateNewAccount(string customerId, string accountType, string monthlyFee,
-           string interestRate)
+        public ClassCheckingAccount? InsertNewCheckingAccount(int customerId, string accountType, float monthlyFee, float interestRate)
         {
             //Build Insert Query
             string insertQuery = "INSERT INTO dbo.Accounts (customerId, balance, mostRecentActivity, interestRate, monthlyFee, isOverdrafted, accountType) ";
             insertQuery += $"VALUES (@CUSTOMERID, @BALANCE, @MOSTRECENTACTIVITY, @INTERESTRATE, @MONTHLYFEE, @ISOVERDRAFTED, @ACCOUNTTYPE); ";
 
-            string selectQuery = "SELECT accountId FROM dbo.Accounts ";
+            string selectQuery = "SELECT * FROM dbo.Accounts ";
             selectQuery += "WHERE customerId = @CUSTOMERID ";
-            selectQuery += " AND accountType = @ACCOUNTTYPE";
+            selectQuery += " AND balance = @BALANCE ";
+            selectQuery += " AND mostRecentActivity = @MOSTRECENTACTIVITY ";
+            selectQuery += " AND interestRate = @INTERESTRATE ";
+            selectQuery += " AND monthlyFee = @MONTHLYFEE ";
+            selectQuery += " AND isOverdrafted = @ISOVERDRAFTED ";
+            selectQuery += " AND accountType = @ACCOUNTTYPE ";
+            selectQuery += " ORDER BY accountId  DESC; ";
 
             try
             {
@@ -714,41 +786,132 @@ namespace BankProject.Classes
 
                         cmd.ExecuteNonQuery();
                     }
-                }
 
-                using (SqlConnection cnn = new SqlConnection(ConnectionString))
-                {
-                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
-                    {
-                        cnn.Open();
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
                         cmd.Parameters.AddWithValue("@CUSTOMERID", customerId);
+                        cmd.Parameters.AddWithValue("@BALANCE", "0");
+                        cmd.Parameters.AddWithValue("@MOSTRECENTACTIVITY", DateTime.Now);
+                        cmd.Parameters.AddWithValue("@INTERESTRATE", interestRate);
+                        cmd.Parameters.AddWithValue("@MONTHLYFEE", monthlyFee);
+                        cmd.Parameters.AddWithValue("@ISOVERDRAFTED", false);
                         cmd.Parameters.AddWithValue("@ACCOUNTTYPE", accountType);
-
-                        return (int)cmd.ExecuteScalar();
+                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
+                            if (myReader.Read()) {
+                                ClassCheckingAccount _newCheckingAccount = new ClassCheckingAccount()
+                                {
+                                    AccountId = (int)myReader["accountId"],
+                                    CustomerId = (int)myReader["customerId"],
+                                    Balance = (float)myReader["balance"],
+                                    MostRecentActivity = Convert.ToDateTime(myReader["mostRecentActivity"]),
+                                    MyListTransactions = new List<ClassTransaction>(),
+                                    IsOverdrafted = bool.Parse(myReader["isOverdrafted"].ToString()),
+                                    MonthlyFee = (float)myReader["monthlyFee"],
+                                };
+                                return _newCheckingAccount;
+                            }
+                            return null;
+                        }
                     }
                 }
+
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
                 Debug.WriteLine($"[ERROR] Something went wrong!\n{ex.Message}");
-                return 0;
+                return null;
             }
         }
 
 
-        internal bool UpdateAccount(string accountId, string customerId, string accountType, string monthlyFee,
-           string interestRate)
+        public ClassSavingsAccount? InsertNewSavingsAccount(int customerId, string accountType, float monthlyFee, float interestRate)
+        {
+            //Build Insert Query
+            string insertQuery = "INSERT INTO dbo.Accounts (customerId, balance, mostRecentActivity, interestRate, monthlyFee, isOverdrafted, accountType) ";
+            insertQuery += $"VALUES (@CUSTOMERID, @BALANCE, @MOSTRECENTACTIVITY, @INTERESTRATE, @MONTHLYFEE, @ISOVERDRAFTED, @ACCOUNTTYPE); ";
+
+            //Build Select Query
+            string selectQuery = "SELECT * FROM dbo.Accounts ";
+            selectQuery += "WHERE customerId = @CUSTOMERID ";
+            selectQuery += " AND balance = @BALANCE ";
+            selectQuery += " AND mostRecentActivity = @MOSTRECENTACTIVITY ";
+            selectQuery += " AND interestRate = @INTERESTRATE ";
+            selectQuery += " AND monthlyFee = @MONTHLYFEE ";
+            selectQuery += " AND isOverdrafted = @ISOVERDRAFTED ";
+            selectQuery += " AND accountType = @ACCOUNTTYPE ";
+            selectQuery += " ORDER BY accountId  DESC; ";
+
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(insertQuery, cnn))
+                    {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@CUSTOMERID", customerId);
+                        cmd.Parameters.AddWithValue("@BALANCE", "0");
+                        cmd.Parameters.AddWithValue("@MOSTRECENTACTIVITY", DateTime.Now);
+                        cmd.Parameters.AddWithValue("@INTERESTRATE", interestRate);
+                        cmd.Parameters.AddWithValue("@MONTHLYFEE", monthlyFee);
+                        cmd.Parameters.AddWithValue("@ISOVERDRAFTED", false);
+                        cmd.Parameters.AddWithValue("@ACCOUNTTYPE", accountType);
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
+                        cmd.Parameters.AddWithValue("@CUSTOMERID", customerId);
+                        cmd.Parameters.AddWithValue("@BALANCE", "0");
+                        cmd.Parameters.AddWithValue("@MOSTRECENTACTIVITY", DateTime.Now);
+                        cmd.Parameters.AddWithValue("@INTERESTRATE", interestRate);
+                        cmd.Parameters.AddWithValue("@MONTHLYFEE", monthlyFee);
+                        cmd.Parameters.AddWithValue("@ISOVERDRAFTED", false);
+                        cmd.Parameters.AddWithValue("@ACCOUNTTYPE", accountType);
+                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
+                            if (myReader.Read()) {
+                                ClassSavingsAccount _newSavingsAccount = new ClassSavingsAccount()
+                                {
+                                    AccountId = (int)myReader["accountId"],
+                                    CustomerId = (int)myReader["customerId"],
+                                    Balance = (float)myReader["balance"],
+                                    MostRecentActivity = Convert.ToDateTime(myReader["mostRecentActivity"]),
+                                    MyListTransactions = new List<ClassTransaction>(),
+                                    InterestRate = (float)myReader["interestRate"],
+                                };
+                                return _newSavingsAccount;
+                            }
+                            return null;
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
+                Debug.WriteLine($"[ERROR] Something went wrong!\n{ex.Message}");
+                return null;
+            }
+        }
+
+
+        internal ClassCheckingAccount? UpdateCheckingAccount(int accountId, int customerId, string accountType, float monthlyFee, float interestRate)
         {
             //Build Update Query
             string updateQuery = "UPDATE dbo.Accounts ";
             updateQuery += "SET monthlyFee = @MONTHLYFEE, interestRate = @INTERESTRATE";
             updateQuery += " WHERE accountId = @ACCOUNTID ";
 
+            //Build Select Query
+            string selectQuery = "SELECT * FROM dbo.Accounts ";
+            selectQuery += "WHERE accountId = @ACCOUNTID ";
+ 
             try
             {
                 using (SqlConnection cnn = new SqlConnection(ConnectionString))
                 {
+                    //Do Checking Account Update
                     using (SqlCommand cmd = new SqlCommand(updateQuery, cnn))
                     {
                         cnn.Open();
@@ -757,7 +920,27 @@ namespace BankProject.Classes
                         cmd.Parameters.AddWithValue("@ACCOUNTID", accountId);
 
                         cmd.ExecuteNonQuery();
-                        return true;
+                    }
+
+                    //Retrieve Updated Checking Account
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
+                        cmd.Parameters.AddWithValue("@ACCOUNTID", customerId);
+                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
+                            if (myReader.Read()) {
+                                ClassCheckingAccount _updatedCheckingAccount = new ClassCheckingAccount()
+                                {
+                                    AccountId = (int)myReader["accountId"],
+                                    CustomerId = (int)myReader["customerId"],
+                                    Balance = float.Parse(myReader["balance"].ToString()),
+                                    MostRecentActivity = Convert.ToDateTime(myReader["mostRecentActivity"]),
+                                    MyListTransactions = new List<ClassTransaction>(),
+                                    IsOverdrafted = bool.Parse(myReader["isOverdrafted"].ToString()),
+                                    MonthlyFee = float.Parse(myReader["monthlyFee"].ToString()),
+                                };
+                                return _updatedCheckingAccount;
+                            }
+                            return null;
+                        }
                     }
                 }
             }
@@ -765,7 +948,63 @@ namespace BankProject.Classes
             {
                 MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
                 Debug.WriteLine($"[ERROR] Something went wrong!\n{ex.Message}");
-                return false;
+                return null;
+            }
+        }
+
+
+        internal ClassSavingsAccount? UpdateSavingsAccount(int accountId, int customerId, string accountType, float monthlyFee, float interestRate)
+        {
+            //Build Update Query
+            string updateQuery = "UPDATE dbo.Accounts ";
+            updateQuery += "SET monthlyFee = @MONTHLYFEE, interestRate = @INTERESTRATE";
+            updateQuery += " WHERE accountId = @ACCOUNTID ";
+
+            //Build Select Query
+            string selectQuery = "SELECT * FROM dbo.Accounts ";
+            selectQuery += "WHERE accountId = @ACCOUNTID ";
+ 
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    //Do Savings Account Update
+                    using (SqlCommand cmd = new SqlCommand(updateQuery, cnn))
+                    {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@MONTHLYFEE", monthlyFee);
+                        cmd.Parameters.AddWithValue("@INTERESTRATE", interestRate);
+                        cmd.Parameters.AddWithValue("@ACCOUNTID", accountId);
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    //Retrieve Updated Savings Account
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
+                        cmd.Parameters.AddWithValue("@ACCOUNTID", customerId);
+                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
+                            if (myReader.Read()) {
+                                ClassSavingsAccount _updatedSavingsAccount = new ClassSavingsAccount()
+                                {
+                                    AccountId = (int)myReader["accountId"],
+                                    CustomerId = (int)myReader["customerId"],
+                                    Balance = float.Parse(myReader["balance"].ToString()),
+                                    MostRecentActivity = Convert.ToDateTime(myReader["mostRecentActivity"]),
+                                    MyListTransactions = new List<ClassTransaction>(),
+                                    InterestRate = float.Parse(myReader["interestRate"].ToString()),
+                                };
+                                return _updatedSavingsAccount;
+                            }
+                            return null;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
+                Debug.WriteLine($"[ERROR] Something went wrong!\n{ex.Message}");
+                return null;
             }
         }
 

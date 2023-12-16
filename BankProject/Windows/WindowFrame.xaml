@@ -55,7 +55,7 @@
             <Separator Height="0.8" Margin="20 30" Background="#46558a" />
 
             <!--Menu Buttons-->
-            <Button Style="{StaticResource menuButtonActive_Frame}" Click="ButtonDashboard_Click">
+            <!--<Button Style="{StaticResource menuButtonActive_Frame}" Click="ButtonDashboard_Click">
                 <StackPanel Orientation="Horizontal">
                     <fa:ImageAwesome Icon="Home" Style="{StaticResource menuButtonIcon_Frame}" />
                     <TextBlock Text="Dashboard" Style="{StaticResource menuButtonText_Frame}" />
@@ -66,19 +66,7 @@
                     <fa:ImageAwesome Icon="FolderOutline" Style="{StaticResource menuButtonIcon_Frame}" />
                     <TextBlock Text="Wallet" Style="{StaticResource menuButtonText_Frame}" />
                 </StackPanel>
-            </Button>
-            <Button Style="{StaticResource menuButton_Frame}" Click="ButtonCustomerSearch_Click">
-                <StackPanel Orientation="Horizontal">
-                    <fa:ImageAwesome  Icon="AddressCardOutline" Style="{StaticResource menuButtonIcon_Frame}" />
-                    <TextBlock Text="Customer Search" Style="{StaticResource menuButtonText_Frame}" />
-                </StackPanel>
-            </Button>
-            <Button Style="{StaticResource menuButton_Frame}" Click="ButtonCreateNewEmployee_Click">
-                <StackPanel Orientation="Horizontal">
-                    <fa:ImageAwesome Icon="UserPlus" Style="{StaticResource menuButtonIcon_Frame}" />
-                    <TextBlock Text="Create New Employee" Style="{StaticResource menuButtonText_Frame}" />
-                </StackPanel>
-            </Button>
+            </Button>-->
             <Button Style="{StaticResource menuButton_Frame}" Click="ButtonCreateNewBranch_Click">
                 <StackPanel Orientation="Horizontal">
                     <fa:ImageAwesome Icon="BanK" Style="{StaticResource menuButtonIcon_Frame}" />
@@ -97,6 +85,21 @@
                     <TextBlock Text="List Customers From My Branch" Style="{StaticResource menuButtonText_Frame}" />
                 </StackPanel>
             </Button>
+            <Button Style="{StaticResource menuButton_Frame}" Click="ButtonCreateNewEmployee_Click">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Icon="UserPlus" Style="{StaticResource menuButtonIcon_Frame}" />
+                    <TextBlock Text="Create New Employee" Style="{StaticResource menuButtonText_Frame}" />
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource menuButton_Frame}" Click="ButtonCustomerSearch_Click">
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome  Icon="AddressCardOutline" Style="{StaticResource menuButtonIcon_Frame}" />
+                    <TextBlock Text="Customer Search" Style="{StaticResource menuButtonText_Frame}" />
+                </StackPanel>
+            </Button>
+            
+            
+            
             <Button Style="{StaticResource menuButton_Frame}" Click="ButtonManageAccounts_Click">
                 <StackPanel Orientation="Horizontal">
                     <fa:ImageAwesome Icon="Money" Style="{StaticResource menuButtonIcon_Frame}" />
@@ -123,7 +126,7 @@
             </Button>
 
 
-            <Separator Background="#e0e0e0" Opacity="0.5" Margin="40 15 40 15" />
+            <Separator Background="#e0e0e0" Opacity="0.8" Margin="40 15 40 15" />
             <Button Style="{StaticResource menuButton_Frame}">
                 <StackPanel Orientation="Horizontal">
                     <fa:ImageAwesome Icon="Cog" Style="{StaticResource menuButtonIcon_Frame}" />

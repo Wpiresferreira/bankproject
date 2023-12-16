@@ -38,12 +38,9 @@ namespace BankProject.UserControls
             textBoxEndDate.textBox.Text = endDate.ToString();
 
 
-
-            //Find Branch data that corresponds to Branch of Logged User
-
             int accountIdint = Int32.Parse(accountId);
-            //List<ClassTransaction> MyListTransactions = MyController.GetListTransactionsOfSpecificAccount(accountIdint);
-            List<ClassTransaction> MyListTransactions = MyController.GetStatment(accountIdint, startDate, endDate);
+            
+            List<ClassTransaction> MyListTransactions = MyController.GetStatement(accountIdint, startDate, endDate);
 
 
             listTransactions.ItemsSource = MyListTransactions;
