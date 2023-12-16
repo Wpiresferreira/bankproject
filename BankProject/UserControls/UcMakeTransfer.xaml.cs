@@ -32,15 +32,17 @@ namespace BankProject.UserControls {
 
 
         private void ButtonMakeTransfer_Click(object sender, RoutedEventArgs e) {
-            int _accountId = int.Parse(myTextBoxAccountId.textBox.Text);
-            int _otherAccountId = int.Parse(myTextBoxOtherAccountId.textBox.Text);
-            float _amountToTransfer = float.Parse(myTextBoxAmountToTransfer.textBox.Text);
+
+            int _accountId;
+            int _otherAccountId;
+            float _amountToTransfer;
 
             //Check that inputs are filled
-            if(_accountId==null || _otherAccountId==null || _amountToTransfer==null) {
-                MessageBox.Show($"[ERROR] Please verify that all fields have been filled!");
+            if( !(int.TryParse(myTextBoxAccountId.textBox.Text, out _accountId) && int.TryParse(myTextBoxOtherAccountId.textBox.Text, out _otherAccountId) && float.TryParse(myTextBoxAmountToTransfer.textBox.Text, out _amountToTransfer)) ) {
+                MessageBox.Show($"[ERROR] Please verify that all fields have been correctly filled!");
                 return;
             }
+
 
             if(MyController.MakeTransfer(_accountId, _otherAccountId, _amountToTransfer)) {
                 MessageBox.Show($"[Transfer Done] AccountId From: {_accountId}\nAccountId To: {_otherAccountId}\nAmount Transfered: {_amountToTransfer}");

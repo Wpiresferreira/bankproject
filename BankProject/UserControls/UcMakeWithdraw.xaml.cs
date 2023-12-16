@@ -32,14 +32,15 @@ namespace BankProject.UserControls {
 
 
         private void ButtonMakeWithdraw_Click(object sender, RoutedEventArgs e) {
-            int _accountId = int.Parse(myTextBoxAccountId.textBox.Text);
-            float _amountToWithdraw = float.Parse(myTextBoxAmountToWithdraw.textBox.Text);
+            int _accountId;
+            float _amountToWithdraw;
 
             //Check that inputs are filled
-            if(_accountId==null || _amountToWithdraw==null) {
-                MessageBox.Show($"[ERROR] Please verify that all fields have been filled!");
+            if( !(int.TryParse(myTextBoxAccountId.textBox.Text, out _accountId) && float.TryParse(myTextBoxAmountToWithdraw.textBox.Text, out _amountToWithdraw)) ) {
+                MessageBox.Show($"[ERROR] Please verify that all fields have been correctly filled!");
                 return;
             }
+
 
             if(MyController.MakeWithdraw(_accountId, _amountToWithdraw)) {
                 MessageBox.Show($"[Withdraw Done] AccountId: {_accountId} | Amount Withdrawn: {_amountToWithdraw}");
