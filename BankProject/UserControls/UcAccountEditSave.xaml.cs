@@ -95,7 +95,7 @@ namespace BankProject.UserControls
             string accountIdText = myTextBoxAccountId.textBox.Text;
             int accountId = int.Parse(accountIdText);
             int customerId = int.Parse(myTextBoxCustomerId.textBox.Text);
-            string accountType = myTextBoxAccountType.textBox.Text;
+            string accountType = myTextBoxAccountType.Text;
             float monthlyFee = float.Parse(myTextBoxMonthlyFee.textBox.Text);
             float interestRate = float.Parse(myTextBoxInterestRate.textBox.Text);
 

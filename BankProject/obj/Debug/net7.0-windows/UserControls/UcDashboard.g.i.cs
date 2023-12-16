@@ -64,7 +64,7 @@ namespace BankProject.UserControls {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BankProject;V1.0.0.0;component/usercontrols/ucdashboard.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BankProject;component/usercontrols/ucdashboard.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\UserControls\UcDashboard.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

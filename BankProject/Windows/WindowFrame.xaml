@@ -127,12 +127,12 @@
 
 
             <Separator Background="#e0e0e0" Opacity="0.8" Margin="40 15 40 15" />
-            <Button Style="{StaticResource menuButton_Frame}">
+            <!--<Button Style="{StaticResource menuButton_Frame}">
                 <StackPanel Orientation="Horizontal">
                     <fa:ImageAwesome Icon="Cog" Style="{StaticResource menuButtonIcon_Frame}" />
                     <TextBlock Text="Settings (Not Implemented)" Style="{StaticResource menuButtonText_Frame}" />
                 </StackPanel>
-            </Button>
+            </Button>-->
             <Button Style="{StaticResource menuButton_Frame}" Click="ButtonLogout_Click">
                 <StackPanel Orientation="Horizontal">
                     <fa:ImageAwesome Icon="PowerOff" Style="{StaticResource menuButtonIcon_Frame}" />

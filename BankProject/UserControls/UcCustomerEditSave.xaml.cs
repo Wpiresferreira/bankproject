@@ -77,11 +77,11 @@ namespace BankProject.UserControls
             int customerId = int.Parse(customerIdText);
             string firstName = myTextBoxFirstName.textBox.Text;
             string lastName = myTextBoxLastName.textBox.Text;
-            DateOnly dateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(myTextBoxDateOfBirth.textBox.Text));
+            DateOnly dateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(myTextBoxDateOfBirth.Text));
             string documentType = myTextBoxDocumentType.textBox.Text;
             string documentNumber = myTextBoxDocNumber.textBox.Text;
-            DateOnly documentIssuedDate = DateOnly.FromDateTime(Convert.ToDateTime(myTextBoxIssuedDate.textBox.Text));
-            DateOnly documentExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(myTextBoxExpDate.textBox.Text));
+            DateOnly documentIssuedDate = DateOnly.FromDateTime(Convert.ToDateTime(myTextBoxIssuedDate.Text));
+            DateOnly documentExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(myTextBoxExpDate.Text));
             string zipCode = myTextBoxZipCode.textBox.Text;
             string line1 = myTextBoxLine1.textBox.Text;
             string line2 = myTextBoxLine2.textBox.Text;
