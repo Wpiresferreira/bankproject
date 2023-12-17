@@ -202,7 +202,7 @@ namespace BankProject.Classes {
                 MessageBox.Show($"[ERROR]  Invalid Customer Id!");
                 return null;
             }
-            else if ( !(accountType=="CHECKING" || accountType=="SAVINGS") ) {
+            else if ( !(accountType=="CHEQUING" || accountType=="SAVINGS") ) {
                 MessageBox.Show($"[ERROR] Invalid Account Type (Only Allowed CHECKING or SAVINGS)!");
                 return null;
             }
@@ -218,7 +218,7 @@ namespace BankProject.Classes {
             ClassAbstractAccount? _newAccount = null;
 
             //Check type of new Account
-            if(accountType=="CHECKING") {
+            if(accountType=="CHEQUING") {
                 _newAccount = MySqlClient.InsertNewCheckingAccount(customerId, accountType, monthlyFee, interestRate);
             }
             else if(accountType=="SAVINGS") {
@@ -245,7 +245,7 @@ namespace BankProject.Classes {
                 MessageBox.Show($"[ERROR]  Invalid Customer Id!");
                 return null;
             }
-            else if ( !(accountType=="CHECKING" || accountType=="SAVINGS") ) {
+            else if ( !(accountType=="CHEQUING" || accountType=="SAVINGS") ) {
                 MessageBox.Show($"[ERROR] Invalid Account Type (Only Allowed CHECKING or SAVINGS)!");
                 return null;
             }
@@ -261,7 +261,7 @@ namespace BankProject.Classes {
             ClassAbstractAccount? _editedAccount = null;
 
             //Check type of new Account
-            if(accountType=="CHECKING") {
+            if(accountType=="CHEQUING") {
                 _editedAccount = MySqlClient.UpdateCheckingAccount(accountId, customerId, accountType, monthlyFee, interestRate);
             }
             else if(accountType=="SAVINGS") {

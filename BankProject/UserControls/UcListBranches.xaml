@@ -43,7 +43,7 @@
                             <ListView Margin="10" Name="listViewListBranches">
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Header="IdBranch" Width="60" DisplayMemberBinding="{Binding IdBranch}" />
+                                        <GridViewColumn Header="BranchId" Width="60" DisplayMemberBinding="{Binding BranchId}" />
                                         <GridViewColumn Header="Name" Width="200" DisplayMemberBinding="{Binding Name}" />
                                         <GridViewColumn Header="City" Width="200" DisplayMemberBinding="{Binding City}" />
                                     </GridView>
