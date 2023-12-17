@@ -334,6 +334,7 @@ namespace BankProject.Classes
                                 ClassEmployee _newEmployee = new ClassEmployee()
                                 {
                                     EmployeeId = (int)myReader["employeeId"],
+                                    //Not Retrieving Password (On purpose)
                                     FirstName = (string)myReader["firstName"],
                                     LastName = (string)myReader["lastName"],
                                     Email = (string)myReader["emailAddress"],
@@ -373,6 +374,68 @@ namespace BankProject.Classes
             }
         }
 
+
+        internal ClassEmployee GetEmployeeById(int employeeId)
+        {
+            //Build Select Query
+            string selectQuery = "";
+            selectQuery = $"SELECT * FROM dbo.Employees ";
+            selectQuery += $"WHERE employeeId = @EMPLOYEEID";
+
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@EMPLOYEEID", employeeId);
+
+                        using (SqlDataReader myReader = cmd.ExecuteReader())
+                        {
+                            myReader.Read();
+
+                            //Create new Employee object
+                                ClassEmployee _employee = new ClassEmployee()
+                                {
+                                    EmployeeId = (int)myReader["employeeId"],
+                                    //Not Retrieving Password (On purpose)
+                                    FirstName = (string)myReader["firstName"],
+                                    LastName = (string)myReader["lastName"],
+                                    Email = (string)myReader["emailAddress"],
+                                    Phone = (string)myReader["phoneNumber"],
+                                    PositionId = (int)myReader["positionId"],
+                                    StartDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["startDate"])),
+                                    DateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(myReader["dateOfBirth"])),
+                                    Address = new ClassAddress()
+                                    {
+                                        ZipCode = (string)myReader["zipCode"],
+                                        Line1 = (string)myReader["line1"],
+                                        Line2 = Convert.IsDBNull(myReader["line2"]) ? null : (string)myReader["line2"],
+                                        City = (string)myReader["city"],
+                                        Province = (string)myReader["province"],
+                                        Country = (string)myReader["country"]
+                                    },
+                                    Document = new ClassDocument()
+                                    {
+                                        DocumentType = (string)myReader["documentType"],
+                                        DocumentNumber = (string)myReader["documentNumber"],
+                                        DocumentIssuedDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentIssuedDate"])),
+                                        DocumentExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentExpirationDate"])),
+                                    },
+                                };
+                            return _employee;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"[ERROR] Something went wrong!\n{ex.Message}");
+                Debug.WriteLine($"[ERROR] Something went wrong!\n{ex.Message}");
+                return null;
+            }
+        }
 
 
         /* ----------------------------------------------------------------------------------------------------------------------------------
@@ -456,7 +519,7 @@ namespace BankProject.Classes
                                         DocumentIssuedDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentIssuedDate"])),
                                         DocumentExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentExpirationDate"])),
                                     },
-                                    FinancialAdvisor = new ClassEmployee(),
+                                    FinancialAdvisor = GetEmployeeById((int)myReader["financialAdvisorId"]),
                                     MyListAccounts = new List<ClassAbstractAccount>(),
                                 };
                                 return _newCustomer;
@@ -555,8 +618,8 @@ namespace BankProject.Classes
                                         DocumentIssuedDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentIssuedDate"])),
                                         DocumentExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentExpirationDate"])),
                                     },
-                                    FinancialAdvisor = new ClassEmployee(),
-                                    MyListAccounts = new List<ClassAbstractAccount>(),
+                                    FinancialAdvisor = GetEmployeeById((int)myReader["financialAdvisorId"]),
+                                    MyListAccounts = GetListAccountsOfSpecificCustomer((int)myReader["customerId"]),
                                 };
                                 return _newCustomer;
                             }
@@ -631,6 +694,8 @@ namespace BankProject.Classes
                                 },
                                 Phone = (string)reader["phoneNumber"],
                                 Email = (string)reader["emailAddress"],
+                                FinancialAdvisor = GetEmployeeById((int)reader["financialAdvisorId"]),
+                                MyListAccounts = GetListAccountsOfSpecificCustomer((int)reader["customerId"]),
                             };
                             return customer;
                         }
@@ -826,9 +891,9 @@ namespace BankProject.Classes
                                     CustomerId = (int)myReader["customerId"],
                                     Balance = (float)myReader["balance"],
                                     MostRecentActivity = Convert.ToDateTime(myReader["mostRecentActivity"]),
-                                    MyListTransactions = new List<ClassTransaction>(),
                                     IsOverdrafted = bool.Parse(myReader["isOverdrafted"].ToString()),
                                     MonthlyFee = (float)myReader["monthlyFee"],
+                                    MyListTransactions = new List<ClassTransaction>(),
                                 };
                                 return _newCheckingAccount;
                             }
@@ -902,8 +967,8 @@ namespace BankProject.Classes
                                     CustomerId = (int)myReader["customerId"],
                                     Balance = (float)myReader["balance"],
                                     MostRecentActivity = Convert.ToDateTime(myReader["mostRecentActivity"]),
-                                    MyListTransactions = new List<ClassTransaction>(),
                                     InterestRate = (float)myReader["interestRate"],
+                                    MyListTransactions = new List<ClassTransaction>(),
                                 };
                                 return _newSavingsAccount;
                             }
@@ -962,9 +1027,9 @@ namespace BankProject.Classes
                                     CustomerId = (int)myReader["customerId"],
                                     Balance = float.Parse(myReader["balance"].ToString()),
                                     MostRecentActivity = Convert.ToDateTime(myReader["mostRecentActivity"]),
-                                    MyListTransactions = new List<ClassTransaction>(),
                                     IsOverdrafted = bool.Parse(myReader["isOverdrafted"].ToString()),
                                     MonthlyFee = float.Parse(myReader["monthlyFee"].ToString()),
+                                    MyListTransactions = GetListTransactionsOfSpecificAccount((int)myReader["accountId"]),
                                 };
                                 return _updatedCheckingAccount;
                             }
@@ -1022,8 +1087,8 @@ namespace BankProject.Classes
                                     CustomerId = (int)myReader["customerId"],
                                     Balance = float.Parse(myReader["balance"].ToString()),
                                     MostRecentActivity = Convert.ToDateTime(myReader["mostRecentActivity"]),
-                                    MyListTransactions = new List<ClassTransaction>(),
                                     InterestRate = float.Parse(myReader["interestRate"].ToString()),
+                                    MyListTransactions = GetListTransactionsOfSpecificAccount((int)myReader["accountId"]),
                                 };
                                 return _updatedSavingsAccount;
                             }
@@ -1071,7 +1136,8 @@ namespace BankProject.Classes
                                 Balance = float.Parse(reader["balance"].ToString()),
                                 MonthlyFee = float.Parse(reader["monthlyFee"].ToString()),
                                 MostRecentActivity = Convert.ToDateTime(reader["mostRecentActivity"]),
-                                IsOverdrafted = (bool)reader["isOverdrafted"]
+                                IsOverdrafted = (bool)reader["isOverdrafted"],
+                                MyListTransactions = GetListTransactionsOfSpecificAccount((int)reader["accountId"]),
                             };
 
                             return AccountSelected;
@@ -1118,7 +1184,8 @@ namespace BankProject.Classes
                                 CustomerId = (int)reader["customerId"],
                                 Balance = float.Parse(reader["balance"].ToString()),
                                 MostRecentActivity = Convert.ToDateTime(reader["mostRecentActivity"]),
-                                InterestRate = float.Parse(reader["interestRate"].ToString())
+                                InterestRate = float.Parse(reader["interestRate"].ToString()),
+                                MyListTransactions = GetListTransactionsOfSpecificAccount((int)reader["accountId"]),
                             };
 
                             return AccountSelected;
@@ -1167,9 +1234,11 @@ namespace BankProject.Classes
                                 ClassSavingsAccount _newSavingsAccount = new ClassSavingsAccount()
                                 {
                                     AccountId = (int)myReader["accountId"],
+                                    CustomerId = (int)myReader["customerId"],
                                     Balance = float.Parse(myReader["balance"].ToString()),
                                     MostRecentActivity = Convert.ToDateTime(myReader["mostRecentActivity"]),
-                                    InterestRate = float.Parse(myReader["interestRate"].ToString())
+                                    InterestRate = float.Parse(myReader["interestRate"].ToString()),
+                                    MyListTransactions = GetListTransactionsOfSpecificAccount((int)myReader["accountId"]),
                                 };
                                 _listAccounts.Add(_newSavingsAccount);
                             }
@@ -1189,7 +1258,10 @@ namespace BankProject.Classes
                                     AccountId = (int)myReader["accountId"],
                                     Balance = float.Parse(myReader["balance"].ToString()),
                                     MostRecentActivity = Convert.ToDateTime(myReader["mostRecentActivity"]),
-                                    IsOverdrafted = (bool)myReader["isOverdrafted"]
+                                    IsOverdrafted = (bool)myReader["isOverdrafted"],
+                                    CustomerId = (int)myReader["customerId"],
+                                    MonthlyFee = float.Parse(myReader["monthlyFee"].ToString()),
+                                    MyListTransactions = GetListTransactionsOfSpecificAccount((int)myReader["accountId"]),
                                 };
                                 _listAccounts.Add(_newCheckingAccount);
                             }

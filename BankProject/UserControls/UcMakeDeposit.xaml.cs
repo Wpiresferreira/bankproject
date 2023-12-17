@@ -31,12 +31,13 @@ namespace BankProject.UserControls {
         }
 
         private void ButtonMakeDeposit_Click(object sender, RoutedEventArgs e) {
-            int _accountId = int.Parse(myTextBoxAccountId.textBox.Text);
-            float _amountToDeposit = float.Parse(myTextBoxAmountToDeposit.textBox.Text);
+
+            int _accountId;
+            float _amountToDeposit;
 
             //Check that inputs are filled
-            if(_accountId==null || _amountToDeposit==null) {
-                MessageBox.Show($"[ERROR] Please verify that all fields have been filled!");
+            if( !(int.TryParse(myTextBoxAccountId.textBox.Text, out _accountId) && float.TryParse(myTextBoxAmountToDeposit.textBox.Text, out _amountToDeposit)) ) {
+                MessageBox.Show($"[ERROR] Please verify that all fields have been correctly filled!");
                 return;
             }
 

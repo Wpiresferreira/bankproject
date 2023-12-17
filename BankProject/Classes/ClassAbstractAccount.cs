@@ -17,7 +17,7 @@ namespace BankProject.Classes
 
         // Constructor to initialize the account
         public ClassAbstractAccount() {
-            MyListTransactions = new List<ClassTransaction>();
+
         }
 
 

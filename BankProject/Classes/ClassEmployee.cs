@@ -9,18 +9,9 @@ namespace BankProject.Classes {
 
         public int EmployeeId { get; set; }
         protected string Password { get; set; }
-        public ClassEmployee? Manager { get; set; }
         public DateOnly StartDate { get; set; }
         public int PositionId { get; set; }
 
-
-        public void SetManager(ClassEmployee newManager) {
-            Manager = newManager;
-        }
-
-        public virtual void ChangePassword(string password) {
-            Password = password;
-        }
 
 
         public override string ToString() {
