@@ -360,7 +360,20 @@ namespace BankProject.Classes {
         {
             return MySqlClient.GetListTransactionsBetweenDates(accountId, startDate, endDate);
         }
-        
 
+        internal string GetSavingsBalance(int employeeId)
+        {
+            return MySqlClient.GetSavingsBalance(employeeId);
+        }
+
+        internal string GetChequingBalance(int employeeId)
+        {
+            return MySqlClient.GetChequingBalance(employeeId);
+        }
+
+        internal string GetCountCustomers(int employeeId)
+        {
+            return MySqlClient.GetCountCustomers(employeeId);
+        }
     }
 }

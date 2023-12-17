@@ -1,11 +1,6 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\BankProject",
-    "\\BankProject\\Classes",
-    "\\BankProject\\UserControls",
-    "\\BankProject\\Windows"
+    ""
   ],
-  "SelectedNode": "\\BankProject\\UserControls\\UcCustomerEditSave.xaml",
   "PreviewInSolutionExplorer": false
 }

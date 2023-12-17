@@ -44,7 +44,7 @@ namespace BankProject.UserControls
             string typeOfAccount = MySqlClient.TypeOfAccount(_accountId);
 
 
-            if (typeOfAccount == "CHECKING")
+            if (typeOfAccount == "CHEQUING")
             {
                 ClassCheckingAccount newCheckingAccount = MySqlClient.SearchCheckingAccount(_accountId);
 
@@ -87,10 +87,6 @@ namespace BankProject.UserControls
 
         private void ButtonNew_Click(object sender, RoutedEventArgs e)
         {
-
-            //test newTest= new test();
-            //WindowFrame parentWindow = (WindowFrame)Window.GetWindow(this);
-            //parentWindow.SwitchTabs(newTest);
 
             var newUcAccountEditSave = new UcAccountEditSave(MyController);
             WindowFrame parentWindow = (WindowFrame)Window.GetWindow(this);

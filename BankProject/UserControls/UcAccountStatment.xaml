@@ -84,7 +84,7 @@
                         </Grid>
 
                         <Border CornerRadius="25" Background="#FF653BBD" MaxHeight="1000">
-                            <ListView Margin="10" Name="listTransactions" MaxHeight="2000">
+                            <ListView Margin="10" Name="listTransactions" MaxHeight="300" ScrollViewer.VerticalScrollBarVisibility="Visible">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="ListViewItem">
                                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -96,7 +96,7 @@
                                         <GridViewColumn Header="Doc Number" Width="100" DisplayMemberBinding="{Binding TransactionId}" />
                                         <GridViewColumn Header="Historic" Width="100" DisplayMemberBinding="{Binding TypeTransaction}" />
                                         <GridViewColumn Header="Amount" Width="100" DisplayMemberBinding="{Binding Amount}" />
-                                        <GridViewColumn  Header="D/C" Width="20"  DisplayMemberBinding="{Binding DebitOrCredit}" >
+                                        <GridViewColumn  Header="D/C" Width="25"  DisplayMemberBinding="{Binding DebitOrCredit}" >
                                             <GridViewColumn.CellTemplateSelector>
                                                 <DataTemplateSelector/>
                                             </GridViewColumn.CellTemplateSelector>

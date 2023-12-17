@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Schema;
 using BankProject.Classes;
 
 namespace BankProject.UserControls
@@ -33,5 +34,17 @@ namespace BankProject.UserControls
             nameHeader.Text = $"Greetings, {MyUserLogged.FirstName}!";
         }
 
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Card1.Title = "Savings Total Balance";
+            Card1.Number = MyController.GetSavingsBalance(MyUserLogged.EmployeeId);
+
+            Card2.Title = "Chequing Total Balance";
+            Card2.Number = MyController.GetChequingBalance(MyUserLogged.EmployeeId);
+
+            Card3.Title = "Customers Total";
+            Card3.Number = MyController.GetCountCustomers(MyUserLogged.EmployeeId);
+
+        }
     }
 }

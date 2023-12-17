@@ -15,6 +15,7 @@ using System.Reflection.Emit;
 using System.Xml.Linq;
 using System.Windows.Controls;
 using BankProject.UserControls;
+using System.Windows.Controls.Primitives;
 
 namespace BankProject.Classes
 {
@@ -107,7 +108,8 @@ namespace BankProject.Classes
         /* ----------------------------------------------------------------------------------------------------------------------------------
            ------------------------------------------------------- BRANCH METHODS -----------------------------------------------------------
            ---------------------------------------------------------------------------------------------------------------------------------- */
-        public ClassBranch InsertNewBranch(string inputNewBranchName, string inputNewBranchCity) {
+        public ClassBranch InsertNewBranch(string inputNewBranchName, string inputNewBranchCity)
+        {
             //Build Insert Query
             string insertQuery = "INSERT INTO dbo.Branches (name, city) ";
             insertQuery += $"VALUES (@NAME, @CITY); ";
@@ -116,9 +118,12 @@ namespace BankProject.Classes
             string selectQuery = "SELECT * FROM dbo.Branches ";
             selectQuery += $"WHERE name = @NAME AND city = @CITY; ";
 
-            try {
-                using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
-                    using (SqlCommand cmd = new SqlCommand(insertQuery, cnn)) {
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(insertQuery, cnn))
+                    {
                         cnn.Open();
                         cmd.Parameters.AddWithValue("@NAME", inputNewBranchName);
                         cmd.Parameters.AddWithValue("@CITY", inputNewBranchCity);
@@ -126,15 +131,20 @@ namespace BankProject.Classes
                     }
                 }
 
-                using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
-                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
                         cnn.Open();
                         cmd.Parameters.AddWithValue("@NAME", inputNewBranchName);
                         cmd.Parameters.AddWithValue("@CITY", inputNewBranchCity);
-                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
-                            if (myReader.Read()) {
+                        using (SqlDataReader myReader = cmd.ExecuteReader())
+                        {
+                            if (myReader.Read())
+                            {
                                 //Create new Branch object
-                                ClassBranch _newBranch = new ClassBranch() {
+                                ClassBranch _newBranch = new ClassBranch()
+                                {
                                     BranchId = (int)myReader["branchId"],
                                     Name = (string)myReader["name"],
                                     City = (string)myReader["city"]
@@ -198,7 +208,7 @@ namespace BankProject.Classes
         }
 
 
-        
+
         /* ----------------------------------------------------------------------------------------------------------------------------------
            ------------------------------------------------------ EMPLOYEE METHODS ----------------------------------------------------------
            ---------------------------------------------------------------------------------------------------------------------------------- */
@@ -207,7 +217,8 @@ namespace BankProject.Classes
             string inputPassword, int inputBranchId, DateOnly inputStartDate, DateOnly inputDateOfBirth, string inputZipCode,
             string inputLine1, string inputLine2, string inputCity, string inputProvince, string inputCountry,
             string inputDocumentType, string inputDocumentNumber, string inputDocumentIssuedDate, string inputDocumentExpirationDate
-        ) {
+        )
+        {
             //Build Insert Query
             string insertQuery = "INSERT INTO dbo.Employees (firstName, lastName, emailAddress, phoneNumber, positionId, password, branchId, startDate, dateOfBirth, zipCode, line1, line2, city, province, country, documentType, documentNumber, documentIssuedDate, documentExpirationDate) ";
             insertQuery += $"VALUES (@FIRSTNAME, @LASTNAME, @EMAILADDRESS, @PHONENUMBER, @POSITIONID, @PASSWORD, @BRANCHID, @STARTDATE, @DATEOFBIRTH, @ZIPCODE, @LINE1, @LINE2, @CITY, @PROVINCE, @COUNTRY, @DOCUMENTTYPE, @DOCUMENTNUMBER, @DOCUMENTISSUEDDATE, @DOCUMENTEXPIRATIONDATE); ";
@@ -247,10 +258,13 @@ namespace BankProject.Classes
                     }
 
                     //Retrieve inserted Employee
-                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
                         cmd.Parameters.AddWithValue("@EMAILADDRESS", inputEmailAddress);
-                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
-                            if (myReader.Read()) {
+                        using (SqlDataReader myReader = cmd.ExecuteReader())
+                        {
+                            if (myReader.Read())
+                            {
                                 ClassEmployee _newEmployee = new ClassEmployee()
                                 {
                                     EmployeeId = (int)myReader["employeeId"],
@@ -411,10 +425,13 @@ namespace BankProject.Classes
                         cmd.ExecuteNonQuery();
                     }
                     //Retrieve inserted Customer
-                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
                         cmd.Parameters.AddWithValue("@EMAILADDRESS", emailAddress);
-                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
-                            if (myReader.Read()) {
+                        using (SqlDataReader myReader = cmd.ExecuteReader())
+                        {
+                            if (myReader.Read())
+                            {
                                 ClassCustomer _newCustomer = new ClassCustomer()
                                 {
                                     CustomerId = (int)myReader["customerId"],
@@ -507,10 +524,13 @@ namespace BankProject.Classes
                     }
 
                     //Retrieve inserted Customer
-                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
                         cmd.Parameters.AddWithValue("@CUSTOMERID", customerId);
-                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
-                            if (myReader.Read()) {
+                        using (SqlDataReader myReader = cmd.ExecuteReader())
+                        {
+                            if (myReader.Read())
+                            {
                                 ClassCustomer _newCustomer = new ClassCustomer()
                                 {
                                     CustomerId = (int)myReader["customerId"],
@@ -553,7 +573,7 @@ namespace BankProject.Classes
             }
         }
 
-        
+
         public ClassCustomer? SearchCustomer(string inputCustomerId, string inputFirstName, string inputLastName, string inputDateOfBirth)
         {
             //Build Select Query
@@ -634,7 +654,7 @@ namespace BankProject.Classes
             //Build Select Query
             string selectQuery = "SELECT * ";
             selectQuery += "FROM dbo.Customers ";
-            selectQuery += "WHERE branchId = @BRANCHID; ";
+            selectQuery += "WHERE branchId = @BRANCHID AND customerId<>17; ";
 
             try
             {
@@ -787,7 +807,8 @@ namespace BankProject.Classes
                         cmd.ExecuteNonQuery();
                     }
 
-                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
                         cmd.Parameters.AddWithValue("@CUSTOMERID", customerId);
                         cmd.Parameters.AddWithValue("@BALANCE", "0");
                         cmd.Parameters.AddWithValue("@MOSTRECENTACTIVITY", DateTime.Now);
@@ -795,8 +816,10 @@ namespace BankProject.Classes
                         cmd.Parameters.AddWithValue("@MONTHLYFEE", monthlyFee);
                         cmd.Parameters.AddWithValue("@ISOVERDRAFTED", false);
                         cmd.Parameters.AddWithValue("@ACCOUNTTYPE", accountType);
-                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
-                            if (myReader.Read()) {
+                        using (SqlDataReader myReader = cmd.ExecuteReader())
+                        {
+                            if (myReader.Read())
+                            {
                                 ClassCheckingAccount _newCheckingAccount = new ClassCheckingAccount()
                                 {
                                     AccountId = (int)myReader["accountId"],
@@ -814,7 +837,7 @@ namespace BankProject.Classes
                     }
                 }
 
-                
+
             }
             catch (Exception ex)
             {
@@ -860,7 +883,8 @@ namespace BankProject.Classes
                         cmd.ExecuteNonQuery();
                     }
 
-                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
                         cmd.Parameters.AddWithValue("@CUSTOMERID", customerId);
                         cmd.Parameters.AddWithValue("@BALANCE", "0");
                         cmd.Parameters.AddWithValue("@MOSTRECENTACTIVITY", DateTime.Now);
@@ -868,8 +892,10 @@ namespace BankProject.Classes
                         cmd.Parameters.AddWithValue("@MONTHLYFEE", monthlyFee);
                         cmd.Parameters.AddWithValue("@ISOVERDRAFTED", false);
                         cmd.Parameters.AddWithValue("@ACCOUNTTYPE", accountType);
-                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
-                            if (myReader.Read()) {
+                        using (SqlDataReader myReader = cmd.ExecuteReader())
+                        {
+                            if (myReader.Read())
+                            {
                                 ClassSavingsAccount _newSavingsAccount = new ClassSavingsAccount()
                                 {
                                     AccountId = (int)myReader["accountId"],
@@ -906,7 +932,7 @@ namespace BankProject.Classes
             //Build Select Query
             string selectQuery = "SELECT * FROM dbo.Accounts ";
             selectQuery += "WHERE accountId = @ACCOUNTID ";
- 
+
             try
             {
                 using (SqlConnection cnn = new SqlConnection(ConnectionString))
@@ -923,10 +949,13 @@ namespace BankProject.Classes
                     }
 
                     //Retrieve Updated Checking Account
-                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
                         cmd.Parameters.AddWithValue("@ACCOUNTID", customerId);
-                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
-                            if (myReader.Read()) {
+                        using (SqlDataReader myReader = cmd.ExecuteReader())
+                        {
+                            if (myReader.Read())
+                            {
                                 ClassCheckingAccount _updatedCheckingAccount = new ClassCheckingAccount()
                                 {
                                     AccountId = (int)myReader["accountId"],
@@ -963,7 +992,7 @@ namespace BankProject.Classes
             //Build Select Query
             string selectQuery = "SELECT * FROM dbo.Accounts ";
             selectQuery += "WHERE accountId = @ACCOUNTID ";
- 
+
             try
             {
                 using (SqlConnection cnn = new SqlConnection(ConnectionString))
@@ -980,10 +1009,13 @@ namespace BankProject.Classes
                     }
 
                     //Retrieve Updated Savings Account
-                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn)) {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
                         cmd.Parameters.AddWithValue("@ACCOUNTID", customerId);
-                        using (SqlDataReader myReader = cmd.ExecuteReader()) {
-                            if (myReader.Read()) {
+                        using (SqlDataReader myReader = cmd.ExecuteReader())
+                        {
+                            if (myReader.Read())
+                            {
                                 ClassSavingsAccount _updatedSavingsAccount = new ClassSavingsAccount()
                                 {
                                     AccountId = (int)myReader["accountId"],
@@ -1055,7 +1087,7 @@ namespace BankProject.Classes
             }
         }
 
-        
+
 
         internal ClassSavingsAccount SearchSavingsAccount(string accountId)
         {
@@ -1207,7 +1239,8 @@ namespace BankProject.Classes
         }
 
 
-        internal float GetAccountBalanceById(int accountId) {
+        internal float GetAccountBalanceById(int accountId)
+        {
             //Build Select Query in Accounts
             string selectQuery = "SELECT balance FROM dbo.Accounts ";
             selectQuery += "WHERE accountId = @ACCOUNTID; ";
@@ -1234,7 +1267,8 @@ namespace BankProject.Classes
         }
 
 
-        internal void UpdateAccountAfterTransaction(int accountId, float newBalance, DateTime newMostRecentActivity, bool newIsOverdrafted) {
+        internal void UpdateAccountAfterTransaction(int accountId, float newBalance, DateTime newMostRecentActivity, bool newIsOverdrafted)
+        {
             //Build UPDATE Query in Accounts
             string updateQuery = "UPDATE dbo.Accounts ";
             updateQuery += "SET balance = @NEWBALANCE, mostRecentActivity = @NEWMOSTRECENTACTIVITY, isOverdrafted = @NEWISOVERDRAFTED ";
@@ -1267,8 +1301,9 @@ namespace BankProject.Classes
         /* ----------------------------------------------------------------------------------------------------------------------------------
            ---------------------------------------------------- TRANSACTION METHODS ---------------------------------------------------------
            ---------------------------------------------------------------------------------------------------------------------------------- */
-        public bool CreateTransaction(int inputAccountId, float inputAmountToDebit, float inputAmountToCredit, int inputOtherAccountId, string inputTypeTransaction) {
-            
+        public bool CreateTransaction(int inputAccountId, float inputAmountToDebit, float inputAmountToCredit, int inputOtherAccountId, string inputTypeTransaction)
+        {
+
             DateTime _timestampTransaction = DateTime.Now;
 
             //TRANSACTIONS MUST BE CREATED IN PAIRS
@@ -1296,14 +1331,14 @@ namespace BankProject.Classes
                         cmd.ExecuteNonQuery();
                     }
                 }
-                
+
                 //Get Old Balance of Accounts
                 float _oldBalanceAccount1 = GetAccountBalanceById(inputAccountId);
                 float _oldBalanceAccount2 = GetAccountBalanceById(inputOtherAccountId);
                 float _newBalanceAccount1 = _oldBalanceAccount1 - inputAmountToDebit + inputAmountToCredit;
                 float _newBalanceAccount2 = _oldBalanceAccount2 + inputAmountToDebit - inputAmountToCredit;
-                bool _newIsOverdrafted1 = (_newBalanceAccount1<0) ? true : false;
-                bool _newIsOverdrafted2 = (_newBalanceAccount2<0) ? true : false;
+                bool _newIsOverdrafted1 = (_newBalanceAccount1 < 0) ? true : false;
+                bool _newIsOverdrafted2 = (_newBalanceAccount2 < 0) ? true : false;
 
                 //Update Accounts Information
                 UpdateAccountAfterTransaction(inputAccountId, _newBalanceAccount1, _timestampTransaction, _newIsOverdrafted1);
@@ -1333,7 +1368,8 @@ namespace BankProject.Classes
 
             try
             {
-                using (SqlConnection cnn = new SqlConnection(ConnectionString)) {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
                     using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
                     {
                         cnn.Open();
@@ -1377,7 +1413,7 @@ namespace BankProject.Classes
             string selectQuery = "SELECT * ";
             selectQuery += "FROM dbo.Transactions ";
             selectQuery += "WHERE accountId = @ACCOUNTID ";
-            selectQuery += "AND datetimeTransaction >= '" + dateStart.ToString("yyyy-MM-dd")+ "' ";
+            selectQuery += "AND datetimeTransaction >= '" + dateStart.ToString("yyyy-MM-dd") + "' ";
             selectQuery += "AND datetimeTransaction <= '" + dateEnd.ToString("yyyy-MM-dd") + " 23:59:59' ; ";
 
             try
@@ -1472,6 +1508,88 @@ namespace BankProject.Classes
             }
         }
 
+        internal string GetSavingsBalance(int employeeId)
+        {
 
+            //Build Select Query
+            string selectQuery = "SELECT SUM(balance) as SUM ";
+            selectQuery += "FROM dbo.Accounts LEFT JOIN dbo.Customers ";
+            selectQuery += "ON dbo.Accounts.customerId = dbo.Customers.customerId ";
+            selectQuery += "WHERE dbo.Customers.financialAdvisorId = @EMPLOYEEID ";
+            selectQuery += "AND dbo.Accounts.accountType= 'SAVINGS' ; ";
+
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@EMPLOYEEID", employeeId);
+                        double _result = (double)cmd.ExecuteScalar();
+                        return _result.ToString("$ #,##0.00");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return "$ 0.00";
+            }
+
+        }
+
+        internal string GetChequingBalance(int employeeId)
+        {
+            //Build Select Query
+            string selectQuery = "SELECT SUM(balance) as SUM ";
+            selectQuery += "FROM dbo.Accounts LEFT JOIN dbo.Customers ";
+            selectQuery += "ON dbo.Accounts.customerId = dbo.Customers.customerId ";
+            selectQuery += "WHERE dbo.Customers.financialAdvisorId = @EMPLOYEEID ";
+            selectQuery += "AND dbo.Accounts.accountType= 'CHEQUING' ; ";
+
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@EMPLOYEEID", employeeId);
+                        double _result = (double)cmd.ExecuteScalar();
+                        return _result.ToString("$ #,##0.00");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return "$ 0.00";
+            }
+        }
+
+        internal string GetCountCustomers(int employeeId)
+        {
+            //Build Select Query
+            string selectQuery = "SELECT COUNT(customerId) as COUNT ";
+            selectQuery += "FROM dbo.Customers ";
+            selectQuery += "WHERE dbo.Customers.financialAdvisorId = @EMPLOYEEID ";
+
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@EMPLOYEEID", employeeId);
+                        int _result = (int)cmd.ExecuteScalar();
+                        return _result.ToString("0");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return "0";
+            }
+        }
     }
 }

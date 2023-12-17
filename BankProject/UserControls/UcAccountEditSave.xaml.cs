@@ -47,7 +47,7 @@ namespace BankProject.UserControls
 
             myTextBoxAccountId.textBox.Text = myCheckingAccount.AccountId.ToString();
             myTextBoxCustomerId.textBox.Text = myCheckingAccount.CustomerId.ToString();
-            myTextBoxAccountType.Text = "CHECKING";
+            myTextBoxAccountType.Text = "CHEQUING";
             myTextBoxMonthlyFee.textBox.Text = myCheckingAccount.MonthlyFee.ToString("0.00");
             myTextBoxInterestRate.textBox.Text = "0.00";
             myTextBoxBalance.textBox.Text = myCheckingAccount.Balance.ToString("0.00");

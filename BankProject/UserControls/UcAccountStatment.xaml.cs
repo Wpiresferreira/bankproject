@@ -40,7 +40,7 @@ namespace BankProject.UserControls
             int accountIdint = Int32.Parse(accountId);
             List<ClassTransaction> MyListTransactions = MyController.GetStatement(accountIdint, startDate, endDate);
 
-             var statement = new List<ClassLineStatment>();
+            var statement = new List<ClassLineStatment>();
 
             foreach (ClassTransaction transaction in MyListTransactions)
             {
@@ -62,12 +62,12 @@ namespace BankProject.UserControls
 
                 statement.Add(_lineStatement);
             }
-
+            statement.Sort((a, b) => a.DatetimeTransaction.CompareTo(b.DatetimeTransaction));
             listTransactions.ItemsSource = statement;
         }
 
-    
-    private void ButtonFilter_Click(object sender, RoutedEventArgs e)
+
+        private void ButtonFilter_Click(object sender, RoutedEventArgs e)
         {
             DateTime startDate = DateTime.ParseExact(textBoxStartDate.Text, "yyyy-MM-dd",
                                        System.Globalization.CultureInfo.InvariantCulture);
@@ -88,7 +88,7 @@ namespace BankProject.UserControls
                 _lineStatement.DatetimeTransaction = transaction.DatetimeTransaction.ToString("yyyy-MM-dd");
                 _lineStatement.TransactionId = transaction.TransactionId.ToString("000000");
                 _lineStatement.TypeTransaction = transaction.TypeTransaction;
-                if(transaction.AmountDebit == 0)
+                if (transaction.AmountDebit == 0)
                 {
                     _lineStatement.Amount = transaction.AmountCredit.ToString("#,##0.00");
                     _lineStatement.DebitOrCredit = "C";
@@ -99,10 +99,10 @@ namespace BankProject.UserControls
                     _lineStatement.DebitOrCredit = "D";
 
                 }
-
                 statement.Add(_lineStatement);
             }
-            
+
+            statement.Sort((a, b) => a.DatetimeTransaction.CompareTo(b.DatetimeTransaction));
             listTransactions.ItemsSource = statement;
         }
 
