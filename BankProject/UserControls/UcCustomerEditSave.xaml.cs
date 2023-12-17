@@ -72,79 +72,89 @@ namespace BankProject.UserControls
         }
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            //Build Insert / Update Queries
-            string customerIdText = myTextBoxCustomerId.textBox.Text;
-            int customerId = int.Parse(customerIdText);
-            string firstName = myTextBoxFirstName.textBox.Text;
-            string lastName = myTextBoxLastName.textBox.Text;
-            DateOnly dateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(myTextBoxDateOfBirth.Text));
-            string documentType = myTextBoxDocumentType.textBox.Text;
-            string documentNumber = myTextBoxDocNumber.textBox.Text;
-            DateOnly documentIssuedDate = DateOnly.FromDateTime(Convert.ToDateTime(myTextBoxIssuedDate.Text));
-            DateOnly documentExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(myTextBoxExpDate.Text));
-            string zipCode = myTextBoxZipCode.textBox.Text;
-            string line1 = myTextBoxLine1.textBox.Text;
-            string line2 = myTextBoxLine2.textBox.Text;
-            string city = myTextBoxCity.textBox.Text;
-            string province = myTextBoxProvince.textBox.Text;
-            string country = myTextBoxCountry.textBox.Text;
-            string phoneNumber = myTextBoxPhone.textBox.Text;
-            string emailAddress = myTextBoxEmail.textBox.Text;
-            int branchId = 2;
-            int financialAdvisorId = 2;
-
-            // If there is no ID, try Insert.
-
-            if (customerIdText == "")
+            try
             {
 
+                //Build Insert / Update Queries
+                string customerIdText = myTextBoxCustomerId.textBox.Text;
+                int customerId;
+                Int32.TryParse(customerIdText, out customerId);
+                string firstName = myTextBoxFirstName.textBox.Text;
+                string lastName = myTextBoxLastName.textBox.Text;
+                DateTime dateOfBirth = myTextBoxDateOfBirth.DisplayDate;
+                string documentType = myTextBoxDocumentType.textBox.Text;
+                string documentNumber = myTextBoxDocNumber.textBox.Text;
+                DateTime documentIssuedDate = myTextBoxIssuedDate.DisplayDate;
+                DateTime documentExpirationDate = myTextBoxExpDate.DisplayDate;
+                string zipCode = myTextBoxZipCode.textBox.Text;
+                string line1 = myTextBoxLine1.textBox.Text;
+                string line2 = myTextBoxLine2.textBox.Text;
+                string city = myTextBoxCity.textBox.Text;
+                string province = myTextBoxProvince.textBox.Text;
+                string country = myTextBoxCountry.textBox.Text;
+                string phoneNumber = myTextBoxPhone.textBox.Text;
+                string emailAddress = myTextBoxEmail.textBox.Text;
+                int branchId = 2;
+                int financialAdvisorId = 2;
 
-                ClassCustomer? _newCustomer = MyController.CreateNewCustomer(
-                    firstName, lastName, dateOfBirth, documentType, documentNumber,
-                    documentIssuedDate, documentExpirationDate, zipCode, line1, line2,
-                    city, province, country, phoneNumber, emailAddress,
-                    branchId, financialAdvisorId
-                );
+                // If there is no ID, try Insert.
 
-                if (_newCustomer != null)
+                if (customerIdText == "")
                 {
-                    MessageBox.Show($"[New Customer Added] New Customer {firstName} {lastName} was registered! \nCustomerId: {_newCustomer.CustomerId}");
 
-                    myTextBoxCustomerId.textBox.Text = _newCustomer.CustomerId.ToString();
 
-                    //Switch windows
-                    //var newUcCustomerSearch = new UcCustomerSearch(MyController);
-                    //WindowFrame parentWindow = (WindowFrame)Window.GetWindow(this);
-                    //parentWindow.SwitchTabs(newUcCustomerSearch);
+                    ClassCustomer? _newCustomer = MyController.CreateNewCustomer(
+                        firstName, lastName, dateOfBirth, documentType, documentNumber,
+                        documentIssuedDate, documentExpirationDate, zipCode, line1, line2,
+                        city, province, country, phoneNumber, emailAddress,
+                        branchId, financialAdvisorId
+                    );
 
-                    // this.Close();
-                    // this.Owner.Show();
+                    if (_newCustomer != null)
+                    {
+                        MessageBox.Show($"[New Customer Added] New Customer {firstName} {lastName} was registered! \nCustomerId: {_newCustomer.CustomerId}");
+
+                        myTextBoxCustomerId.textBox.Text = _newCustomer.CustomerId.ToString();
+
+                        //Switch windows
+                        //var newUcCustomerSearch = new UcCustomerSearch(MyController);
+                        //WindowFrame parentWindow = (WindowFrame)Window.GetWindow(this);
+                        //parentWindow.SwitchTabs(newUcCustomerSearch);
+
+                        // this.Close();
+                        // this.Owner.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show($"[ERROR] Something went wrong...");
+                    }
+
                 }
-                else
+                else  // try UPDATE
                 {
-                    MessageBox.Show($"[ERROR] Something went wrong...");
-                }
+                    ClassCustomer? _updatedCustomer = MyController.EditCustomer(
+                        customerId, firstName, lastName, dateOfBirth, documentType,
+                        documentNumber, documentIssuedDate, documentExpirationDate, zipCode, line1,
+                        line2, city, province, country, phoneNumber,
+                        emailAddress, branchId, financialAdvisorId);
 
+                    if (_updatedCustomer != null)
+                    {
+                        MessageBox.Show($"[Customer Updated] Customer {firstName} {lastName} was updated! \nCustomerId: {customerId}");
+
+
+                    }
+                    else
+                    {
+                        MessageBox.Show($"[ERROR] Something went wrong...");
+                    }
+
+
+                }
             }
-            else  // try UPDATE
+            catch (Exception ex)
             {
-                ClassCustomer? _updatedCustomer = MyController.EditCustomer(
-                    customerId, firstName, lastName, dateOfBirth, documentType,
-                    documentNumber, documentIssuedDate, documentExpirationDate, zipCode, line1,
-                    line2, city, province, country, phoneNumber,
-                    emailAddress, branchId, financialAdvisorId);
-
-                if (_updatedCustomer!=null)
-                {
-                    MessageBox.Show($"[Customer Updated] Customer {firstName} {lastName} was updated! \nCustomerId: {customerId}");
-
-
-                }
-                else {
-                    MessageBox.Show($"[ERROR] Something went wrong...");
-                }
-
-
+                MessageBox.Show("Please check information\n" + ex.Message.ToString());
             }
         }
 
@@ -157,7 +167,7 @@ namespace BankProject.UserControls
 
         }
 
-       
+
 
         private void myTextBoxZipCode_LostFocus(object sender, RoutedEventArgs e)
         {

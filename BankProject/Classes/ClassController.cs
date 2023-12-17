@@ -94,7 +94,7 @@ namespace BankProject.Classes {
            ---------------------------------------------------------------------------------------------------------------------------------- */
         public bool CreateNewEmployee(
             string firstName, string lastName, string emailAddress, string phoneNumber, int positionId,
-            string password, int branchId, DateOnly startDate, DateOnly dateOfBirth, string zipCode,
+            string password, int branchId, DateTime startDate, DateTime dateOfBirth, string zipCode,
             string line1, string line2, string city, string province, string country,
             string documentType, string documentNumber, string documentIssuedDate, string documentExpirationDate) {
             
@@ -125,8 +125,8 @@ namespace BankProject.Classes {
         /* ----------------------------------------------------------------------------------------------------------------------------------
            ------------------------------------------------------ CUSTOMER METHODS ----------------------------------------------------------
            ---------------------------------------------------------------------------------------------------------------------------------- */
-        public ClassCustomer? CreateNewCustomer(string firstName, string lastName, DateOnly dateOfBirth, string documentType, string documentNumber,
-                    DateOnly documentIssuedDate, DateOnly documentExpirationDate, string zipCode, string line1, string line2,
+        public ClassCustomer? CreateNewCustomer(string firstName, string lastName, DateTime dateOfBirth, string documentType, string documentNumber,
+                    DateTime documentIssuedDate, DateTime documentExpirationDate, string zipCode, string line1, string line2,
                     string city, string province, string country, string phoneNumber, string emailAddress,
                     int branchId, int financialAdvisorId) {
             
@@ -154,8 +154,8 @@ namespace BankProject.Classes {
         }
 
 
-        public ClassCustomer? EditCustomer(int customerId, string firstName, string lastName, DateOnly dateOfBirth, string documentType,
-            string documentNumber, DateOnly documentIssuedDate, DateOnly documentExpirationDate, string zipCode, string line1,
+        public ClassCustomer? EditCustomer(int customerId, string firstName, string lastName, DateTime dateOfBirth, string documentType,
+            string documentNumber, DateTime documentIssuedDate, DateTime documentExpirationDate, string zipCode, string line1,
             string line2, string city, string province, string country, string phoneNumber,
             string emailAddress, int branchId, int financialAdvisorId) {
 
@@ -374,6 +374,11 @@ namespace BankProject.Classes {
         internal string GetCountCustomers(int employeeId)
         {
             return MySqlClient.GetCountCustomers(employeeId);
+        }
+
+        internal string GetCustomerNameByAccountId(string accountId)
+        {
+            return MySqlClient.GetCustomerNameByAccountId(accountId);
         }
     }
 }

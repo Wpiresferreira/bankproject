@@ -214,7 +214,7 @@ namespace BankProject.Classes
            ---------------------------------------------------------------------------------------------------------------------------------- */
         public ClassEmployee InsertNewEmployee(
             string inputFirstName, string inputLastName, string inputEmailAddress, string inputPhoneNumber, int inputPositionId,
-            string inputPassword, int inputBranchId, DateOnly inputStartDate, DateOnly inputDateOfBirth, string inputZipCode,
+            string inputPassword, int inputBranchId, DateTime inputStartDate, DateTime inputDateOfBirth, string inputZipCode,
             string inputLine1, string inputLine2, string inputCity, string inputProvince, string inputCountry,
             string inputDocumentType, string inputDocumentNumber, string inputDocumentIssuedDate, string inputDocumentExpirationDate
         )
@@ -273,8 +273,8 @@ namespace BankProject.Classes
                                     Email = (string)myReader["emailAddress"],
                                     Phone = (string)myReader["phoneNumber"],
                                     PositionId = (int)myReader["positionId"],
-                                    StartDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["startDate"])),
-                                    DateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(myReader["dateOfBirth"])),
+                                    StartDate = (DateTime)myReader["startDate"],
+                                    DateOfBirth = (DateTime)myReader["dateOfBirth"],
                                     Address = new ClassAddress()
                                     {
                                         ZipCode = (string)myReader["zipCode"],
@@ -288,8 +288,8 @@ namespace BankProject.Classes
                                     {
                                         DocumentType = (string)myReader["documentType"],
                                         DocumentNumber = (string)myReader["documentNumber"],
-                                        DocumentIssuedDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentIssuedDate"])),
-                                        DocumentExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentExpirationDate"])),
+                                        DocumentIssuedDate = (DateTime)myReader["documentIssuedDate"],
+                                        DocumentExpirationDate = (DateTime)myReader["documentExpirationDate"],
                                     },
                                 };
                                 return _newEmployee;
@@ -340,8 +340,8 @@ namespace BankProject.Classes
                                     Email = (string)myReader["emailAddress"],
                                     Phone = (string)myReader["phoneNumber"],
                                     PositionId = (int)myReader["positionId"],
-                                    StartDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["startDate"])),
-                                    DateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(myReader["dateOfBirth"])),
+                                    StartDate = (DateTime)myReader["startDate"],
+                                    DateOfBirth = (DateTime)myReader["dateOfBirth"],
                                     Address = new ClassAddress()
                                     {
                                         ZipCode = (string)myReader["zipCode"],
@@ -355,8 +355,8 @@ namespace BankProject.Classes
                                     {
                                         DocumentType = (string)myReader["documentType"],
                                         DocumentNumber = (string)myReader["documentNumber"],
-                                        DocumentIssuedDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentIssuedDate"])),
-                                        DocumentExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentExpirationDate"])),
+                                        DocumentIssuedDate = (DateTime)myReader["documentIssuedDate"],
+                                        DocumentExpirationDate = (DateTime)myReader["documentExpirationDate"],
                                     },
                                 };
                                 _listEmployees.Add(_newEmployee);
@@ -405,8 +405,8 @@ namespace BankProject.Classes
                                     Email = (string)myReader["emailAddress"],
                                     Phone = (string)myReader["phoneNumber"],
                                     PositionId = (int)myReader["positionId"],
-                                    StartDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["startDate"])),
-                                    DateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(myReader["dateOfBirth"])),
+                                    StartDate = (DateTime)myReader["startDate"],
+                                    DateOfBirth = (DateTime)myReader["dateOfBirth"],
                                     Address = new ClassAddress()
                                     {
                                         ZipCode = (string)myReader["zipCode"],
@@ -420,8 +420,8 @@ namespace BankProject.Classes
                                     {
                                         DocumentType = (string)myReader["documentType"],
                                         DocumentNumber = (string)myReader["documentNumber"],
-                                        DocumentIssuedDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentIssuedDate"])),
-                                        DocumentExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentExpirationDate"])),
+                                        DocumentIssuedDate = (DateTime)myReader["documentIssuedDate"],
+                                        DocumentExpirationDate = (DateTime)myReader["documentExpirationDate"],
                                     },
                                 };
                             return _employee;
@@ -442,8 +442,8 @@ namespace BankProject.Classes
            ------------------------------------------------------ CUSTOMER METHODS ----------------------------------------------------------
            ---------------------------------------------------------------------------------------------------------------------------------- */
         public ClassCustomer? InsertNewCustomer(
-            string firstName, string lastName, DateOnly dateOfBirth, string documentType, string documentNumber,
-            DateOnly documentIssuedDate, DateOnly documentExpirationDate, string zipCode, string line1, string line2,
+            string firstName, string lastName, DateTime dateOfBirth, string documentType, string documentNumber,
+            DateTime documentIssuedDate, DateTime documentExpirationDate, string zipCode, string line1, string line2,
             string city, string province, string country, string phoneNumber, string emailAddress,
             int branchId, int financialAdvisorId)
         {
@@ -502,7 +502,7 @@ namespace BankProject.Classes
                                     LastName = (string)myReader["lastName"],
                                     Email = (string)myReader["emailAddress"],
                                     Phone = (string)myReader["phoneNumber"],
-                                    DateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(myReader["dateOfBirth"])),
+                                    DateOfBirth = (DateTime)myReader["dateOfBirth"],
                                     Address = new ClassAddress()
                                     {
                                         ZipCode = (string)myReader["zipCode"],
@@ -516,8 +516,8 @@ namespace BankProject.Classes
                                     {
                                         DocumentType = (string)myReader["documentType"],
                                         DocumentNumber = (string)myReader["documentNumber"],
-                                        DocumentIssuedDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentIssuedDate"])),
-                                        DocumentExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentExpirationDate"])),
+                                        DocumentIssuedDate = (DateTime)myReader["documentIssuedDate"],
+                                        DocumentExpirationDate = (DateTime)myReader["documentExpirationDate"],
                                     },
                                     FinancialAdvisor = GetEmployeeById((int)myReader["financialAdvisorId"]),
                                     MyListAccounts = new List<ClassAbstractAccount>(),
@@ -539,8 +539,8 @@ namespace BankProject.Classes
 
 
         internal ClassCustomer? UpdateCustomer(
-            int customerId, string firstName, string lastName, DateOnly dateOfBirth, string documentType,
-            string documentNumber, DateOnly documentIssuedDate, DateOnly documentExpirationDate, string zipCode, string line1,
+            int customerId, string firstName, string lastName, DateTime dateOfBirth, string documentType,
+            string documentNumber, DateTime documentIssuedDate, DateTime documentExpirationDate, string zipCode, string line1,
             string line2, string city, string province, string country, string phoneNumber,
             string emailAddress, int branchId, int financialAdvisorId)
         {
@@ -601,7 +601,7 @@ namespace BankProject.Classes
                                     LastName = (string)myReader["lastName"],
                                     Email = (string)myReader["emailAddress"],
                                     Phone = (string)myReader["phoneNumber"],
-                                    DateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(myReader["dateOfBirth"])),
+                                    DateOfBirth = (DateTime)myReader["dateOfBirth"],
                                     Address = new ClassAddress()
                                     {
                                         ZipCode = (string)myReader["zipCode"],
@@ -615,8 +615,8 @@ namespace BankProject.Classes
                                     {
                                         DocumentType = (string)myReader["documentType"],
                                         DocumentNumber = (string)myReader["documentNumber"],
-                                        DocumentIssuedDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentIssuedDate"])),
-                                        DocumentExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentExpirationDate"])),
+                                        DocumentIssuedDate = (DateTime)myReader["documentIssuedDate"],
+                                        DocumentExpirationDate = (DateTime)myReader["documentExpirationDate"],
                                     },
                                     FinancialAdvisor = GetEmployeeById((int)myReader["financialAdvisorId"]),
                                     MyListAccounts = GetListAccountsOfSpecificCustomer((int)myReader["customerId"]),
@@ -675,13 +675,13 @@ namespace BankProject.Classes
                                 CustomerId = (int)reader["customerId"],
                                 FirstName = (string)reader["firstName"],
                                 LastName = (string)reader["lastName"],
-                                DateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(reader["dateOfBirth"])),
+                                DateOfBirth = (DateTime)reader["dateOfBirth"],
                                 Document = new ClassDocument()
                                 {
                                     DocumentType = (string)reader["documentType"],
                                     DocumentNumber = (string)reader["documentNumber"],
-                                    DocumentIssuedDate = DateOnly.FromDateTime(Convert.ToDateTime(reader["documentIssuedDate"])),
-                                    DocumentExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(reader["documentExpirationDate"]))
+                                    DocumentIssuedDate = (DateTime)reader["documentIssuedDate"],
+                                    DocumentExpirationDate = (DateTime)reader["documentExpirationDate"]
                                 },
                                 Address = new ClassAddress()
                                 {
@@ -739,13 +739,13 @@ namespace BankProject.Classes
                                     CustomerId = (int)myReader["customerId"],
                                     FirstName = (string)myReader["firstName"],
                                     LastName = (string)myReader["lastName"],
-                                    DateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(myReader["dateOfBirth"])),
+                                    DateOfBirth = (DateTime)myReader["dateOfBirth"],
                                     Document = new ClassDocument()
                                     {
                                         DocumentType = (string)myReader["documentType"],
                                         DocumentNumber = (string)myReader["documentNumber"],
-                                        DocumentIssuedDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentIssuedDate"])),
-                                        DocumentExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(myReader["documentExpirationDate"])),
+                                        DocumentIssuedDate = (DateTime)myReader["documentIssuedDate"],
+                                        DocumentExpirationDate = (DateTime)myReader["documentExpirationDate"],
                                     },
                                     Address = new ClassAddress()
                                     {
@@ -800,13 +800,13 @@ namespace BankProject.Classes
                                 CustomerId = (int)reader["customerId"],
                                 FirstName = (string)reader["firstName"],
                                 LastName = (string)reader["lastName"],
-                                DateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(reader["dateOfBirth"])),
+                                DateOfBirth = (DateTime)reader["dateOfBirth"],
                                 Document = new ClassDocument()
                                 {
                                     DocumentType = (string)reader["documentType"],
                                     DocumentNumber = (string)reader["documentNumber"],
-                                    DocumentIssuedDate = DateOnly.FromDateTime(Convert.ToDateTime(reader["documentIssuedDate"])),
-                                    DocumentExpirationDate = DateOnly.FromDateTime(Convert.ToDateTime(reader["documentExpirationDate"]))
+                                    DocumentIssuedDate = (DateTime)reader["documentIssuedDate"],
+                                    DocumentExpirationDate = (DateTime)reader["documentExpirationDate"]
                                 },
                                 Address = new ClassAddress()
                                 {
@@ -1661,6 +1661,33 @@ namespace BankProject.Classes
             catch (Exception ex)
             {
                 return "0";
+            }
+        }
+
+        internal string GetCustomerNameByAccountId(string accountId)
+        {
+            //Build Select Query
+            string selectQuery = "SELECT firstName + ' ' +  lastName AS customerFullName ";
+            selectQuery += "FROM [dbo].[Accounts] LEFT JOIN [dbo].[Customers] ";
+            selectQuery += "ON [dbo].[Accounts].[customerId] = [dbo].[Customers].[customerId] ";
+            selectQuery += "WHERE [dbo].[Accounts].[accountId] =  @ACCOUNTID ";
+
+            try
+            {
+                using (SqlConnection cnn = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(selectQuery, cnn))
+                    {
+                        cnn.Open();
+                        cmd.Parameters.AddWithValue("@ACCOUNTID", accountId);
+                        string _result = cmd.ExecuteScalar().ToString();
+                        return _result.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return "Unknow Customer";
             }
         }
     }

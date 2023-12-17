@@ -9,7 +9,7 @@ namespace BankProject.Classes {
 
         public int EmployeeId { get; set; }
         protected string Password { get; set; }
-        public DateOnly StartDate { get; set; }
+        public DateTime StartDate { get; set; }
         public int PositionId { get; set; }
 
 

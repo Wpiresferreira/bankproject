@@ -93,7 +93,8 @@ namespace BankProject.UserControls
         {
             //Build Insert / Update Queries
             string accountIdText = myTextBoxAccountId.textBox.Text;
-            int accountId = int.Parse(accountIdText);
+            int accountId;
+            Int32.TryParse(accountIdText, out accountId);
             int customerId = int.Parse(myTextBoxCustomerId.textBox.Text);
             string accountType = myTextBoxAccountType.Text;
             float monthlyFee = float.Parse(myTextBoxMonthlyFee.textBox.Text);
@@ -108,7 +109,7 @@ namespace BankProject.UserControls
 
                 ClassAbstractAccount _newAccount = MyController.CreateNewAccount(customerId, accountType, monthlyFee, interestRate);
 
-                if (_newAccount!=null)
+                if (_newAccount != null)
                 {
                     MessageBox.Show($"[New Account Added] New Account was registered! Account Id: {_newAccount.AccountId}");
 
@@ -130,9 +131,9 @@ namespace BankProject.UserControls
             }
             else  // try UPDATE
             {
-                 ClassAbstractAccount? _editedAccount = MyController.EditAccount(accountId, customerId, accountType, monthlyFee, interestRate);
+                ClassAbstractAccount? _editedAccount = MyController.EditAccount(accountId, customerId, accountType, monthlyFee, interestRate);
 
-                if (_editedAccount!=null)
+                if (_editedAccount != null)
                 {
                     MessageBox.Show($"[Account Updated] Account {accountId} was updated!");
 
@@ -166,8 +167,8 @@ namespace BankProject.UserControls
             try
             {
                 int _customerId = Int32.Parse(myTextBoxCustomerId.textBox.Text);
-            ClassCustomer customer = MySqlClient.GetCustomerById(_customerId);
-            MyTextBlockCustomerName.Text = $"{customer.FirstName} {customer.LastName}";
+                ClassCustomer customer = MySqlClient.GetCustomerById(_customerId);
+                MyTextBlockCustomerName.Text = $"{customer.FirstName} {customer.LastName}";
             }
             catch { }
         }

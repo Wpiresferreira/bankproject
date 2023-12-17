@@ -52,8 +52,8 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Grid.Column="0" Grid.Row="0" Text="Customer " FontSize="20" Foreground="#ccd7ff" HorizontalAlignment="Left" />
-                            <TextBlock Grid.Column="1" Grid.Row="0" x:Name="textBlockCustomerName" Text="Wagner Ferreira" FontSize="20" Foreground="#ccd7ff" HorizontalAlignment="Left" />
+                            <TextBlock Grid.Column="0" Grid.Row="0" Text="Customer: " FontSize="20" Foreground="#ccd7ff" HorizontalAlignment="Left" />
+                            <TextBlock Grid.Column="1" Grid.Row="0" x:Name="textBlockCustomerName" Text="Unknow Customer" FontSize="20" Foreground="#ccd7ff" HorizontalAlignment="Left" />
 
                             <TextBlock Grid.Column="2" Grid.Row="0" Text="Branch: " FontSize="20" Foreground="#ccd7ff" HorizontalAlignment="Left" />
                             <TextBlock Grid.Column="3" Grid.Row="0" x:Name="textBlockBranchId" Text="0000" FontSize="20" Foreground="#ccd7ff" HorizontalAlignment="Left" />

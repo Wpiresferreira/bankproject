@@ -39,8 +39,8 @@ namespace BankProject.UserControls {
             int _positionId = int.Parse(myTextBoxPositionId.textBox.Text);
             string _password = myTextBoxPassword.textBox.Text;
             int _branchId = int.Parse(myTextBoxBranchId.textBox.Text);
-            DateOnly _startDate = DateOnly.FromDateTime(Convert.ToDateTime(myTextBoxStartDate.textBox.Text));
-            DateOnly _dateOfBirth = DateOnly.FromDateTime(Convert.ToDateTime(myTextBoxDateOfBirth.textBox.Text));
+            DateTime _startDate = Convert.ToDateTime(myTextBoxStartDate.textBox.Text);
+            DateTime _dateOfBirth = Convert.ToDateTime(myTextBoxDateOfBirth.textBox.Text);
             string _zipCode = myTextBoxZipCode.textBox.Text;
             string _line1 = myTextBoxLine1.textBox.Text;
             string _line2 = myTextBoxLine2.textBox.Text;

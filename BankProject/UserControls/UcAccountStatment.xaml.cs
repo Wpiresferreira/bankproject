@@ -30,6 +30,7 @@ namespace BankProject.UserControls
 
             textBlockBranchId.Text = MyController.MyUserLogged.BranchId.ToString("0000");
             textBlockAccountId.Text = accountId.ToString();
+            textBlockCustomerName.Text = MyController.GetCustomerNameByAccountId(accountId);
 
             // filling StartDate and EndDate
             DateTime startDate = DateTime.Now.AddMonths(-1);

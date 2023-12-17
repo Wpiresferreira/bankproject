@@ -11,7 +11,7 @@ namespace BankProject.Classes {
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public DateOnly DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
         public ClassDocument Document { get; set; }
         public ClassAddress Address { get; set; }
 
@@ -21,8 +21,8 @@ namespace BankProject.Classes {
     public class ClassDocument {
         public string DocumentType { get; set; }
         public string DocumentNumber { get; set; }
-        public DateOnly DocumentIssuedDate { get; set; }
-        public DateOnly DocumentExpirationDate { get; set; }
+        public DateTime DocumentIssuedDate { get; set; }
+        public DateTime DocumentExpirationDate { get; set; }
 
 
         public ClassDocument() {

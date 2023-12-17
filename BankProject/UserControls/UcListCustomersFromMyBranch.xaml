@@ -41,7 +41,7 @@
                         <TextBlock x:Name="textBlockBranchId" Text="Current Branch: " FontSize="20" Foreground="#ccd7ff" HorizontalAlignment="Left" Margin="50 25 0 10" />
                         
                         <Border CornerRadius="25" Background="#FF653BBD" MaxHeight="1000">
-                            <ListView Margin="10" Name="listViewListCustomersFromMyBranch" MaxHeight="2000">
+                            <ListView Margin="10" Name="listViewListCustomersFromMyBranch" MaxHeight="350">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Header="CustomerId" Width="70" DisplayMemberBinding="{Binding CustomerId}" />
